@@ -1,11 +1,11 @@
+/* eslint-disable no-unused-vars */
 
-import style from './Register.module.css'
 import { motion } from "framer-motion";
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import axios from 'axios'
 import { ActiveContext } from '../../Context/ActiveContext'
-import { useContext, useState} from 'react'
+import { useContext, useState } from 'react'
 
 export default function Register() {
 
@@ -14,16 +14,17 @@ export default function Register() {
 
     const navigate = useNavigate();
 
-    let {isActive , setIsActive} = useContext(ActiveContext);
+    let { isActive, setIsActive } = useContext(ActiveContext);
 
     async function register(values) {
         try {
             setIsLoading(true);
             const response = await axios.post("http://edutrack.runasp.net/api/Auth/sign-up", values);
-            setIsLoading(false);
+            if (response.status !== 200) throw new Error(response.statusText);
             navigate('/');
         } catch (error) {
             setApiError(error.response.data.errors[1]);
+        } finally {
             setIsLoading(false);
         }
     }
@@ -68,20 +69,20 @@ export default function Register() {
             fullName: '',
             level: null,
         }, validate: validateForm
-        ,  onSubmit: register
+        , onSubmit: register
     })
 
     return <>
         <motion.div
             className="min-h-screen bg-[#EFF4F8] flex items-center justify-center"
-            initial={{ opacity: 0, x: 100 }} 
-            animate={{ opacity: 1, x: 0 }}  
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}>
-            {apiError && <div class="absolute top-0 z-10 text-center p-3 mt-2 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
+            {apiError && <div className="absolute top-0 z-10 text-center p-3 mt-2 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                 {apiError}
             </div>}
-            <div className={`absolute flex flex-row-reverse bg-white rounded-tl-[3rem]  rounded-bl-[3rem] overflow-hidden shadow-lg w-[90%] max-w-4xl `}>
-                <form onSubmit={formik.handleSubmit}  className={`mr-[29%] flex-1 py-10 px-8 flex flex-col justify-center w-[50%] text-center transition-all duration-1000 ease-in-out ${ isActive ? "opacity-0 translate-x-100" : "opacity-100 translate-x-0"}`}>
+            <div className={`absolute flex flex-row-reverse bg-white rounded-tr-[0px] sm:rounded-tr-[2.5rem] rounded-bl-[2.5rem] sm:rounded-bl-[0px] rounded-br-[2.5rem] overflow-hidden shadow-lg w-[93%] max-w-4xl `}>
+                <form onSubmit={formik.handleSubmit} className={`mr-auto mt-44 sm:mt-0 flex-1 py-10 px-8 flex flex-col justify-center w-full sm:max-w-2/3 md:max-w-3/4 lg:max-w-3/4 text-center transition-all duration-1000 ease-in-out ${isActive ? "opacity-0 translate-x-100" : "opacity-100 translate-x-0"}`}>
                     <input
                         value={formik.values.fullName}
                         onChange={formik.handleChange}
@@ -92,7 +93,7 @@ export default function Register() {
                         placeholder="الإسم"
                         className="mb-2 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none"
                     />
-                    {formik.errors.fullName && formik.touched.fullName && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
+                    {formik.errors.fullName && formik.touched.fullName && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.fullName}
                     </div>}
                     <input
@@ -105,7 +106,7 @@ export default function Register() {
                         placeholder="الرقم القومي"
                         className="mb-2 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none"
                     />
-                    {formik.errors.nationalId && formik.touched.nationalId && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
+                    {formik.errors.nationalId && formik.touched.nationalId && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.nationalId}
                     </div>}
                     <input
@@ -118,7 +119,7 @@ export default function Register() {
                         placeholder="الفرقة"
                         className="mb-2 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none"
                     />
-                    {formik.errors.level && formik.touched.level && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
+                    {formik.errors.level && formik.touched.level && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.level}
                     </div>}
                     <input
@@ -131,7 +132,7 @@ export default function Register() {
                         placeholder="كلمة المرور"
                         className="mb-2 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none"
                     />
-                    {formik.errors.password && formik.touched.password && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
+                    {formik.errors.password && formik.touched.password && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.password}
                     </div>}
                     {isLoading ? <button type='button' className=" text-center cursor-pointer bg-[#377DAC] text-white py-2 rounded  mt-2 ">
@@ -139,27 +140,26 @@ export default function Register() {
                         : <button type='submit' className=" text-center cursor-pointer bg-[#377DAC] text-white py-2 rounded mt-2">تسجيل</button>}
                 </form>
 
-                <div className={`w-[30%] absolute top-0 right-[0%] bottom-0 rounded-tl-[2.5rem] rounded-bl-[2.5rem] bg-[#6CA6CD] z-0 transition-all duration-[3000ms] ease-in-out ${isActive ? "right-[100%] w-[400%]" : ""}`}></div>
+                <div className={`w-full h-46 sm:h-full sm:w-1/3 md:w-1/4 absolute top-0 right-[0%] bottom-0 rounded-b-[2.5rem] sm:rounded-b-[0px] rounded-r-[0px] sm:!rounded-r-[2.5rem] bg-[#6CA6CD] z-0 transition-all duration-[3000ms] ease-in-out ${isActive ? "right-[100%] w-[400%]" : ""}`}></div>
 
-                <div className={`text-white p-8 flex flex-col justify-center text-center absolute top-0 bottom-0 transition-all duration-10000 ease-in-out ${
-                    isActive ? "right-[-100%]" : "right-0"}`}>
+                <div className={`w-full h-46 sm:h-full sm:w-1/3 md:w-1/4 text-white p-6 lg:p-8 flex flex-col justify-center text-center absolute top-0 bottom-0 transition-all duration-10000 ease-in-out ${isActive ? "right-[-100%]" : "right-0"}`}>
                     <h2 className="text-xl font-bold mb-2">أهلاً ومرحبًا بك</h2>
                     <p className="text-sm mb-4">هل لديك حساب معنا من قبل؟</p>
-                    <button 
+                    <button
                         onClick={() => {
-                            setIsActive(true); 
+                            setIsActive(true);
                             setTimeout(() => {
-                            setIsActive(false);
-                            }, 2950); 
+                                setIsActive(false);
+                            }, 2950);
                             setTimeout(() => {
                                 navigate('/');
                             }, 3000);
-                        }} className="border border-white py-2 px-4 rounded-[12px] transition-all duration-1000">
+                        }} className="border border-white py-2 px-4 rounded-[12px] w-[200px] sm:w-full mx-auto transition-all duration-1000">
                         تسجيل الدخول
                     </button>
                 </div>
 
-                
+
             </div>
         </motion.div>
     </>
