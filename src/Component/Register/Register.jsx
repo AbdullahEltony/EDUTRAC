@@ -19,7 +19,7 @@ export default function Register() {
     async function register(values) {
         try {
             setIsLoading(true);
-            const response = await axios.post("http://edutrack.runasp.net/api/Auth/sign-up", values);
+            const response = await axios.post("https://edutrack.runasp.net/api/Auth/sign-up", values);
             if (response.status !== 200) throw new Error(response.statusText);
             navigate('/');
         } catch (error) {
