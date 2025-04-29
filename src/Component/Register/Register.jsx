@@ -142,7 +142,7 @@ export default function Register() {
 
                 <div className={`w-full h-46 sm:h-full sm:w-1/3 md:w-1/4 absolute top-0 right-[0%] bottom-0 rounded-b-[2.5rem] sm:rounded-b-[0px] rounded-r-[0px] sm:!rounded-r-[2.5rem] bg-[#6CA6CD] z-0 transition-all duration-[3000ms] ease-in-out ${isActive ? "right-[100%] w-[400%]" : ""}`}></div>
 
-                <div className={`w-full h-46 sm:h-full sm:w-1/3 md:w-1/4 text-white p-6 lg:p-8 flex flex-col justify-center text-center absolute top-0 bottom-0 transition-all duration-10000 ease-in-out ${isActive ? "right-[-100%]" : "right-0"}`}>
+                <div className={`w-full h-46 sm:h-full sm:w-1/3 md:w-1/4 text-white p-6 lg:p-8 flex flex-col justify-center text-center absolute top-0 bottom-0 transition-all duration-3000 ease-in-out ${isActive ? "right-[-100%]" : "right-0"}`}>
                     <h2 className="text-xl font-bold mb-2">أهلاً ومرحبًا بك</h2>
                     <p className="text-sm mb-4">هل لديك حساب معنا من قبل؟</p>
                     <button
