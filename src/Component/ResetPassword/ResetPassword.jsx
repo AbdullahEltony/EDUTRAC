@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react'
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react'
 import { motion } from "framer-motion";
-import style from './ResetPassword.module.css'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { ActiveContext } from '../../Context/ActiveContext';
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { baseURL } from '../../constants';
 
 export default function ResetPassword() {
 
@@ -17,46 +17,47 @@ export default function ResetPassword() {
     async function resetPassword(values) {
         try {
             setIsLoading(true);
-            const response = await axios.post(`http://edutrack.runasp.net/api/Auth/reset-password`, values);
-            setIsLoading(false);
+            const response = await axios.post(`${baseURL}/api/Auth/reset-password`, values);
+            if (response.status !== 200) throw new Error(response.statusText);
             navigate('/');
         } catch (error) {
             setApiError(error.response.data.errors[1]);
+        }finally {
             setIsLoading(false);
         }
     }
-    
-        function validateForm(values) {
-            let errors = {};
-            if (!values.nationalId) {
-                errors.nationalId = 'الرقم القومي مطلوب'
-            }
-            else if (!/^\d{14}$/.test(values.nationalId)) {
-                errors.nationalId = 'الرقم القومي غير صحيح'
-            }
 
-            if (!values.newPassword) {
-                errors.newPassword = 'كلمة المرور مطلوبة'
-            }
-            else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,15}$/.test(values.newPassword)) {
-                errors.newPassword = 'كلمة المرور غير صحيحة '
-            }
-
-            return errors
+    function validateForm(values) {
+        let errors = {};
+        if (!values.nationalId) {
+            errors.nationalId = 'الرقم القومي مطلوب'
         }
-    
-        let formik = useFormik({
-            initialValues: {
-                nationalId: '',
-                newPassword: ''
-            }, validate: validateForm
-            ,  onSubmit: resetPassword
-        })
+        else if (!/^\d{14}$/.test(values.nationalId)) {
+            errors.nationalId = 'الرقم القومي غير صحيح'
+        }
+
+        if (!values.newPassword) {
+            errors.newPassword = 'كلمة المرور مطلوبة'
+        }
+        else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,15}$/.test(values.newPassword)) {
+            errors.newPassword = 'كلمة المرور غير صحيحة '
+        }
+
+        return errors
+    }
+
+    let formik = useFormik({
+        initialValues: {
+            nationalId: '',
+            newPassword: ''
+        }, validate: validateForm
+        , onSubmit: resetPassword
+    })
     return <>
         <motion.div
             className="min-h-screen bg-[#EFF4F8] flex items-center justify-center"
             initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}  
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}>
             {apiError && <div class="absolute top-14 w-[50%] text-center p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                 {apiError}
@@ -91,7 +92,7 @@ export default function ResetPassword() {
                     {formik.errors.newPassword && formik.touched.newPassword && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.newPassword}
                     </div>}
-                    
+
                     {isLoading ? <button type='button' className=" text-center cursor-pointer bg-[#377DAC] text-white py-2 rounded mb-4 mt-2 ">
                         <i className='fas fa-spinner fa-spin'></i></button>
                         : <button type='submit' className=" text-center cursor-pointer bg-[#377DAC] text-white py-2 rounded mb-4 mt-2">تسجيل</button>}

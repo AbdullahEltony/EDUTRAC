@@ -1,17 +1,14 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import style from './ChatBot.module.css'
-import { NavLink, useNavigate } from 'react-router-dom'
+import React, { useRef, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { UserToken } from '../../Context/TokenContext';
 import { Client } from "@gradio/client";
-
-
+import {NavMenu} from '../NavMenu';
 
 
 
 export default function ChatBot() {
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState([]);
-    const messagesEndRef = useRef(null);
     const textAreaRef = useRef(null);
 
 
@@ -48,66 +45,11 @@ const sendMessage = async () => {
         }
     };
 
-    let navigate = useNavigate();
-    let { setUserToken } = useContext(UserToken);
-    function logOut() {
-        localStorage.removeItem('token');
-        setUserToken(null)
-        navigate('/')
-    }
 
 
     return <>
         <div className='w-full flex flex-row'>
-            <div className="w-1/5 bg-[#d9e7f1] p-4 min-h-screen flex flex-col justify-between fixed">
-                <div className="flex flex-col gap-4">
-                    <h2 className="text-2xl font-bold text-[#6CA6CD] mb-4 text-center">EDU TRACK</h2>
-                    <NavLink onClick={() => window.scrollTo({ top: 0, behavior: "smooth" , block: 'center' })} to={'/home'} className="p-3  rounded-[20px]">
-                        <div className='flex items-center gap-2.5'>
-                            <i className="fa-solid fa-house text-[#222] p-2 rounded-[12px]"></i>
-                            <p className='mb-0 text-[#14142b] font-[Font Family]'>الرئيسية</p>
-                        </div>
-                    </NavLink>
-                    <NavLink onClick={() => window.scrollTo({ top: 0, behavior: "smooth" , block: 'center' })} to={'/updateCourses'} className="p-3 rounded-[20px]">
-                        <div className='flex items-center gap-2.5'>
-                            <i className="fa-regular fa-clipboard text-[#222] p-2 rounded-[12px] bg-[#eff4f8]"></i>
-                            <p className='mb-0 text-[#14142b] font-[Font Family]'>المقررات الدراسية</p>
-                        </div>
-                    </NavLink>
-                    <NavLink onClick={() => window.scrollTo({ top: 0, behavior: "smooth" , block: 'center' })} to={'/finalCourses'} className="p-3 rounded-[20px]">
-                        <div className='flex items-center gap-2.5'>
-                            <i className="fa-regular fa-clipboard text-[#222] p-2 rounded-[12px] bg-[#eff4f8]"></i>
-                            <p className='mb-0 text-[#14142b] font-[Font Family]'>المقررات النهائية</p>
-                        </div>
-                    </NavLink>
-                    <NavLink onClick={() => window.scrollTo({ top: 0, behavior: "smooth" , block: 'center' })} to={'/aboutus'} className="p-3 rounded-[20px]">
-                        <div className='flex items-center gap-2.5'>
-                            <i className="fa-solid fa-users text-[#222] p-2 rounded-[12px] bg-[#eff4f8]"></i>
-                            <p className='mb-0 text-[#14142b] font-[Font Family]'>نبذة عنا</p>
-                        </div>
-                    </NavLink>
-                    <NavLink onClick={() => window.scrollTo({ top: 0, behavior: "smooth" , block: 'center' })} to={'/profile'} className="p-3 rounded-[20px]">
-                        <div className='flex items-center gap-2.5'>
-                            <i className="fa-solid fa-user text-[#222] p-2 rounded-[12px] bg-[#eff4f8]"></i>
-                            <p className='mb-0 text-[#14142b] font-[Font Family]'>الملف الشخصي</p>
-                        </div>
-                    </NavLink>
-                    <NavLink onClick={() => window.scrollTo({ top: 0, behavior: "smooth" , block: 'center' })} to={'/chatBot'} className="p-3 bg-[#eff4f8] rounded-[20px]">
-                        <div className='flex items-center gap-2.5'>
-                            <i className="fa-solid fa-robot text-[#222] p-2 rounded-[12px] bg-[#eff4f8]"></i>
-                            <p className='mb-0 text-[#14142b] font-[Font Family]'>ChatBot للتواصل</p>
-                        </div>
-                    </NavLink>
-                </div>
-                <div className="mt-4">
-                    <NavLink onClick={()=> logOut()} className="p-3 rounded-[20px]">
-                        <div className='flex items-center gap-2.5'>
-                            <i className="fa-solid fa-arrow-right-to-bracket text-[#222] p-2 rounded-[12px] bg-[#eff4f8]"></i>
-                            <p className='mb-0 text-[#14142b] font-[Font Family]'>تسجيل الخروج</p>
-                        </div>
-                    </NavLink>
-                </div>
-            </div>
+            <NavMenu />
             <div className='w-4/5 mr-[21%] pr-2 mb-10 mt-[15%]'>
                 <div className="flex flex-col min-h-64 justify-center bg-gray-100 py-8 px-4 ml-6" dir="rtl">
                 <div className="w-full bg-white rounded-2xl shadow-lg flex flex-col">

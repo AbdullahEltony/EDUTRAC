@@ -6,6 +6,7 @@ import { useFormik } from 'formik'
 import axios from 'axios'
 import { ActiveContext } from '../../Context/ActiveContext'
 import { useContext, useState } from 'react'
+import { baseURL } from "../../constants";
 
 export default function Register() {
 
@@ -19,7 +20,7 @@ export default function Register() {
     async function register(values) {
         try {
             setIsLoading(true);
-            const response = await axios.post("https://edutrack.runasp.net/api/Auth/sign-up", values);
+            const response = await axios.post(`${baseURL}/api/Auth/sign-up`, values);
             if (response.status !== 200) throw new Error(response.statusText);
             navigate('/');
         } catch (error) {

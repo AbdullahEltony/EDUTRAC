@@ -1,0 +1,15 @@
+.m-t {
+    margin-top: 52rem;
+}
+
+@media (min-width: 640px) {
+    .m-t {
+        margin-top: 22rem;
+    }
+}
+@media (min-width: 1280px) {
+    .m-t {
+        margin-top: 13rem;
+    }
+    
+}

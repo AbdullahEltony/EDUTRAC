@@ -6,6 +6,7 @@ import { ActiveContext } from '../../Context/ActiveContext';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { UserToken } from '../../Context/TokenContext';
+import { baseURL } from '../../constants';
 
 export default function Login() {
 
@@ -20,7 +21,7 @@ export default function Login() {
     async function login(values) {
         try {
             setIsLoading(true);
-            const response = await axios.post(`https://edutrack.runasp.net/api/Auth/login`, values);
+            const response = await axios.post(`${baseURL}/api/Auth/login`, values);
             console.log(response);
             if (response.status !== 200) throw new Error(response.statusText);
             localStorage.setItem('token', response.data.token);
