@@ -51,10 +51,10 @@ export default function Profile() {
             <NavMenu />
 
             <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto profile m-t'>
-                <div className='bg-[#EFF4F8] text-center p-6 mb-6 w-[95%] mx-auto'>
+                <div className='bg-[#EFF4F8] text-center p-6 mb-6 w-[98%] mx-auto'>
                     <h2 className='font-bold text-black text-2xl sm:text-4xl'>بيانات الطالب</h2>
                 </div>
-                <div className='bg-[#EFF4F8] rounded-[12px] p-3 ltr mb-10 w-[95%] mx-auto'>
+                <div className='bg-[#EFF4F8] rounded-[12px] p-3 ltr mb-10 w-[98%] mx-auto'>
                     <h3 className="text-lg  sm:text-2xl flex items-center mb-4 font-normal text-black ">
                         <span>الأسم : </span>
                         <input

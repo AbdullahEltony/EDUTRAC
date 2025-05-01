@@ -61,7 +61,7 @@ export default function Home() {
 
                 <div className='mx-auto'>
                     {/* video */}
-                    <div className='bg-[#EFF4F8] py-12'>
+                    <div className='bg-[#EFF4F8] py-12 w-[98%] mx-auto'>
                         <h2 className='font-bold text-xl md:text-3xl text-center font-[Almarai] px-2'>شاهد الفيديو التعريفي </h2>
                         <div className="flex justify-center px-6 pt-6">
                             <div className="relative w-full" style={{ maxWidth: '800px', aspectRatio: '16/9' }}>
@@ -78,7 +78,7 @@ export default function Home() {
 
                     </div>
 
-                    <div className='bg-[#EFF4F8] py-12'>
+                    <div className='bg-[#EFF4F8] py-12 w-[98%] mx-auto mt-6'>
                         <div className='flex flex-col  md:flex-row justify-end  gap-5 p-5'>
                             <div className=''>
                                 <h3 className="text-2xl lg:text-4xl font-[Almarai] font-bold mb-4">متطلبات التخرج:</h3>

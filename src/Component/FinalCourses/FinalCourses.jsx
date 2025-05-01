@@ -43,7 +43,7 @@ export default function FinalCourses() {
         <div className='w-full flex flex-row'>
             <NavMenu />
             <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t final-courses'>
-                <div className="relative overflow-x-auto ltr shadow-md rounded-lg mb-10 w-[95%] mx-auto">
+                <div className="relative overflow-x-auto ltr shadow-md rounded-lg mb-10 w-[98%] mx-auto">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead className="text-white uppercase  bg-gray-600">
                             <tr>

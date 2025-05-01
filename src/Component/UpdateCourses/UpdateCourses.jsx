@@ -134,7 +134,7 @@ export default function UpdateCourses() {
     <div className='w-full flex flex-row'>
       <NavMenu />
       <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t '>
-        <div className='bg-[#EFF4F8] pb-10 pt-24 mb-8 py-12 mx-auto'>
+        <div className='bg-[#EFF4F8] pb-10 pt-24 mb-8 py-12 w-[98%] mx-auto'>
           <h2 className='font-bold text-xl sm:text-3xl text-center font-[Almarai] px-2 mb-4'>شاهد الفيديو التعريفي </h2>
           <div className="flex justify-center px-6 pt-6">
             <div className="relative w-full" style={{ maxWidth: '800px', aspectRatio: '16/9' }}>
@@ -150,7 +150,7 @@ export default function UpdateCourses() {
           </div>
         </div>
 
-        <form className="w-[95%] mx-auto mb-12" dir="rtl">
+        <form className="w-[98%] mx-auto mb-12" dir="rtl">
           <select
             id="levels"
             name="level"
@@ -198,7 +198,7 @@ export default function UpdateCourses() {
           </div>
         </form>
 
-        <div className="space-y-6 p-4 text-sm mb-10 font-medium w-[95%] mx-auto">
+        <div className="space-y-6 p-4 text-sm mb-10 font-medium w-[98%] mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="flex items-center gap-4 sm:gap-3 ">
               <span className="w-14 sm:w-26 h-6 sm:h-9 bg-[#b8cce4]"></span>
@@ -224,7 +224,7 @@ export default function UpdateCourses() {
 
         </div>
 
-        <div className="relative overflow-x-auto ltr shadow-md sm:rounded-lg w-[95%] mx-auto mb-6">
+        <div className="relative overflow-x-auto ltr shadow-md sm:rounded-lg w-[98%] mx-auto mb-6">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-white uppercase  bg-gray-600">
               <tr>
