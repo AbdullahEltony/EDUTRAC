@@ -27,7 +27,7 @@ export default function AboutUs() {
 
                         {/* الصورة */}
                         <div className="w-full lg:w-[40%]">
-                            <img src="../src/assets/AboutUs.png" alt="about" className="rounded-md w-full lg:h-[500px] md:h-auto" />
+                            <img src="./AboutUs.png" alt="about" className="rounded-md w-full lg:h-[500px] md:h-auto" />
                         </div>
 
 
@@ -54,40 +54,40 @@ export default function AboutUs() {
                     <div className='bg-[#EFF4F8] py-6 px-10'>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 pb-14">
                             <div className=''>
-                                <img src="../src/assets/about4.png" alt='' className="w-full object-cover border-0" />
+                                <img src="./about4.png" alt='' className="w-full object-cover border-0" />
                             </div>
                             <div className=''>
-                                <img src="../src/assets/about3.png" alt='' className="w-full object-cover border-0" />
+                                <img src="./about3.png" alt='' className="w-full object-cover border-0" />
                             </div>
                             <div className=''>
-                                <img src="../src/assets/about2.png" alt='' className="w-full object-cover border-0" />
+                                <img src="./about2.png" alt='' className="w-full object-cover border-0" />
                             </div>
                             <div className=''>
-                                <img src="../src/assets/about1.png" alt='' className="w-full object-cover border-0" />
+                                <img src="./about1.png" alt='' className="w-full object-cover border-0" />
                             </div>
                             <div className=''>
-                                <img src="../src/assets/about8.png" alt='' className="w-full object-cover border-0" />
+                                <img src="./about8.png" alt='' className="w-full object-cover border-0" />
                             </div>
                             <div className=''>
-                                <img src="../src/assets/about7.png" alt='' className="w-full object-cover border-0" />
+                                <img src="./about7.png" alt='' className="w-full object-cover border-0" />
                             </div>
                             <div className=''>
-                                <img src="../src/assets/about6.png" alt='' className="w-full object-cover border-0" />
+                                <img src="./about6.png" alt='' className="w-full object-cover border-0" />
                             </div>
                             <div className=''>
-                                <img src="../src/assets/about5.png" alt='' className="w-full object-cover border-0" />
+                                <img src="./about5.png" alt='' className="w-full object-cover border-0" />
                             </div>
                             <div className=''>
-                                <img src="../src/assets/about12.png" alt='' className="w-full object-cover border-0" />
+                                <img src="./about12.png" alt='' className="w-full object-cover border-0" />
                             </div>
                             <div className=''>
-                                <img src="../src/assets/about11.png" alt='' className="w-full object-cover border-0" />
+                                <img src="./about11.png" alt='' className="w-full object-cover border-0" />
                             </div>
                             <div className=''>
-                                <img src="../src/assets/about10.png" alt='' className="w-full object-cover border-0" />
+                                <img src="./about10.png" alt='' className="w-full object-cover border-0" />
                             </div>
                             <div className=''>
-                                <img src="../src/assets/about9.png" alt='' className="w-full object-cover border-0" />
+                                <img src="./about9.png" alt='' className="w-full object-cover border-0" />
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ export default function AboutUs() {
                                     بل هي صرح للإبداع والتميز.
                                 </p>
                                 <div className="flex items-center gap-4 ">
-                                    <img src="../src/assets/client.png" alt="محمد عمران" className="w-12 h-12 rounded-full object-cover" />
+                                    <img src="./client.png" alt="محمد عمران" className="w-12 h-12 rounded-full object-cover" />
                                     <div className="text-right">
                                         <h4 className="font-semibold text-black mb-2">محمد عمران</h4>
                                         <p className="text-sm text-[#00000094]">خبير إرشاد تعليمي</p>
@@ -119,7 +119,7 @@ export default function AboutUs() {
                                     بل هي صرح للإبداع والتميز.
                                 </p>
                                 <div className="flex items-center gap-4 ">
-                                    <img src="../src/assets/client.png" alt="محمد عمران" className="w-12 h-12 rounded-full object-cover" />
+                                    <img src="./client.png" alt="محمد عمران" className="w-12 h-12 rounded-full object-cover" />
                                     <div className="text-right">
                                         <h4 className="font-semibold text-black mb-2">محمد عمران</h4>
                                         <p className="text-sm text-[#00000094]">خبير إرشاد تعليمي</p>
@@ -132,7 +132,7 @@ export default function AboutUs() {
                                     بل هي صرح للإبداع والتميز.
                                 </p>
                                 <div className="flex items-center gap-4 ">
-                                    <img src="../src/assets/client.png" alt="محمد عمران" className="w-12 h-12 rounded-full object-cover" />
+                                    <img src="./client.png" alt="محمد عمران" className="w-12 h-12 rounded-full object-cover" />
                                     <div className="text-right">
                                         <h4 className="font-semibold text-black mb-2">محمد عمران</h4>
                                         <p className="text-sm text-[#00000094]">خبير إرشاد تعليمي</p>
