@@ -224,7 +224,7 @@ export default function UpdateCourses() {
 
         </div>
 
-        <div className="relative overflow-x-auto ltr shadow-md sm:rounded-lg w-[98%] mx-auto mb-6">
+        <div className="relative ltr  overflow-x-auto shadow-md sm:rounded-lg w-[98%] mx-auto mb-6">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-white uppercase  bg-gray-600">
               <tr>
@@ -305,7 +305,7 @@ export default function UpdateCourses() {
                           }}
                           className="w-4 h-4 rounded-sm border-outline-none accent-[#1EE80B] focus:ring-0"
                         />
-                        <label htmlFor={`checkbox-${index}`} className="mr-2.5 text-2xl font-normal text-black">
+                        <label htmlFor={`checkbox-${index}`} className="mr-2.5 text-[16px] text-2xl font-normal text-black">
                           {course.code}
                         </label>
                       </div>
@@ -313,13 +313,13 @@ export default function UpdateCourses() {
 
 
                     {/* ✅ اسم المادة */}
-                    <td className="text-2xl text-center text-black">{course.name}</td>
+                    <td className="text-[16px] sm:text-2xl text-center text-black">{course.name}</td>
 
                     {/* ✅ عدد الساعات */}
-                    <td className="text-2xl text-center text-black">{course.hours}</td>
+                    <td className="text-[16px] sm:text-2xl text-center text-black">{course.hours}</td>
 
 
-                    <td className="text-2xl">
+                    <td className="text-[16px] sm:text-2xl">
                       <select
                         className="w-full pl-2 text-black text-center focus-visible:outline-none"
                         disabled={!formik2.values.courses[index]?.code} // ❌ لا يمكن اختيار الحالة إلا بعد اختيار الكورس
@@ -336,7 +336,7 @@ export default function UpdateCourses() {
                       </select>
                     </td>
 
-                    <td className="text-2xl w-1/12">
+                    <td className="text-[16px] sm-2xl w-1/12">
                       <input
                         type="number"
                         className={`w-full text-black border text-center focus-visible:outline-none ${!formik2.values.courses?.[index]?.status ? "bg-gray-100 cursor-not-allowed" : ""
@@ -372,7 +372,7 @@ export default function UpdateCourses() {
 
 
                     {/* ✅ نوع المادة */}
-                    <td className="text-2xl text-center text-black">
+                    <td className="text-[16px] sm:text-2xl text-center text-black">
                       {getCourseTypeLabel(course.courseType)}
                     </td>
                   </tr>
@@ -380,18 +380,18 @@ export default function UpdateCourses() {
             </tbody>
 
           </table>
-          {course?.courses?.length > 0 && <div className="w-full mt-8 text-right">
-            <label className="block text-black text-[28px] font-normal mb-2.5">ملاحظات الطالب، اكتب ما تريد أن تضعه في كل من المستويات الأربعة</label>
-            <textarea placeholder="ضع ملاحظتك هنا..." className="w-full h-60 bg-[#EFF4F8] p-4 text-[22px] placeholder:text-black rounded-xl focus-visible:outline-none resize-none" />
-            <button onClick={() => { handleSubmit(); formik2.handleSubmit; }} className="w-full mt-2.5 py-3 bg-[#EFF4F8] text-black text-2xl cursor-pointer duration-200">حفظ </button>
-            <div className="mt-6 py-6 px-4 rounded-xl text-black bg-[#EFF4F8] text-right leading-loose text-[28px]">
-              <p>يرجى العلم</p>
-              <p>أنه إذا كان المعدل التراكمي للطالب (GPA) أقل من 0.7 فلا يمكن تسجيل أكثر من 12 ساعة.</p>
-              <p>لا يمكن اختيار أكثر من 20 ساعة في الترم الواحد</p>
-            </div>
-          </div>}
-        </div>
 
+        </div>
+        {course?.courses?.length > 0 && <div className="w-[98%]  mx-auto mt-8 text-right py-4 px-2 sm:px-0 ">
+          <label className="block text-black text-[18px] sm:text-[28px] font-normal mb-2.5">ملاحظات الطالب، اكتب ما تريد أن تضعه في كل من المستويات الأربعة</label>
+          <textarea placeholder="ضع ملاحظتك هنا..." className="w-full h-60 bg-[#EFF4F8] p-4 text-[16px] sm:text-[22px] placeholder:text-black rounded-xl focus-visible:outline-none resize-none" />
+          <button onClick={() => { handleSubmit(); formik2.handleSubmit; }} className="w-full mt-2.5 py-3 bg-[#EFF4F8] text-black text-2xl cursor-pointer duration-200">حفظ </button>
+          <div className="mt-6 py-6 px-4 rounded-xl text-black bg-[#EFF4F8] text-right leading-loose text-[28px]">
+            <p className='text-[16px] sm:text-[18px]'>يرجى العلم</p>
+            <p className='text-[16px] sm:text-[18px]'>أنه إذا كان المعدل التراكمي للطالب (GPA) أقل من 0.7 فلا يمكن تسجيل أكثر من 12 ساعة.</p>
+            <p className='text-[16px] sm:text-[18px]'>لا يمكن اختيار أكثر من 20 ساعة في الترم الواحد</p>
+          </div>
+        </div>}
 
       </div>
     </div>
