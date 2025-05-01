@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from 'react'
-import { NavLink, } from 'react-router-dom'
-import { UserToken } from '../../Context/TokenContext';
 import axios from 'axios';
 import { useState } from 'react';
 import {NavMenu} from '../NavMenu';
 import { baseURL } from '../../constants';
+import './Profile.css'
 export default function Profile() {
     const [NationalId, setNationalId] = useState(null)
 
@@ -51,13 +50,13 @@ export default function Profile() {
         <div className='w-full flex flex-row'>
             <NavMenu />
 
-            <div className='w-4/5 mr-[21%] mt-[15%] pl-6'>
-                <div className='bg-[#EFF4F8] text-center p-6 mb-12 '>
-                    <h2 className='font-bold text-black text-4xl'>بيانات الطالب</h2>
+            <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto profile m-t'>
+                <div className='bg-[#EFF4F8] text-center p-6 mb-6 w-[95%] mx-auto'>
+                    <h2 className='font-bold text-black text-2xl sm:text-4xl'>بيانات الطالب</h2>
                 </div>
-                <div className='bg-[#EFF4F8] rounded-[12px] p-3 ltr mb-10'>
-                    <h3 className="text-2xl mb-4 font-normal text-black ">
-                        الإسم :
+                <div className='bg-[#EFF4F8] rounded-[12px] p-3 ltr mb-10 w-[95%] mx-auto'>
+                    <h3 className="text-lg  sm:text-2xl flex items-center mb-4 font-normal text-black ">
+                        <span>الأسم : </span>
                         <input
                         type="text"
                         ref={inputRef} 
@@ -66,17 +65,17 @@ export default function Profile() {
                         className="ml-2 p-1 rounded focus-visible:outline-none text-black"
                         />
                     </h3>
-                    <h3 className='text-2xl mb-4 font-normal text-black'>المستوى : {level}</h3>
-                    <h3 className='text-2xl mb-10 font-normal text-black'>الرقم القومي : {NationalId}</h3>
+                    <h3 className='text-lg  sm:text-2xl mb-4 font-normal text-black'>المستوى : {level}</h3>
+                    <h3 className='text-lg  sm:text-2xlmb-10 font-normal text-black'>الرقم القومي : {NationalId}</h3>
                     <button
                         onClick={handleFocus} 
-                        className="px-4 py-2 ml-4 bg-[#61D0FF] text-black rounded hover:bg-[#61D0FF] cursor-pointer"
+                        className="mt-4 px-4 py-2 ml-4 bg-[#61D0FF] text-black rounded hover:bg-[#61D0FF] cursor-pointer"
                     >
                         تعديل الاسم
                     </button>
                     <button
                         onClick={handleNameUpdate}
-                        className="px-4 py-2 bg-[#61D0FF] text-black rounded hover:bg-[#61D0FF] cursor-pointer"
+                        className="mt-4 px-4 py-2 bg-[#61D0FF] text-black rounded hover:bg-[#61D0FF] cursor-pointer"
                     >
                         حفظ الاسم
                     </button>

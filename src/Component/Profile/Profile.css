@@ -1,0 +1,16 @@
+.profile.m-t {
+    margin-top: 55rem;
+}
+
+@media (min-width: 640px) {
+    .profile.m-t {
+        margin-top: 26rem ;
+    }
+}
+
+@media (min-width: 1280px) {
+    .profile.m-t {
+        margin-top: 18rem
+    }
+    
+}

@@ -38,8 +38,8 @@ export default function Navbar() {
 
 
     return <>
-        {userToken && <div className='absolute lg:fixed z-10 left-0 top-0 bg-white w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%]'>
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 bg-white shadow-sm p-5 rounded-[20px] mx-auto w-[95%] mt-3">
+        {userToken && <div className='absolute xl:fixed z-10 left-0 top-0 bg-white w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] pb-6'>
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 bg-white shadow-sm p-5 rounded-[20px] mx-auto w-[98%] mt-3">
                 <div className={`bg-[#c9ebe6] px-2 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col justify-start gap-1 sm:justify-center max-h-36 items-center`}>
                     <p className="font-[700] text-sm md:text-[16px] text-black leading-5">الGPA التراكمي</p>
                     <p className="text-2xl font-[600] font-[Inter] text-black  text-left">{Number((gpa - 4).toFixed(2))}</p>

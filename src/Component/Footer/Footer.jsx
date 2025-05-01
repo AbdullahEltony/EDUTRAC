@@ -1,13 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-
+import './Footer.css'
 export default function Footer(){
   return <>
     <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto '>
-      <div className="bg-[#191A1B] text-white py-10 px-6 md:px-20 mx-auto w-[95%]">
-        <div className="grid grid-cols-12 text-left">
+      <div className="bg-[#191A1B] text-white py-10 px-6 md:px-20 w-[100%]">
+        <div className="footer text-left">
           {/* Social Icons */}
-          <div  className="col-span-12 md:col-span-2">
+          <div  className="social">
             <h3 className="font-semibold mb-2">Join us on</h3>
             <div className="flex space-x-4 text-xl justify-end">
               <NavLink to={"#"} className='!bg-transparent'><i className="fab fa-linkedin-in"></i></NavLink>
@@ -17,7 +17,7 @@ export default function Footer(){
           </div>
 
           {/* Contact */}
-          <div  className="col-span-12 md:col-span-4">
+          <div  className="contact">
             <h3 className="font-semibold mb-2">Contact</h3>
             <ul className="text-sm text-gray-300 space-y-1">
               <li>📍 Tripureshwor <i class="fa-solid fa-location-dot p-1"></i></li>
@@ -27,7 +27,7 @@ export default function Footer(){
           </div>
 
           {/* Quick Links */}
-          <div  className="col-span-12 md:col-span-2">
+          <div  className="links">
             <h3 className="font-semibold mb-2">Quick Links</h3>
             <ul className="space-y-1 text-sm text-gray-300">
               <li><NavLink className='!bg-transparent' to={"/home"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" , block: 'center' })}>Home</NavLink></li>
@@ -40,7 +40,7 @@ export default function Footer(){
           </div>
 
           {/* EDU TRACK Section */}
-          <div className="col-span-12 md:col-span-4 mr-4">
+          <div className="about">
             <h2 className="text-lg font-bold text-blue-400">EDU TRACK</h2>
             <p className="text-sm mt-2 text-gray-400">
               Welcome to Edu Track, a dynamic technology solutions provider with a mission to empower businesses and individuals with cutting-edge technology solutions.

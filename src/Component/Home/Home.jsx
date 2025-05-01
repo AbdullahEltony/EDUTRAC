@@ -10,9 +10,9 @@ export default function Home() {
         <div className='w-full flex flex-row'>
             <NavMenu />
 
-            <div className={`bg-[#fdfdfd] w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t `}>
-                <div className='p-5 md:p-10 m-10'>
-                    <div className='text-center mb-10'>
+            <div className={`bg-[#fdfdfd] w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t py-12`}>
+                <div className='p-5 md:p-10'>
+                    <div className='text-center'>
                         <h1 className='text-2xl md:text-5xl font-[Raleway] font-bold'>
                             <span className='text-[#6CA6CD]'>لماذا</span> <span className='text-black'>EDU TRACK؟</span>
                         </h1>
@@ -59,9 +59,9 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className='mb-10 w-[95%] mx-auto'>
+                <div className='mx-auto'>
                     {/* video */}
-                    <div className='bg-[#EFF4F8] py-10 mb-8'>
+                    <div className='bg-[#EFF4F8] py-12'>
                         <h2 className='font-bold text-xl md:text-3xl text-center font-[Almarai] px-2'>شاهد الفيديو التعريفي </h2>
                         <div className="flex justify-center px-6 pt-6">
                             <div className="relative w-full" style={{ maxWidth: '800px', aspectRatio: '16/9' }}>
@@ -78,7 +78,7 @@ export default function Home() {
 
                     </div>
 
-                    <div className='bg-[#EFF4F8] '>
+                    <div className='bg-[#EFF4F8] py-12'>
                         <div className='flex flex-col  md:flex-row justify-end  gap-5 p-5'>
                             <div className=''>
                                 <h3 className="text-2xl lg:text-4xl font-[Almarai] font-bold mb-4">متطلبات التخرج:</h3>

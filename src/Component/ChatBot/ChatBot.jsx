@@ -50,8 +50,8 @@ const sendMessage = async () => {
     return <>
         <div className='w-full flex flex-row'>
             <NavMenu />
-            <div className='w-4/5 mr-[21%] pr-2 mb-10 mt-[15%]'>
-                <div className="flex flex-col min-h-64 justify-center bg-gray-100 py-8 px-4 ml-6" dir="rtl">
+            <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t'>
+                <div className="flex flex-col min-h-64 justify-center bg-gray-100 w-full pt-16 py-8 px-4 ml-6" dir="rtl">
                 <div className="w-full bg-white rounded-2xl shadow-lg flex flex-col">
                     <div className="p-4 bg-blue-500 text-white font-bold text-lg flex items-center justify-center gap-2 shadow-md">
                         <i className="text-2xl fas fa-robot" />

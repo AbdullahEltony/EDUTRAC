@@ -11,7 +11,7 @@ export default function Layout() {
     
     return <>
         {!hideLayout && <Navbar />}
-            <div >
+            <div>
                 <Outlet/>
             </div>
         {!hideLayout && <Footer />}

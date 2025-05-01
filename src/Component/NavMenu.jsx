@@ -18,36 +18,40 @@ export const NavMenu = () => {
             <div className="flex flex-col gap-4 w-full items-center md:items-start justify-center"  >
 
                 {NavLinks.map((item) => (
-                    <NavLink
-                        key={item.name}
-                        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                        to={item.link}
-                        className="group flex items-center py-2 px-3 md:p-3 justify-center md:justify-start  gap-2.5 rounded-[10px] md:rounded-[22px] hover:bg-[#eff4f8] hover:shadow-md transition duration-300 ease-in-out w-full"
-                    >
-                        <i className={`${item.icon} text-[#222] p-2 rounded-[12px]`}></i>
-                        <span className="hidden md:inline text-[#14142b]"> {item.name} </span>
+                    <div key={item.name} className="relative group w-full">
+                        <NavLink
+                            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                            to={item.link}
+                            className="flex items-center py-2 px-3 md:p-3 justify-center md:justify-start gap-2.5 rounded-[10px] md:rounded-[22px] hover:bg-[#eff4f8] hover:shadow-md transition duration-300 ease-in-out w-full"
+                        >
+                            <i className={`${item.icon} text-[#222] p-2 rounded-[12px]`}></i>
+                            <span className="hidden md:inline text-[#14142b]">{item.name}</span>
+                        </NavLink>
 
-                        {/* Tooltip on hover for small screens */}
-                        <span className="md:hidden absolute right-[100%] bg-[#eff4f8] text-[#14142b] px-2 py-1 shadow-md opacity-0 group-hover:opacity-100 transition duration-300 z-50 min-w-[130px] rounded-lg text-center">
+                        {/* Tooltip for small screens */}
+                        <span className="md:hidden absolute right-[110%] top-1/2 -translate-y-1/2 bg-[#eff4f8] text-[#14142b] px-2 py-1 shadow-md opacity-0 group-hover:opacity-100 transition duration-300 z-50 min-w-[130px] rounded-lg text-center pointer-events-none after:content-[''] after:absolute after:top-1/2 after:left-full after:-translate-y-1/2 after:border-8 after:border-transparent after:border-l-[#eff4f8]">
                             {item.name}
                         </span>
-                    </NavLink>
+                    </div>
                 ))}
             </div>
 
             <div className="mt-auto flex items-center w-full justify-center md:justify-start">
-                <button
-                    onClick={logOut}
-                    className="w-full group flex items-center py-2 px-3 md:p-2 md:py-3 justify-center md:justify-start  gap-2.5 rounded-[10px] md:rounded-[22px] hover:bg-[#eff4f8] hover:shadow-md transition duration-300 ease-in-out"
-                >
-                    <i className="fa-solid fa-arrow-right-to-bracket text-[#222] p-2 rounded-[12px]"></i>
-                    <span className="hidden md:inline text-[#14142b]">تسجيل الخروج</span>
+                <div className="relative group w-full">
+                    <NavLink
+                        onClick={logOut}
+                        to='/'
+                        className="flex items-center py-2 px-3 md:p-3 justify-center md:justify-start gap-2.5 rounded-[10px] md:rounded-[22px] hover:bg-[#eff4f8] hover:shadow-md transition duration-300 ease-in-out w-full"
+                    >
+                        <i className={`fa-solid fa-arrow-right-from-bracket text-[#222] p-2 rounded-[12px]`}></i>
+                        <span className="hidden md:inline text-[#14142b]">تسجيل خروج</span>
+                    </NavLink>
 
-                    {/* Tooltip for logout on small screen */}
-                    <span className="md:hidden absolute right-[100%] bg-[#eff4f8] text-[#14142b] px-2 py-1 shadow-md opacity-0 group-hover:opacity-100 transition duration-300 z-10 min-w-[130px] rounded-lg text-center">
-                        تسجيل الخروج
+                    {/* Tooltip for small screens */}
+                    <span className="md:hidden absolute right-[110%] top-1/2 -translate-y-1/2 bg-[#eff4f8] text-[#14142b] px-2 py-1 shadow-md opacity-0 group-hover:opacity-100 transition duration-300 z-50 min-w-[130px] rounded-lg text-center pointer-events-none after:content-[''] after:absolute after:top-1/2 after:left-full after:-translate-y-1/2 after:border-8 after:border-transparent after:border-l-[#eff4f8]">
+                        تسجيل خروج
                     </span>
-                </button>
+                </div>
             </div>
         </div>
 
@@ -55,3 +59,6 @@ export const NavMenu = () => {
 }
 
 export default NavMenu
+
+
+//fa-solid fa-arrow-right-to-bracket

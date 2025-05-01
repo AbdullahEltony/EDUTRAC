@@ -65,7 +65,7 @@ export default function Courses() {
 
     try {
       const response = await axios.post(
-        "http://edutrack.runasp.net/api/Profile",
+        `${baseURL}/api/Profile`,
         payload,
         {
           headers: {
