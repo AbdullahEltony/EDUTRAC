@@ -91,7 +91,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className='-order-1 md:order-1'>
-                                <img src="../src/assets/graduation.jpeg" alt="" className='w-full ' />
+                                <img src="./graduation.jpeg" alt="" className='w-full ' />
                             </div>
                         </div>
                     </div>
