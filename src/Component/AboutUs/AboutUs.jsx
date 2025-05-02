@@ -1,14 +1,17 @@
 import React from 'react'
-import'./AboutUs.css'
-import {NavMenu} from '../NavMenu';
+import './AboutUs.css'
+import { NavMenu } from '../NavMenu';
+import  ProgressBar  from '../shared/ProgressBar';
 
 export default function AboutUs() {
 
     return <>
         <div className='w-full flex flex-row'>
             <NavMenu />
-            <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t'>
-                <div className="w-[98%] mx-auto">
+            <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t px-2'>
+                {/*  شريط التقدم  */}
+                <ProgressBar />
+                <div className="mx-auto">
                     {/* قسم عن EDU TRACK */}
                     <div className="bg-[#d9e7f1]  p-8 md:p-12  flex flex-col lg:flex-row gap-6 justify-start">
                         {/* النص */}
@@ -50,7 +53,7 @@ export default function AboutUs() {
                         <p className='font-[Raleway] text-[16px] sm:text-[17px] '>في أكاديمية EDU TRACK، نُدرِّبك على يد مُبرمجين محترفين شاركوا في بناء أنظمة عالمية ويفهمون تحديات السوق التقني</p>
                     </div>
                 </div>
-                <div className='mb-14 mt-10 w-[98%] mx-auto'>
+                <div className='mb-14 mt-10 mx-auto'>
                     <div className='bg-[#EFF4F8] py-6 px-10'>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 pb-14">
                             <div className=''>

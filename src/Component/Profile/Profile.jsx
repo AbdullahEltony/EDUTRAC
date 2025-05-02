@@ -4,6 +4,7 @@ import { useState } from 'react';
 import {NavMenu} from '../NavMenu';
 import { baseURL } from '../../constants';
 import './Profile.css'
+import ProgressBar from '../shared/ProgressBar';
 export default function Profile() {
     const [NationalId, setNationalId] = useState(null)
 
@@ -50,11 +51,12 @@ export default function Profile() {
         <div className='w-full flex flex-row'>
             <NavMenu />
 
-            <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto profile m-t'>
-                <div className='bg-[#EFF4F8] text-center p-6 mb-6 w-[98%] mx-auto'>
+            <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto profile m-t px-2'>
+                <ProgressBar/>
+                <div className='bg-[#EFF4F8] text-center p-6 mb-6 mx-auto'>
                     <h2 className='font-bold text-black text-2xl sm:text-4xl'>بيانات الطالب</h2>
                 </div>
-                <div className='bg-[#EFF4F8] rounded-[12px] p-3 ltr mb-10 w-[98%] mx-auto'>
+                <div className='bg-[#EFF4F8] rounded-[12px] p-3 ltr mb-10 mx-auto'>
                     <h3 className="text-lg  sm:text-2xl flex items-center mb-4 font-normal text-black ">
                         <span>الأسم : </span>
                         <input

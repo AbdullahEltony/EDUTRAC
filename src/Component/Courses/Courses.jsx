@@ -119,6 +119,7 @@ export default function Courses() {
     <div className='w-full flex flex-row'>
       <NavMenu />
       <div className='w-4/5 mr-[21%] pr-2 mb-10 mt-[15%]'>
+      <ProgressBar />
         <form className="max-w-[80%] mb-12" dir="rtl">
           <select
             id="levels"

@@ -6,6 +6,7 @@ import './UpdateCourses.css'
 import { useFormik } from 'formik';
 import NavMenu from '../NavMenu';
 import { baseURL } from '../../constants';
+import ProgressBar from '../shared/ProgressBar';
 
 export default function UpdateCourses() {
   let navigate = useNavigate();
@@ -133,8 +134,9 @@ export default function UpdateCourses() {
   return <>
     <div className='w-full flex flex-row'>
       <NavMenu />
-      <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t '>
-        <div className='bg-[#EFF4F8] pb-10 pt-24 mb-8 py-12 w-[98%] mx-auto'>
+      <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t px-2'>
+        <ProgressBar />
+        <div className='bg-[#EFF4F8] pb-10 pt-24 mb-8 py-12  mx-auto'>
           <h2 className='font-bold text-xl sm:text-3xl text-center font-[Almarai] px-2 mb-4'>شاهد الفيديو التعريفي </h2>
           <div className="flex justify-center px-6 pt-6">
             <div className="relative w-full" style={{ maxWidth: '800px', aspectRatio: '16/9' }}>
@@ -150,7 +152,7 @@ export default function UpdateCourses() {
           </div>
         </div>
 
-        <form className="w-[98%] mx-auto mb-12" dir="rtl">
+        <form className=" mx-auto mb-12" dir="rtl">
           <select
             id="levels"
             name="level"
@@ -198,7 +200,7 @@ export default function UpdateCourses() {
           </div>
         </form>
 
-        <div className="space-y-6 p-4 text-sm mb-10 font-medium w-[98%] mx-auto">
+        <div className="space-y-6 p-4 text-sm mb-10 font-medium  mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="flex items-center gap-4 sm:gap-3 ">
               <span className="w-14 sm:w-26 h-6 sm:h-9 bg-[#b8cce4]"></span>
@@ -224,7 +226,7 @@ export default function UpdateCourses() {
 
         </div>
 
-        <div className="relative ltr  overflow-x-auto shadow-md sm:rounded-lg w-[98%] mx-auto mb-6">
+        <div className="relative ltr  overflow-x-auto shadow-md sm:rounded-lg  mx-auto mb-6">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-white uppercase  bg-gray-600">
               <tr>
@@ -382,7 +384,7 @@ export default function UpdateCourses() {
           </table>
 
         </div>
-        {course?.courses?.length > 0 && <div className="w-[98%]  mx-auto mt-8 text-right py-4 px-2 sm:px-0 ">
+        {course?.courses?.length > 0 && <div className="  mx-auto mt-8 text-right py-4 px-2 sm:px-0 ">
           <label className="block text-black text-[18px] sm:text-[28px] font-normal mb-2.5">ملاحظات الطالب، اكتب ما تريد أن تضعه في كل من المستويات الأربعة</label>
           <textarea placeholder="ضع ملاحظتك هنا..." className="w-full h-60 bg-[#EFF4F8] p-4 text-[16px] sm:text-[22px] placeholder:text-black rounded-xl focus-visible:outline-none resize-none" />
           <button onClick={() => { handleSubmit(); formik2.handleSubmit; }} className="w-full mt-2.5 py-3 bg-[#EFF4F8] text-black text-2xl cursor-pointer duration-200">حفظ </button>
