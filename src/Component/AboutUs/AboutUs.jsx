@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './AboutUs.module.css'
+import'./AboutUs.css'
 import {NavMenu} from '../NavMenu';
 
 export default function AboutUs() {
@@ -34,8 +34,8 @@ export default function AboutUs() {
                     </div>
 
                     {/* قسم رؤيتنا */}
-                    <div className={`${style.AboutUsImage} relative  rounded-md overflow-hidden  flex items-center justify-center text-center `}>
-                        <div className={` ${style.AboutBackGround} absolute inset-0`}></div>
+                    <div className={`AboutUsImage relative  rounded-md overflow-hidden  flex items-center justify-center text-center `}>
+                        <div className={`AboutBackGround absolute inset-0`}></div>
                         <div className={`p-6 rounded-md absolute`}>
                             <h3 className="text-2xl sm:text-4xl md:text-6xl leading-9 font-bold text-[#6CA6CD] mb-6">رؤيتنا</h3>
                             <p className="text-xl sm:text-2xl md:text-4xl leading-8 sm:leading-10 tracking-[2%] text-[#FCFCFC] w-[75%] m-auto">
