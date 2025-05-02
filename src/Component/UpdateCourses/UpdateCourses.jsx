@@ -136,7 +136,7 @@ export default function UpdateCourses() {
       <NavMenu />
       <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t px-2'>
         <ProgressBar />
-        <div className='bg-[#EFF4F8] pb-10 pt-24 mb-8 py-12  mx-auto'>
+        <div className='bg-[#EFF4F8] pb-10 pt-6 mb-8  mx-auto'>
           <h2 className='font-bold text-xl sm:text-3xl text-center font-[Almarai] px-2 mb-4'>شاهد الفيديو التعريفي </h2>
           <div className="flex justify-center px-6 pt-6">
             <div className="relative w-full" style={{ maxWidth: '800px', aspectRatio: '16/9' }}>

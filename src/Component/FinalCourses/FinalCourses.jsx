@@ -45,7 +45,7 @@ export default function FinalCourses() {
             <NavMenu />
             <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t final-courses px-2'>
                 <ProgressBar />
-                <div className="relative overflow-x-auto ltr shadow-md rounded-lg mb-10 mx-auto">
+                <div className="relative overflow-x-auto ltr shadow-md rounded-lg mb-10 mx-auto mt-20">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead className="text-white uppercase  bg-gray-600">
                             <tr>

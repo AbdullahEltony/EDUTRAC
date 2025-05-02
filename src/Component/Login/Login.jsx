@@ -70,9 +70,9 @@ export default function Login() {
                 {apiError}
             </div>}
             <div className={`absolute flex flex-row-reverse bg-white overflow-hidden shadow-lg w-[93%] max-w-4xl rounded-tr-[0px] sm:rounded-tr-[2.5rem] rounded-bl-[2.5rem] sm:rounded-bl-[0px] rounded-br-[2.5rem]`}>
-                <div className={`w-full h-46 sm:h-full sm:w-1/3 md:w-1/4 absolute top-0 left-[0%] bg-[#6CA6CD] z-0 rounded-b-[2.5rem] sm:rounded-b-[0px] rounded-r-[0px] sm:!rounded-r-[2.5rem] transition-all duration-[3000ms] ease-in-out ${isActive ? "left-[100%] w-[400%]" : ""}`}></div>
+                <div className={`w-full h-46 sm:h-full sm:w-1/3 md:w-1/4 absolute top-0 left-[0%] bg-[#6CA6CD] z-0 rounded-b-[2.5rem] sm:rounded-b-[0px] rounded-r-[0px] sm:!rounded-r-[2.5rem] transition-all duration-[2000ms] ease-in-out ${isActive ? "left-[100%] w-[400%]" : ""}`}></div>
 
-                <div className={`text-white h-46 sm:h-full w-full sm:w-1/3 md:w-1/4 p-8 flex flex-col justify-center text-center absolute top-0 left-0 bottom-0 transition-all duration-3000 ease-in-out ${isActive ? "left-[-100%]" : "left-0"}`}>
+                <div className={`text-white h-46 sm:h-full w-full sm:w-1/3 md:w-1/4 p-8 flex flex-col justify-center text-center absolute top-0 left-0 bottom-0 transition-all duration-2000 ease-in-out ${isActive ? "left-[-100%]" : "left-0"}`}>
                     <h2 className="text-xl font-bold mb-2">أهلاً ومرحبًا بك</h2>
                     <p className="text-sm mb-4"> ليس لديك حساب؟</p>
                     <button

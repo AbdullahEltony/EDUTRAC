@@ -15,7 +15,7 @@ export default function Home() {
                 {/*  شريط التقدم  */}
                 <ProgressBar />
 
-                <div className='p-5 md:p-10'>
+                <div className='p-5 md:p-10 !pt-0'>
                     <div className='text-center'>
                         <h1 className='text-2xl md:text-5xl font-[Raleway] font-bold'>
                             <span className='text-[#6CA6CD]'>لماذا</span> <span className='text-black'>EDU TRACK؟</span>
