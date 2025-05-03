@@ -158,7 +158,7 @@ export default function UpdateCourses() {
             name="level"
             className="bg-[#EFF4F8] border border-[#6CA6CD] text-black text-2xl rounded-lg block w-full p-5 font-normal focus-visible:outline-none"
             onChange={formik.handleChange}
-            value={formik.values.level}
+            value={formik.values.level??""}
           >
             <option value="0">المستويات</option>
             <option value="1">المستوى الأول</option>
