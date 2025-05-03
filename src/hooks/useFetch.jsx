@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 export const useFetch = (url) => {
@@ -8,9 +9,10 @@ export const useFetch = (url) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(url, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
-                const json = await response.json();
-                setData(json);
+                const response = await axios.get(url, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                });
+                setData(response.data);
             } catch (err) {
                 setError(err);
             } finally {
