@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { NavMenu } from '../NavMenu';
 import './FinalCourses.css';
@@ -7,6 +7,7 @@ import ProgressBar from '../shared/ProgressBar';
 import { toast } from 'react-toastify';
 import { FaRegTrashCan } from "react-icons/fa6";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
+import { updateProgressContext } from '../Layout/Layout';
 
 export default function FinalCourses() {
     const [userCourses, setUserCourses] = useState(null);
@@ -15,7 +16,9 @@ export default function FinalCourses() {
     const [deletedCourses, setDeletedCourses] = useState([]);
     const [selectedCourses, setSelectedCourses] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [updateFlag,setUpdateFlag] = useState(false);
+    const {setUpadteProgress, upadteProgress} = useContext(updateProgressContext);
+    console.log(upadteProgress)
+
     useEffect(() => {
         fetchUserCourses();
     }, []);
@@ -59,9 +62,9 @@ export default function FinalCourses() {
 
     const handleDegreeChange = (code, value) => {
         if (value < 60) {
-            toast.error("الدرجة يجب أن تكون 60 أو أكثر عند الإجتياز", { autoClose: 2000 ,rtl: true});
+            toast.error("الدرجة يجب أن تكون 60 أو أكثر عند الإجتياز", { autoClose: 2000, rtl: true });
             return;
-          }
+        }
         setUserCourses(prev => ({
             ...prev,
             updateUserCourse: prev.updateUserCourse.map(course =>
@@ -117,8 +120,9 @@ export default function FinalCourses() {
             setEditedCourses([]);
             setDeletedCourses([]);
             setEditMode({});
-            setUpdateFlag(!updateFlag);
-            toast.success("تم حفظ التغييرات بنجاح", { autoClose: 2000 ,rtl: true});
+            setUpadteProgress(!upadteProgress);
+            toast.success("تم حفظ التغييرات بنجاح", { autoClose: 2000, rtl: true });
+            
         } catch (err) {
             console.error("Error saving changes:", err);
             toast.error("فشل في حفظ التغييرات");
@@ -142,8 +146,8 @@ export default function FinalCourses() {
     return (
         <div className='w-full flex flex-row'>
             <NavMenu />
-            <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t final-courses px-2'>
-                <ProgressBar updated={updateFlag}/>
+            <div className='w-full'>
+                <ProgressBar />
                 <div className="relative overflow-x-auto ltr shadow-md rounded-lg mb-10 mx-auto mt-20">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead className="text-white uppercase bg-gray-600">
@@ -180,12 +184,14 @@ export default function FinalCourses() {
                                         <td className="p-12 font-normal text-[16px] sm:text-2xl text-black whitespace-nowrap">
                                             <div className='flex items-center'>
                                                 <input
-                                                    className="w-4 h-4 me-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                                                    id={course.code}
+                                                    className="w-5 h-5 me-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                                                     type="checkbox"
                                                     checked={isSelected(course.code)}
                                                     onChange={() => handleSelect(course.code)}
                                                 />
-                                                {course.code}
+                                                <label htmlFor={course.code}> {course.code}</label>
+
                                             </div>
                                         </td>
                                         <td className="text-[16px] sm:text-2xl text-center text-black">{course.name}</td>
