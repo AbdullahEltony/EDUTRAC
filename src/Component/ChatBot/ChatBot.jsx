@@ -1,15 +1,14 @@
 import React, { useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import { UserToken } from '../../Context/TokenContext';
 import { Client } from "@gradio/client";
 import { NavMenu } from '../NavMenu';
 import ProgressBar from '../shared/ProgressBar';
 
-
+import './ChatBot.css'
 
 export default function ChatBot() {
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(false);
     const textAreaRef = useRef(null);
 
 
@@ -32,6 +31,7 @@ export default function ChatBot() {
         }
 
         try {
+            setLoading(true);
             const client = await Client.connect("ziadziad/Agentic_Academic_Advisor");
             const result = await client.predict("/predict", { question: input, });
             const parser = new DOMParser();
@@ -43,6 +43,8 @@ export default function ChatBot() {
         } catch (error) {
             console.error("Error sending to chatbot:", error);
             setMessages((prev) => [...prev, { sender: "bot", text: "حدث خطأ أثناء الاتصال بالمساعد." }]);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -51,7 +53,7 @@ export default function ChatBot() {
     return <>
         <div className='w-full flex flex-row'>
             <NavMenu />
-            <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t px-2'>
+            <div className='w-full'>
                 <ProgressBar />
                 <div className="flex flex-col min-h-64 justify-center bg-gray-100 mx-auto pt-16 py-8 px-4" dir="rtl">
                     <div className="w-full bg-white rounded-2xl shadow-lg flex flex-col">
@@ -64,18 +66,28 @@ export default function ChatBot() {
                                 msg.sender === "bot" ? (
                                     <div
                                         key={index}
-                                        className="p-3 rounded-xl max-w-xs bg-gray-200 self-start text-right text-sm shadow-sm whitespace-pre-line"
+                                        className="p-3 rounded-xl max-w-xs text-sm shadow-sm whitespace-pre-line bg-gray-200 self-start text-right"
                                         dangerouslySetInnerHTML={{ __html: linkify(msg.text) }}
                                     />
                                 ) : (
                                     <div
                                         key={index}
-                                        className="p-3 rounded-xl max-w-xs bg-blue-100 self-end text-right text-sm shadow-sm whitespace-pre-line"
+                                        className="p-3 rounded-xl max-w-xs text-sm shadow-sm whitespace-pre-line bg-blue-100 self-end text-right"
                                     >
                                         {msg.text}
                                     </div>
                                 )
                             ))}
+
+                            {/* Typing animation only when loading is true */}
+                            {loading && (
+                                <div className="typing-indicator self-start ml-4 mt-2">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            )}
+
                         </div>
 
                         <div className="p-4 border-t flex gap-2 items-start">

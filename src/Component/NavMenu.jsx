@@ -1,65 +1,96 @@
-import React, { useContext } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { UserToken } from '../Context/TokenContext';
 import { NavLinks } from '../constants';
-
+import { SidebarContext } from './Layout/Layout';
 
 export const NavMenu = () => {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
+    const { setUserToken } = useContext(UserToken);
+    const { isCollapsed, setIsCollapsed } = useContext(SidebarContext);
 
-    let { setUserToken } = useContext(UserToken);
     function logOut() {
         localStorage.removeItem('token');
-        setUserToken(null)
-        navigate('/')
+        setUserToken(null);
+        navigate('/');
     }
-    return (
-        <div className="w-[16%] md:w-[25%] lg:w-[18%] xl:w-[16%] bg-[#d9e7f1] py-4 p-[4px] sm:p-4 min-h-screen transition duration-300 ease-in-out flex flex-col fixed z-50">
-            <h2 className="text-xl md:text-2xl font-bold text-[#6CA6CD] mb-4 text-center hidden md:block">EDU TRACK</h2>
-            <div className="flex flex-col gap-4 w-full items-center md:items-start justify-center"  >
 
+    return (
+        <div
+            className={`bg-[#d9e7f1] py-4 px-2 sm:p-4 min-h-screen transition-all duration-300 ease-in-out flex flex-col fixed z-50 right-0 top-0
+            ${isCollapsed ? 'w-[90px]' : 'w-[90px] md:w-[230px]'} transition-[width]`}
+        >
+            {/* زر الفتح والإغلاق */}
+            <button
+                onClick={() => setIsCollapsed(!isCollapsed)}
+                className="self-end text-xl p-2 text-[#6CA6CD] hover:text-[#222] transition mb-3 hidden md:block"
+                title={isCollapsed ? "Expand" : "Collapse"}
+            >
+                <i className={`fa-solid ${isCollapsed ? 'fa-bars-staggered' : 'fa-bars'}`}></i>
+            </button>
+
+            {/* الشعار واسم التطبيق */}
+            <div className="flex items-center justify-center md:justify-start mb-4 overflow-hidden">
+                <img src="logo.png" alt="Logo" className="h-8 md:h-10" />
+                {!isCollapsed && (
+                    <h2 className="text-xl font-bold text-[#6CA6CD] text-center  md:w-full w-0">
+                        EDU TRACK
+                    </h2>
+                )}
+            </div>
+
+            {/* روابط التنقل */}
+            <div className="flex flex-col gap-4 w-full items-center md:items-start justify-center overflow-visible">
                 {NavLinks.map((item) => (
                     <div key={item.name} className="relative group w-full">
                         <NavLink
-                            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                             to={item.link}
-                            className="flex items-center py-2 px-3 md:p-3 justify-center md:justify-start gap-2.5 rounded-[10px] md:rounded-[22px] hover:bg-[#eff4f8] hover:shadow-md transition duration-300 ease-in-out w-full"
+                            className={`flex items-center py-2 px-3 md:p-3 justify-center ${!isCollapsed && 'md:justify-start'} gap-2.5 rounded-[10px] hover:bg-[#eff4f8] hover:shadow-md transition duration-300 ease-in-out w-full`}
                         >
                             <i className={`${item.icon} text-[#222] p-2 rounded-[12px]`}></i>
-                            <span className="hidden md:inline text-[#14142b]">{item.name}</span>
+                            {!isCollapsed && (
+                                <span className="hidden md:inline text-[#14142b]">{item.name}</span>
+                            )}
                         </NavLink>
 
-                        {/* Tooltip for small screens */}
-                        <span className="md:hidden absolute right-[110%] top-1/2 -translate-y-1/2 bg-[#eff4f8] text-[#14142b] px-2 py-1 shadow-md opacity-0 group-hover:opacity-100 transition duration-300 z-50 min-w-[130px] rounded-lg text-center pointer-events-none after:content-[''] after:absolute after:top-1/2 after:left-full after:-translate-y-1/2 after:border-8 after:border-transparent after:border-l-[#eff4f8]">
+                        {/* Tooltip عند الطي */}
+                        <span
+                            className={`absolute right-[110%] top-1/2 -translate-y-1/2 bg-[#eff4f8] text-[#14142b] px-2 py-1 shadow-md opacity-0 group-hover:opacity-100 transition duration-300 z-50 min-w-[130px] rounded-lg text-center pointer-events-none after:content-[''] after:absolute after:top-1/2 after:left-full after:-translate-y-1/2 after:border-8 after:border-transparent after:border-l-[#eff4f8] 
+                            ${isCollapsed ? 'md:block' : 'md:hidden'} sm:block`}
+                        >
                             {item.name}
                         </span>
                     </div>
                 ))}
             </div>
 
+
+            {/* تسجيل الخروج */}
             <div className="mt-auto flex items-center w-full justify-center md:justify-start">
                 <div className="relative group w-full">
                     <NavLink
                         onClick={logOut}
-                        to='/'
-                        className="flex items-center py-2 px-3 md:p-3 justify-center md:justify-start gap-2.5 rounded-[10px] md:rounded-[22px] hover:bg-[#eff4f8] hover:shadow-md transition duration-300 ease-in-out w-full"
+                        to="/"
+                        className={`flex items-center py-2 px-3 md:p-3 justify-center ${!isCollapsed && 'md:justify-start'
+                            } gap-2.5 rounded-[10px] hover:bg-[#eff4f8] hover:shadow-md transition duration-300 ease-in-out w-full`}
                     >
-                        <i className={`fa-solid fa-arrow-right-from-bracket text-[#222] p-2 rounded-[12px]`}></i>
-                        <span className="hidden md:inline text-[#14142b]">تسجيل خروج</span>
+                        <i className="fa-solid fa-arrow-right-from-bracket text-[#222] p-2 rounded-[12px]"></i>
+                        {!isCollapsed && <span className="text-[#14142b] hidden md:block">تسجيل خروج</span>}
                     </NavLink>
 
-                    {/* Tooltip for small screens */}
-                    <span className="md:hidden absolute right-[110%] top-1/2 -translate-y-1/2 bg-[#eff4f8] text-[#14142b] px-2 py-1 shadow-md opacity-0 group-hover:opacity-100 transition duration-300 z-50 min-w-[130px] rounded-lg text-center pointer-events-none after:content-[''] after:absolute after:top-1/2 after:left-full after:-translate-y-1/2 after:border-8 after:border-transparent after:border-l-[#eff4f8]">
-                        تسجيل خروج
+                    <span
+                        className={`absolute right-[110%] top-1/2 -translate-y-1/2 bg-[#eff4f8] text-[#14142b] px-2 py-1 shadow-md opacity-0 group-hover:opacity-100 transition duration-300 z-50 min-w-[130px] rounded-lg text-center pointer-events-none after:content-[''] after:absolute after:top-1/2 after:left-full after:-translate-y-1/2 after:border-8 after:border-transparent after:border-l-[#eff4f8] 
+                            ${isCollapsed ? 'md:block' : 'md:hidden'} sm:block`}
+                    >
+                       تسجيل خروج
                     </span>
+
                 </div>
             </div>
         </div>
+    );
+};
 
-    )
-}
+export default NavMenu;
 
-export default NavMenu
-
-
-//fa-solid fa-arrow-right-to-bracket

@@ -7,13 +7,13 @@ import { useFormik } from 'formik';
 import NavMenu from '../NavMenu';
 import { baseURL } from '../../constants';
 import ProgressBar from '../shared/ProgressBar';
+import { toast } from 'react-toastify';
 
 export default function UpdateCourses() {
   let navigate = useNavigate();
 
-
-  const [level, setlevel] = useState(0);
-  const [semester, setSemester] = useState(0);
+  const [level] = useState(0);
+  const [semester] = useState(0);
   const [course, setCourses] = useState(null);
 
   const fetchCourses = async (level, semester) => {
@@ -77,11 +77,10 @@ export default function UpdateCourses() {
       }));
 
     if (cleanedCourses.length === 0) {
-      alert("⚠️ يجب اختيار الكورسات وإدخال الحالة والدرجة بشكل صحيح.");
+      toast.warning("يجب اختيار الكورسات وإدخال الحالة والدرجة بشكل صحيح", { autoClose: 2000 })
       return;
     }
 
-    console.log("📦 Payload being sent:", { updateCourse: cleanedCourses });
 
     const response = await axios.put(
       `${baseURL}/api/Profile/update-course`,
@@ -92,11 +91,11 @@ export default function UpdateCourses() {
         },
       }
     );
-
-    alert('تم تسجيل بياناتك بنجاح')
+    toast("  تم تحديث الكورسات بنجاج", { autoClose: 2000 })
     console.log(response);
 
     navigate("/finalCourses")
+    window.scrollTo({ top: 0, behavior: "smooth" })
   };
 
 
@@ -134,7 +133,7 @@ export default function UpdateCourses() {
   return <>
     <div className='w-full flex flex-row'>
       <NavMenu />
-      <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t px-2'>
+      <div className='w-full'>
         <ProgressBar />
         <div className='bg-[#EFF4F8] pb-10 pt-6 mb-8  mx-auto'>
           <h2 className='font-bold text-xl sm:text-3xl text-center font-[Almarai] px-2 mb-4'>شاهد الفيديو التعريفي </h2>
@@ -158,7 +157,7 @@ export default function UpdateCourses() {
             name="level"
             className="bg-[#EFF4F8] border border-[#6CA6CD] text-black text-2xl rounded-lg block w-full p-5 font-normal focus-visible:outline-none"
             onChange={formik.handleChange}
-            value={formik.values.level}
+            value={formik.values.level ?? ""}
           >
             <option value="0">المستويات</option>
             <option value="1">المستوى الأول</option>
@@ -305,9 +304,9 @@ export default function UpdateCourses() {
 
                             formik2.setFieldValue("courses", newCourses);
                           }}
-                          className="w-4 h-4 rounded-sm border-outline-none accent-[#1EE80B] focus:ring-0"
+                          className="w-5 h-5 me-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                         />
-                        <label htmlFor={`checkbox-${index}`} className="mr-2.5 text-[16px] text-2xl font-normal text-black">
+                        <label htmlFor={`checkbox-${index}`} className="mr-2.5 text-[16px] sm:text-2xl font-normal text-black">
                           {course.code}
                         </label>
                       </div>
@@ -364,7 +363,7 @@ export default function UpdateCourses() {
                           const status = formik2.values.courses?.[index]?.status;
 
                           if (status && value < 60) {
-                            alert("الدرجة يجب أن تكون 60 أو أكثر عند الإجتياز");
+                            toast.warning("الدرجة يجب أن تكون 60 أو أكثر عند الإجتياز",{autoClose:200});
                             formik2.setFieldValue(`courses[${index}].degree`, "");
                           }
                         }}

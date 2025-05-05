@@ -4,14 +4,14 @@ import './Home.css'
 
 import { NavMenu } from '../NavMenu';
 import ProgressBar from '../shared/ProgressBar';
-export default function Home() {
+function Home() {
 
 
     return <>
         <div className='w-full flex flex-row'>
             <NavMenu />
 
-            <div className={`bg-[#fdfdfd] w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto m-t py-12 px-2`}>
+            <div className={`bg-[#fdfdfd]`}>
                 {/*  شريط التقدم  */}
                 <ProgressBar />
 
@@ -106,3 +106,5 @@ export default function Home() {
     </>
 }
 
+
+export default React.memo(Home);

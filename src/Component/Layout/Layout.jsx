@@ -1,21 +1,50 @@
-import React from 'react'
+/* eslint-disable react-refresh/only-export-components */
+import React, { createContext, useMemo, useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
 import { Outlet, useLocation } from 'react-router-dom'
 
+export const SidebarContext = createContext(null)
+export const updateProgressContext = createContext(null)
+
 export default function Layout() {
     const location = useLocation();
 
+    // State to manage sidebar collapse
+    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [upadteProgress, setUpadteProgress] = useState(false);
+
+
+
     const noLayoutRoutes = ['/', '/register', '/forgetPassword', '/resetPassword'];
     const hideLayout = noLayoutRoutes.includes(location.pathname);
-    
-    return <>
-        {!hideLayout && <Navbar />}
-            <div>
-                <Outlet/>
-            </div>
-        {!hideLayout && <Footer />}
-    </>
 
+    // Set the value for SidebarContext (passed to children components)
+    const collapsed = useMemo(() => ({ isCollapsed, setIsCollapsed }), [isCollapsed]);
+    const updateProgress = useMemo(() => ({ upadteProgress, setUpadteProgress }), [upadteProgress]);
+
+    return (
+        <SidebarContext.Provider value={collapsed}>
+            {hideLayout ? (
+                <Outlet />
+            ) : (
+                <>
+                    <Navbar />
+                    <div
+                        className={`transition-[width] duration-300 ease-in-out ${isCollapsed
+                            ? 'w-[calc(100%-90px)]'
+                            : 'w-[calc(100%-90px)] md:w-[calc(100%-230px)]'
+                            } mr-auto py-12 px-2 m-t`}
+                    >
+                        <updateProgressContext.Provider value={updateProgress}>
+                            <Outlet />
+                        </updateProgressContext.Provider>
+
+                    </div>
+                    <Footer />
+                </>
+            )}
+        </SidebarContext.Provider>
+    );
 
 }

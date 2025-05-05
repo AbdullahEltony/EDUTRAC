@@ -5,6 +5,7 @@ import {NavMenu} from '../NavMenu';
 import { baseURL } from '../../constants';
 import './Profile.css'
 import ProgressBar from '../shared/ProgressBar';
+import { toast } from 'react-toastify';
 export default function Profile() {
     const [NationalId, setNationalId] = useState(null)
 
@@ -36,7 +37,7 @@ export default function Profile() {
                 }
             );
 
-            alert("✅ تم تحديث الاسم بنجاح");
+            toast.success("✅ تم تحديث الاسم بنجاح",{autoClose:2000});
             console.log("Response:", response.data);
     };
 
@@ -51,8 +52,8 @@ export default function Profile() {
         <div className='w-full flex flex-row'>
             <NavMenu />
 
-            <div className='w-[84%] md:w-[75%] lg:w-[82%] xl:w-[84%] mr-auto profile m-t px-2'>
-                <ProgressBar/>
+            <div className='w-full'>
+                <ProgressBar updated={false}/>
                 <div className='bg-[#EFF4F8] text-center p-6 mb-6 mx-auto mt-20'>
                     <h2 className='font-bold text-black text-2xl sm:text-4xl'>بيانات الطالب</h2>
                 </div>

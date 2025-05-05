@@ -16,6 +16,7 @@ import UserTokenContextProvider from './Context/TokenContext.jsx'
 import ChatBot from './Component/ChatBot/ChatBot.jsx'
 import FinalCourses from './Component/FinalCourses/FinalCourses.jsx'
 import UpdateCourses from './Component/UpdateCourses/UpdateCourses.jsx'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   useEffect(() => {
@@ -27,13 +28,13 @@ function App() {
       { path: 'register', element: <Register /> },
       { path: 'forgetPassword', element: <ForgetPassword /> },
       { path: 'resetPassword', element: <ResetPassword /> },
-      { path: 'home', element: <ProtectedRoute> <Home /> </ProtectedRoute>},
+      { path: 'home', element: <ProtectedRoute> <Home /> </ProtectedRoute> },
       // { path: 'courses', element: <ProtectedRoute> <Courses /> </ProtectedRoute>},
       { path: 'profile', element: <ProtectedRoute> <Profile /> </ProtectedRoute> },
-      { path: 'aboutus', element: <ProtectedRoute> <AboutUs /> </ProtectedRoute>},
-      { path: 'chatBot', element: <ProtectedRoute> <ChatBot /> </ProtectedRoute>},
-      { path: 'updateCourses', element: <ProtectedRoute> <UpdateCourses /> </ProtectedRoute>},
-      { path: 'FinalCourses', element: <ProtectedRoute> <FinalCourses /> </ProtectedRoute>},
+      { path: 'aboutus', element: <ProtectedRoute> <AboutUs /> </ProtectedRoute> },
+      { path: 'chatBot', element: <ProtectedRoute> <ChatBot /> </ProtectedRoute> },
+      { path: 'updateCourses', element: <ProtectedRoute> <UpdateCourses /> </ProtectedRoute> },
+      { path: 'FinalCourses', element: <ProtectedRoute> <FinalCourses /> </ProtectedRoute> },
       { path: '*', element: <NotFound /> },
     ]
   }])
@@ -41,6 +42,7 @@ function App() {
   return <>
     <UserTokenContextProvider>
       <ActiveContextProvider>
+        <ToastContainer position="top-center" />
         <RouterProvider router={routers}></RouterProvider>
       </ActiveContextProvider>
     </UserTokenContextProvider>
