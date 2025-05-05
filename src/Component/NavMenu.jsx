@@ -23,7 +23,7 @@ export const NavMenu = () => {
             {/* زر الفتح والإغلاق */}
             <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
-                className="self-end text-xl p-2 text-[#6CA6CD] hover:text-[#222] transition mb-3 hidden md:block"
+                className="cursor-pointer self-end text-xl p-2 text-[#6CA6CD] hover:text-[#222] transition mb-3 hidden md:block"
                 title={isCollapsed ? "Expand" : "Collapse"}
             >
                 <i className={`fa-solid ${isCollapsed ? 'fa-bars-staggered' : 'fa-bars'}`}></i>
