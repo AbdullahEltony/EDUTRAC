@@ -91,7 +91,7 @@ export default function UpdateCourses() {
         },
       }
     );
-    toast("  تم تحديث الكورسات بنجاج", { autoClose: 2000 })
+    toast.success("  تم تحديث الكورسات بنجاج", { autoClose: 2000 })
     console.log(response);
 
     navigate("/finalCourses")
