@@ -33,7 +33,7 @@ export default function AboutUs() {
                             transition={{ duration: 0.8, ease: 'easeOut' }}
                         >
                             <motion.div
-                                className="pt-6 w-full lg:w-[60%]"
+                                className="pt-3 sm:pt-6 w-full lg:w-[60%]"
                                 initial={{ opacity: 0, y: 30, scale: 0.95 }}
                                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                                 viewport={{ once: true }}
