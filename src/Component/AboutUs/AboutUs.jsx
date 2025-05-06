@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { useRef } from 'react';
 import NavMenu from '../NavMenu';
 import './AboutUs.css';
 import ProgressBar from '../shared/ProgressBar';
 import { Team } from '../../constants';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const titleVariants = {
     hidden: { opacity: 0, y: 30, letterSpacing: "0em" },
@@ -17,18 +16,6 @@ const titleVariants = {
 };
 
 export default function AboutUs() {
-    const aboutRef = useRef(null);
-    const isAboutInView = useInView(aboutRef, { once: true });
-
-    const visionRef = useRef(null);
-    const isVisionInView = useInView(visionRef, { once: true });
-
-    const teamRef = useRef(null);
-    const isTeamInView = useInView(teamRef, { once: true });
-
-    const clientsRef = useRef(null);
-    const isClientsInView = useInView(clientsRef, { once: true });
-
     return (
         <>
             <div className='w-full flex flex-row'>
@@ -39,20 +26,21 @@ export default function AboutUs() {
 
                         {/* عن EDU TRACK */}
                         <motion.div
-                            ref={aboutRef}
-                            className="bg-[#d9e7f1] p-8 md:p-12 flex flex-col lg:flex-row gap-6 justify-start"
+                            className="bg-[#d9e7f1] p-8 md:p-12 flex flex-col md:flex-row gap-6 justify-start"
                             initial="hidden"
-                            animate={isAboutInView ? "visible" : "hidden"}
+                            whileInView="visible"
+                            viewport={{ once: true }}
                             transition={{ duration: 0.8, ease: 'easeOut' }}
                         >
                             <motion.div
-                                className="pt-8 w-full lg:w-[60%]"
+                                className="pt-6 w-full lg:w-[60%]"
                                 initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                                animate={isAboutInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                viewport={{ once: true }}
                                 transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
                             >
                                 <motion.h2
-                                    className="text-2xl sm:text-5xl font-bold text-[#262338] leading-[100%] mb-7"
+                                    className="text-2xl sm:text-2xl md:text-4xl font-bold text-[#262338] leading-[100%] mb-5"
                                     variants={titleVariants}
                                 >
                                     عن EDU TRACK
@@ -71,7 +59,8 @@ export default function AboutUs() {
                             <motion.div
                                 className="w-full lg:w-[35%]"
                                 initial={{ opacity: 0, scale: 0.9, y: 30 }}
-                                animate={isAboutInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                viewport={{ once: true }}
                                 transition={{ duration: 1, ease: 'easeOut', delay: 0.4 }}
                             >
                                 <motion.img
@@ -92,24 +81,26 @@ export default function AboutUs() {
 
                         {/* رؤيتنا */}
                         <motion.div
-                            ref={visionRef}
-                            className="AboutUsImage relative rounded-md overflow-hidden flex items-center justify-center text-center"
+                            className="AboutUsImage  h-[300px] md:h-[400px] mt-8 md:mt-12 relative rounded-md overflow-hidden flex items-center justify-center text-center"
                             initial={{ opacity: 0 }}
-                            animate={isVisionInView ? { opacity: 1 } : {}}
-                            transition={{ duration: 1.2 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.5 }}
                         >
                             <div className="AboutBackGround absolute inset-0" />
                             <motion.div
                                 className="p-6 rounded-md absolute"
                                 initial={{ y: -50, opacity: 0 }}
-                                animate={isVisionInView ? { y: 0, opacity: 1 } : {}}
-                                transition={{ duration: 1 }}
+                                whileInView={{ y: 0, opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1.2 }}
                             >
                                 <motion.h2
                                     className="text-2xl sm:text-4xl md:text-6xl font-bold text-[#6CA6CD] mb-6"
                                     variants={titleVariants}
                                     initial="hidden"
-                                    animate={isVisionInView ? "visible" : "hidden"}
+                                    whileInView="visible"
+                                    viewport={{ once: true }}
                                 >
                                     رؤيتنا
                                 </motion.h2>
@@ -121,10 +112,10 @@ export default function AboutUs() {
 
                         {/* فريقنا */}
                         <motion.div
-                            ref={teamRef}
                             className="container mx-auto my-24 px-4 text-center max-w-[600px]"
                             initial="hidden"
-                            animate={isTeamInView ? "visible" : "hidden"}
+                            whileInView="visible"
+                            viewport={{ once: true }}
                             variants={{ visible: { opacity: 1 }, hidden: { opacity: 0 } }}
                             transition={{ duration: 1.2 }}
                         >
@@ -139,14 +130,21 @@ export default function AboutUs() {
                             </p>
                         </motion.div>
 
-                        <div className='mb-14 mt-10 mx-auto'>
+                        {/* صور الفريق */}
+                        <motion.div
+                            className='mb-14 mt-10 mx-auto'
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.5 }}
+                        >
                             <div className='bg-[#EFF4F8] py-6 px-10'>
                                 <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 pb-14">
                                     {Team.map((member) => (
                                         <motion.div
                                             key={member.id}
                                             initial={{ opacity: 0, scale: 0.8 }}
-                                            animate={isTeamInView ? { opacity: 1, scale: 1 } : {}}
+                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            viewport={{ once: true }}
                                             transition={{ duration: 0.6, delay: member.id * 0.2 }}
                                         >
                                             <img src={member.image} alt={member.name} className="w-full h-52 object-cover rounded-md" />
@@ -155,32 +153,36 @@ export default function AboutUs() {
                                     ))}
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* آراء العملاء */}
-                        <div ref={clientsRef} className='px-5 py-16'>
+                        <motion.div
+                            className='px-5 py-16'
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                        >
                             <div className="max-w-6xl mx-auto">
                                 <motion.h2
                                     className="text-3xl md:text-5xl font-bold text-center text-[#262338] mb-6"
                                     variants={titleVariants}
-                                    initial="hidden"
-                                    animate={isClientsInView ? "visible" : "hidden"}
                                 >
                                     آراء عملائنا
                                 </motion.h2>
                                 <p className="text-lg text-[#262338] text-center mb-16 max-w-[46rem] mx-auto">
-                                    في أكاديمية EDU TRACK، نُركّز على يد خبراء محترفين مشاركين في بناء أنظمة عالمية وخبراء تحديات السوق التقني.
+                                    في أكاديمية EDU TRACK، نُركّز على يد خبراء محترفين مشاركين...
                                 </p>
                             </div>
 
-                            {/* Cards */}
+                            {/* بطاقات العملاء */}
                             <div className="grid grid-cols-3 justify-start gap-4">
                                 {[...Array(3)].map((_, index) => (
                                     <motion.div
                                         key={index}
-                                        className='p-6 pb-2 col-span-3 md:col-span-1 bg-[#EFF4F8] shadow-lg border-[3px] border-[#6CA6CD] rounded-lg'
+                                        className={`p-6 pb-2 col-span-3 md:col-span-1 ${index === 1 ? "bg-[#88b2d5]" : "bg-[#EFF4F8] "} shadow-lg border-[3px] border-[#6CA6CD] rounded-lg`}
                                         initial={{ opacity: 0, scale: 0.8 }}
-                                        animate={isClientsInView ? { opacity: 1, scale: 1 } : {}}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true }}
                                         transition={{ duration: 0.6, delay: index * 0.3 }}
                                     >
                                         <p className="text-black text-right mb-8 font-normal font-[Almarai]">
@@ -196,7 +198,7 @@ export default function AboutUs() {
                                     </motion.div>
                                 ))}
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </div>

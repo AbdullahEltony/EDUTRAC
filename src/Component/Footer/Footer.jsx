@@ -5,7 +5,7 @@ import { SidebarContext } from '../Layout/Layout';
 export default function Footer() {
   const { isCollapsed } = useContext(SidebarContext);
   return <>
-    <div className={`mr-auto transition-[width] duration-300 ease-in-out  ${isCollapsed ? 'w-[calc(100%-90px)]' : 'w-[calc(100%-90px)] md:w-[calc(100%-230px)]'}`}>
+    <div className={`mr-auto transition-[width] duration-300 ease-in-out  ${isCollapsed ? 'w-[calc(100%-60px)]' : 'w-[calc(100%-60px)] md:w-[calc(100%-230px)]'}`}>
       <div className="bg-[#191A1B] text-white py-10 px-6 md:px-20 w-[100%]">
         <div className="footer text-left">
           {/* Social Icons */}

@@ -17,23 +17,23 @@ export const NavMenu = () => {
 
     return (
         <div
-            className={`bg-[#d9e7f1] py-4 px-2 sm:p-4 min-h-screen transition-all duration-300 ease-in-out flex flex-col fixed z-50 right-0 top-0
-            ${isCollapsed ? 'w-[90px]' : 'w-[90px] md:w-[230px]'} transition-[width]`}
+            className={`bg-[#d9e7f1] px-2 sm:p-3 min-h-screen transition-all duration-300 ease-in-out flex flex-col fixed z-50 right-0 top-0 bottom-0
+            ${isCollapsed ? 'w-[60px]' : 'w-[60px] md:w-[230px]'} transition-[width]`}
         >
             {/* زر الفتح والإغلاق */}
             <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
-                className="cursor-pointer self-end text-xl p-2 text-[#6CA6CD] hover:text-[#222] transition mb-3 hidden md:block"
+                className="cursor-pointer self-end text-xl p-2 text-[#6CA6CD] hover:text-[#222] transition hidden md:block"
                 title={isCollapsed ? "Expand" : "Collapse"}
             >
                 <i className={`fa-solid ${isCollapsed ? 'fa-bars-staggered' : 'fa-bars'}`}></i>
             </button>
 
             {/* الشعار واسم التطبيق */}
-            <div className="flex items-center justify-center md:justify-start mb-4 overflow-hidden">
-                <img src="logo.png" alt="Logo" className="h-8 md:h-10" />
+            <div className="flex items-center justify-center md:justify-start mb-6 overflow-hidden">
+                <img src="logo.png" alt="Logo" className={`${isCollapsed ? '!h-9':''} h-9 md:h-12 object-cover`} />
                 {!isCollapsed && (
-                    <h2 className="text-xl font-bold text-[#6CA6CD] text-center  md:w-full w-0">
+                    <h2 className="text-xl font-bold text-[#6CA6CD] text-center  md:w-full w-0 overflow-hidden transition-[width]">
                         EDU TRACK
                     </h2>
                 )}
@@ -46,7 +46,7 @@ export const NavMenu = () => {
                         <NavLink
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                             to={item.link}
-                            className={`flex items-center py-2 px-3 md:p-3 justify-center ${!isCollapsed && 'md:justify-start'} gap-2.5 rounded-[10px] hover:bg-[#eff4f8] hover:shadow-md transition duration-300 ease-in-out w-full`}
+                            className={`flex items-center py-1 px-3 md:py-2 md:px-3 justify-center ${isCollapsed ? '!py-1':'md:justify-start'} gap-2.5 rounded-[10px] hover:bg-[#eff4f8] hover:shadow-md transition duration-300 ease-in-out w-full`}
                         >
                             <i className={`${item.icon} text-[#222] p-2 rounded-[12px]`}></i>
                             {!isCollapsed && (

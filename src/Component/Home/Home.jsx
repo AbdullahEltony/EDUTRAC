@@ -15,7 +15,7 @@ function Home() {
                 {/*  شريط التقدم  */}
                 <ProgressBar />
 
-                <div className='p-5 md:p-10 !pt-0'>
+                <div className='p-5 md:p-10 !pt-5'>
                     <div className='text-center'>
                         <h1 className='text-2xl md:text-5xl font-[Raleway] font-bold'>
                             <span className='text-[#6CA6CD]'>لماذا</span> <span className='text-black'>EDU TRACK؟</span>
@@ -27,7 +27,7 @@ function Home() {
                     </div>
 
                     <div className='grid max-w-6xl mx-auto grid-cols-1 gap-10  sm:grid-cols-2 lg:grid-cols-3'>
-                        <div className="group relative bg-white p-6 rounded-xl text-center">
+                        <div className="group relative bg-white p-4 sm:p-6 rounded-xl text-center">
                             <div className='text-2xl md:text-5xl text-[#377DAC]'>
                                 <i className="fa-solid fa-pen-to-square"></i>
                             </div>
@@ -65,9 +65,9 @@ function Home() {
 
                 <div className='mx-auto'>
                     {/* video */}
-                    <div className='bg-[#EFF4F8] py-12  mx-auto'>
+                    <div className='bg-[#EFF4F8] py-6 sm:py-12  mx-auto'>
                         <h2 className='font-bold text-xl md:text-3xl text-center font-[Almarai] px-2'>شاهد الفيديو التعريفي </h2>
-                        <div className="flex justify-center px-6 pt-6">
+                        <div className="flex justify-center px-0 sm:px-6 pt-6">
                             <div className="relative w-full" style={{ maxWidth: '800px', aspectRatio: '16/9' }}>
                                 <iframe
                                     className="absolute top-0 left-0 w-full h-full"
@@ -83,10 +83,10 @@ function Home() {
                     </div>
 
                     <div className='bg-[#EFF4F8] py-12 mx-auto mt-6'>
-                        <div className='flex flex-col  md:flex-row justify-end  gap-5 p-5'>
-                            <div className=''>
+                        <div className='flex flex-col  md:flex-row justify-end  gap-5 p-3 sm:p-5'>
+                            <div className='min-w-1/2'>
                                 <h3 className="text-2xl lg:text-4xl font-[Almarai] font-bold mb-4">متطلبات التخرج:</h3>
-                                <div className="pr-3">
+                                <div className="flex flex-col">
                                     <span className='text-[#4E4B66] font-bold font-[Almarai] text-[14px] md:text-[16px]'>1- عدم تجاوز الحد الادني والحد الاقصي للسنوات الدراسية طبقا لقانون تنظيم الجامعات ولائحته التنفيذية .</span><br />
                                     <span className='text-[#4E4B66] font-bold font-[Almarai] text-[14px] md:text-[16px]'>2- استكمال جميع متطلبات الساعات المعتمدة المطلوبة في البرنامج الدراسي سواء الاجبارية او الاختيارية طبقا للخطة الدراسية للكلية</span><br />
                                     <span className='text-[#4E4B66] font-bold font-[Almarai] text-[14px] md:text-[16px]'>3- الحصول علي معدل تراكمي لا يقل عن ( 1.00 )</span><br />

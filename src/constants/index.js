@@ -38,7 +38,7 @@ export const  Team  = [
     {
         id:1,
         image:'./ziad.jpg',
-        name:'ذياد محمد مصطفي',
+        name:'زياد محمد مصطفي',
     },
     {
         id:2,
@@ -89,6 +89,11 @@ export const  Team  = [
         id:11,
         image:'./dalia.jpg',
         name:'داليا مصطفي إبراهيم',
+    },
+    {
+        id:12,
+        image:'./yara.jpg',
+        name:'يارا ناصر سيد',
     },
     
 ]

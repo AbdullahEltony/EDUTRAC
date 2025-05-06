@@ -32,8 +32,8 @@ export default function Layout() {
                     <Navbar />
                     <div
                         className={`transition-[width] duration-300 ease-in-out ${isCollapsed
-                            ? 'w-[calc(100%-90px)]'
-                            : 'w-[calc(100%-90px)] md:w-[calc(100%-230px)]'
+                            ? 'w-[calc(100%-60px)]'
+                            : 'w-[calc(100%-60px)] md:w-[calc(100%-230px)]'
                             } mr-auto py-12 px-2 m-t`}
                     >
                         <updateProgressContext.Provider value={updateProgress}>

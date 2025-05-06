@@ -43,7 +43,7 @@ function Navbar() {
         {userToken && (
             <div
                 className={`absolute xl:fixed z-20 left-0 top-0 bg-white pb-6 transition-all duration-300 mx-auto 
-                ${isCollapsed ? 'w-[calc(100%-90px)]' : 'w-[calc(100%-90px)] md:w-[calc(100%-230px)]'} `}
+                ${isCollapsed ? 'w-[calc(100%-60px)]' : 'w-[calc(100%-60px)] md:w-[calc(100%-230px)]'} `}
             >
                 <div
                     className={`grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5  gap-4 bg-white shadow-sm p-5 rounded-[20px] mx-auto w-[98%] mt-3 transition-all duration-300 `}
