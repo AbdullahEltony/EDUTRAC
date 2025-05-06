@@ -135,7 +135,7 @@ export default function AboutUs() {
                             className='mb-14 mt-10 mx-auto'
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true, amount: 0.5 }}
+                            viewport={{ once: true, amount: 0.3 }}
                         >
                             <div className='bg-[#EFF4F8] py-6 px-10'>
                                 <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 pb-14">
