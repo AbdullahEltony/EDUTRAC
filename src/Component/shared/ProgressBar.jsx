@@ -48,7 +48,7 @@ export default React.memo(function ProgressBar() {
             ></motion.div>
 
             <motion.span
-                className={`absolute ${target <= 5? 'right-1/2' : 'left-1/2'} top-1/2 transform -translate-y-1/2 text-white text-sm sm:text-lg font-semibold`}
+                className={`absolute ${target <= 5? 'right-1/2' : 'left-1/2'} pt-[5px] top-1/2 transform -translate-y-1/2 ps-3 sm:px-0 text-white text-sm sm:text-lg font-semibold`}
                 style={{ left: labelX }}
             >
                 {Math.round(target)}%
