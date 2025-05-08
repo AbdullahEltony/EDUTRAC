@@ -25,6 +25,8 @@ export default function Login() {
             console.log(response);
             if (response.status !== 200) throw new Error(response.statusText);
             localStorage.setItem('token', response.data.token);
+            localStorage.setItem('refreshToken', response.data.refreshToken);
+
             setUserToken(response.data.token);
             navigate('/home');
         } catch (error) {

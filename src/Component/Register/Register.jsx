@@ -38,6 +38,12 @@ export default function Register() {
         else if (!/^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF ]{10,50}$/.test(values.fullName)) {
             errors.fullName = '  الإسم غير صحيح أدخل الإسم باللغة العربية لا يقل عن 10 حروف ولا يتجاوز 50 حرفا'
         }
+        if(!values.email){
+            errors.email = 'البريد الألكتروني مطلوب'
+        }
+        else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)){
+            errors.email = 'البريد الألكتروني غير صحيح'
+        }
 
         if (!values.nationalId) {
             errors.nationalId = 'الرقم القومي مطلوب'
@@ -68,6 +74,7 @@ export default function Register() {
             nationalId: '',
             password: '',
             fullName: '',
+            email: '',
             level: null,
         }, validate: validateForm
         , onSubmit: register
@@ -109,6 +116,19 @@ export default function Register() {
                     />
                     {formik.errors.nationalId && formik.touched.nationalId && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.nationalId}
+                    </div>}
+                    <input
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        type="text"
+                        id='البريد الإلكتروني'
+                        name='email'
+                        placeholder=" البريد الإلكتروني"
+                        className="mb-2 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none"
+                    />
+                     {formik.errors.email && formik.touched.email && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
+                        {formik.errors.email}
                     </div>}
                     <input
                         value={formik.values.level}

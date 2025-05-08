@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { FaRegTrashCan } from "react-icons/fa6";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { updateProgressContext } from '../Layout/Layout';
+import { makeRequest } from '../../api/axiosInstance';
 
 export default function FinalCourses() {
     const [userCourses, setUserCourses] = useState(null);
@@ -16,7 +17,7 @@ export default function FinalCourses() {
     const [deletedCourses, setDeletedCourses] = useState([]);
     const [selectedCourses, setSelectedCourses] = useState([]);
     const [loading, setLoading] = useState(false);
-    const {setUpadteProgress, upadteProgress} = useContext(updateProgressContext);
+    const { setUpadteProgress, upadteProgress } = useContext(updateProgressContext);
     console.log(upadteProgress)
 
     useEffect(() => {
@@ -61,8 +62,7 @@ export default function FinalCourses() {
     };
 
     const handleDegreeChange = (code, value) => {
-        if (value < 60) {
-            toast.error("الدرجة يجب أن تكون 60 أو أكثر عند الإجتياز", { autoClose: 2000, rtl: true });
+        if(isNaN(value) || value > 100) {
             return;
         }
         setUserCourses(prev => ({
@@ -71,6 +71,7 @@ export default function FinalCourses() {
                 course.code === code ? { ...course, degree: Number(value) } : course
             )
         }));
+        
 
         const course = userCourses.updateUserCourse.find(c => c.code === code);
         const updated = { code: course.code, status: course.status, degree: Number(value) };
@@ -85,6 +86,26 @@ export default function FinalCourses() {
         });
     };
 
+    const handleBlur = (e, code) => {
+        const value = parseInt(e.target.value);
+        
+        if (isNaN(value) || value < 60) {
+            toast.warning("الدرجة يجب أن تكون على الأقل 60", { autoClose: 2000 });
+    
+            setUserCourses(prev => ({
+                ...prev,
+                updateUserCourse: prev.updateUserCourse.map(course =>
+                    course.code === code ? { ...course, degree: '' } : course
+                )
+            }));
+    
+            // إعادة التركيز بعد التأكد من أن event انتهى
+            setTimeout(() => {
+                e.target.focus();
+            }, 0);
+        }
+    };
+
     const handleKeyPress = (e, code) => {
         if (e.key === 'Enter') {
             setEditMode(prev => ({ ...prev, [code]: false }));
@@ -96,38 +117,32 @@ export default function FinalCourses() {
         try {
             setLoading(true);
             if (editedCourses.length > 0) {
-                await axios.put(`${baseURL}/api/Profile/update-course`, {
+                await makeRequest('PUT',`/api/Profile/update-course`, {
                     updateCourse: [...editedCourses]
-                }, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
                 });
             }
 
             if (deletedCourses.length > 0) {
-                await axios.delete(`${baseURL}/api/Profile/remove-course`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    },
-                    data: {
+                await makeRequest('DELETE',`/api/Profile/remove-course`,
+                    {
                         courses: [...deletedCourses]
                     }
-                });
+                );
             }
 
-            await fetchUserCourses();
+            
             setEditedCourses([]);
             setDeletedCourses([]);
             setEditMode({});
             setUpadteProgress(!upadteProgress);
             toast.success("تم حفظ التغييرات بنجاح", { autoClose: 2000, rtl: true });
-            
+
         } catch (err) {
             console.error("Error saving changes:", err);
             toast.error("فشل في حفظ التغييرات");
         } finally {
             setLoading(false);
+            await fetchUserCourses();
         }
     };
 
@@ -201,10 +216,13 @@ export default function FinalCourses() {
                                             {editMode[course.code] ? (
                                                 <input
                                                     type="number"
+                                                    min="60"
+                                                    max="100"
                                                     value={course.degree}
                                                     onChange={(e) => handleDegreeChange(course.code, e.target.value)}
                                                     onKeyDown={(e) => handleKeyPress(e, course.code)}
                                                     className="w-[60px] text-center border rounded"
+                                                    onBlur={(e) => handleBlur(e,course.code)}
                                                 />
                                             ) : (
                                                 course.degree

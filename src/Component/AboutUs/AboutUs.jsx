@@ -137,7 +137,7 @@ export default function AboutUs() {
                             whileInView="visible"
                             viewport={{ once: true, amount: 0.3 }}
                         >
-                            <div className='bg-[#EFF4F8] py-6 px-10'>
+                            <div className='bg-[#EFF4F8] py-6 px-4 sm:px-10'>
                                 <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 pb-14">
                                     {Team.map((member) => (
                                         <motion.div
@@ -147,7 +147,13 @@ export default function AboutUs() {
                                             viewport={{ once: true }}
                                             transition={{ duration: 0.6, delay: member.id * 0.2 }}
                                         >
-                                            <img src={member.image} alt={member.name} className="w-full h-52 object-cover rounded-md" />
+                                            <div className="rounded-md overflow-hidden aspect-[2/2]">
+                                                <img
+                                                    src={member.image}
+                                                    alt={member.name}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            </div>
                                             <h3 className="text-lg font-bold mt-2 text-[#262338]">{member.name}</h3>
                                         </motion.div>
                                     ))}

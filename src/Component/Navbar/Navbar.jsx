@@ -1,9 +1,8 @@
 import React, { useContext, useState } from 'react'
-import axios from 'axios'
 import { useEffect } from 'react';
 import { UserToken } from '../../Context/TokenContext';
-import { baseURL } from '../../constants';
-import { SidebarContext } from '../Layout/Layout';
+import { SidebarContext, updateProgressContext } from '../Layout/Layout';
+import { makeRequest } from '../../api/axiosInstance';
 function Navbar() {
 
     const [totalCourses, setTotalCourses] = useState(null)
@@ -11,30 +10,31 @@ function Navbar() {
     const [gpa, setGpa] = useState(null)
     const [gpaYear, setGpaYear] = useState(null)
     const { isCollapsed } = useContext(SidebarContext);
+    const {upadteProgress} = useContext(updateProgressContext);
 
 
     useEffect(() => {
         const getTotalCourses = async () => {
-            const response = await axios.get(`${baseURL}/api/Profile/calculate-course`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+            const response = await makeRequest('GET', `/api/Profile/calculate-course`);
             setTotalCourses(response.data.totalCourses);
         };
         const getTotalHours = async () => {
-            const response = await axios.get(`${baseURL}/api/Profile/calculate-hours`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+            const response = await makeRequest('GET', `/api/Profile/calculate-hours`);
             setTotalHours(response.data.totalHours);
         };
-        const getGPAYear = async () => {
-            const response = await axios.get(`${baseURL}/api/Profile/calculate-gpa`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+        const getGPA = async () => {
+            const response = await makeRequest('GET', `/api/Profile/calculate-gpa`);
             setGpaYear(response.data.gpa);
         };
-        const getGPA = async () => {
-            const response = await axios.get(`${baseURL}/api/Profile/calculate-gpa`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+        const getGPAYear = async () => {
+            const response = await makeRequest('GET', `/api/Profile/calculate-gpa-year`);
             setGpa(response.data.gpa);
         };
         getTotalCourses();
         getTotalHours();
         getGPA();
         getGPAYear();
-    }, []);
+    }, [upadteProgress]);
 
     let { userToken } = useContext(UserToken);
 
@@ -53,13 +53,13 @@ function Navbar() {
                             الGPA التراكمي
                         </p>
                         <p className="text-2xl font-[600] font-[Inter] text-black text-left">
-                            {Number((gpa - 4).toFixed(2))}
+                            {gpa}
                         </p>
                         <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
                             الGPA السنوي
                         </p>
                         <p className="text-2xl font-[600] font-[Inter] text-black text-left">
-                            {Number((gpaYear - 4).toFixed(2))}
+                            {Number(gpaYear - 4).toFixed(2)}
                         </p>
                     </div>
                     <div className="bg-[#fcdfb9] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">

@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios';
 import './UpdateCourses.css'
 import { useFormik } from 'formik';
 import NavMenu from '../NavMenu';
-import { baseURL } from '../../constants';
 import ProgressBar from '../shared/ProgressBar';
 import { toast } from 'react-toastify';
+import { makeRequest } from '../../api/axiosInstance';
+import { updateProgressContext } from '../Layout/Layout';
 
 export default function UpdateCourses() {
   let navigate = useNavigate();
@@ -15,6 +15,7 @@ export default function UpdateCourses() {
   const [level] = useState(0);
   const [semester] = useState(0);
   const [course, setCourses] = useState(null);
+  const { setUpadteProgress, upadteProgress } = useContext(updateProgressContext);
 
   const fetchCourses = async (level, semester) => {
     const token = localStorage.getItem('token');
@@ -24,20 +25,14 @@ export default function UpdateCourses() {
     }
 
     try {
-      const { data } = await axios.post(`${baseURL}/api/Profile/user-courses-assign`,
+      const { data } = await makeRequest('POST', `/api/Profile/user-courses-assign`,
         {
           level,
           semester
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
       );
 
       setCourses(data);
-      // console.log(data);
 
     } catch (err) {
       console.error('Error:', err.response?.status, err.response?.data);
@@ -82,17 +77,13 @@ export default function UpdateCourses() {
     }
 
 
-    const response = await axios.put(
-      `${baseURL}/api/Profile/update-course`,
+    await makeRequest(
+      'PUT', `/api/Profile/update-course`,
       { updateCourse: cleanedCourses },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
     );
     toast.success("  تم تحديث الكورسات بنجاج", { autoClose: 2000 })
-    console.log(response);
+    setUpadteProgress(!upadteProgress);
+
 
     navigate("/finalCourses")
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -205,19 +196,19 @@ export default function UpdateCourses() {
               <span className="w-14 sm:w-26 h-6 sm:h-9 bg-[#b8cce4]"></span>
               <span className='text-black text-lg sm:text-2xl font-normal'>إجباري متطلب جامعة</span>
             </div>
-            <div class="flex items-center gap-4 sm:gap-3 ">
+            <div className="flex items-center gap-4 sm:gap-3 ">
               <span className="w-14 sm:w-26 h-6 sm:h-9 bg-[#95b3d7]"></span>
               <span className='text-black text-lg sm:text-2xl font-normal '>إجباري متطلب كلية</span>
             </div>
-            <div class="flex items-center gap-4 sm:gap-3 ">
+            <div className="flex items-center gap-4 sm:gap-3 ">
               <span className="w-14 sm:w-26 h-6 sm:h-9 bg-[#dbe5f1]"></span>
               <span className='text-black text-lg sm:text-2xl font-normal'>إجباري تخصص</span>
             </div>
-            <div class="flex items-center gap-4 sm:gap-3 ">
+            <div className="flex items-center gap-4 sm:gap-3 ">
               <span className="w-14 sm:w-26 h-6 sm:h-9 bg-[#e5b7b7]"></span>
               <span className='text-black text-lg sm:text-2xl font-normal'>إختياري متطلب جامعة</span>
             </div>
-            <div class="flex items-center gap-4 sm:gap-3 ">
+            <div className="flex items-center gap-4 sm:gap-3 ">
               <span className="w-14 sm:w-26 h-6 sm:h-9 bg-[#f1dcdb]"></span>
               <span className='text-black text-lg sm:text-2xl font-normal'>إختياري تخصص</span>
             </div>
@@ -363,7 +354,7 @@ export default function UpdateCourses() {
                           const status = formik2.values.courses?.[index]?.status;
 
                           if (status && value < 60) {
-                            toast.warning("الدرجة يجب أن تكون 60 أو أكثر عند الإجتياز",{autoClose:200});
+                            toast.warning("الدرجة يجب أن تكون 60 أو أكثر عند الإجتياز", { autoClose: 2000 });
                             formik2.setFieldValue(`courses[${index}].degree`, "");
                           }
                         }}

@@ -4,8 +4,8 @@ import Navbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
 import { Outlet, useLocation } from 'react-router-dom'
 
-export const SidebarContext = createContext(null)
-export const updateProgressContext = createContext(null)
+export const SidebarContext = createContext(false)
+export const updateProgressContext = createContext(false)
 
 export default function Layout() {
     const location = useLocation();
@@ -29,18 +29,19 @@ export default function Layout() {
                 <Outlet />
             ) : (
                 <>
-                    <Navbar />
-                    <div
-                        className={`transition-[width] duration-300 ease-in-out ${isCollapsed
-                            ? 'w-[calc(100%-60px)]'
-                            : 'w-[calc(100%-60px)] md:w-[calc(100%-230px)]'
-                            } mr-auto py-12 px-2 m-t`}
-                    >
-                        <updateProgressContext.Provider value={updateProgress}>
+                    <updateProgressContext.Provider value={updateProgress}>
+                        <Navbar />
+                        <div
+                            className={`transition-[width] duration-300 ease-in-out ${isCollapsed
+                                ? 'w-[calc(100%-60px)]'
+                                : 'w-[calc(100%-60px)] md:w-[calc(100%-230px)]'
+                                } mr-auto py-12 px-2 m-t`}
+                        >
                             <Outlet />
-                        </updateProgressContext.Provider>
 
-                    </div>
+                        </div>
+                    </updateProgressContext.Provider>
+
                     <Footer />
                 </>
             )}
