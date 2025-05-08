@@ -29,11 +29,6 @@ export default function Profile() {
         const response = await makeRequest(
             'PUT', `/api/Profile/update-name`,
             { name: fullName },
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            }
         );
 
         toast.success("✅ تم تحديث الاسم بنجاح", { autoClose: 2000 });

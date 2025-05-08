@@ -1,12 +1,16 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { motion } from "framer-motion";
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { baseURL } from '../../constants';
+import { toast } from 'react-toastify';
 
 export default function ResetPassword() {
+    const [searchParams] = useSearchParams();
+    const code = searchParams.get("code");
+    const email = searchParams.get("email");
 
     const [isLoading, setIsLoading] = useState(false)
     const [apiError, setApiError] = useState(null)
@@ -19,21 +23,24 @@ export default function ResetPassword() {
             setIsLoading(true);
             const response = await axios.post(`${baseURL}/api/Auth/reset-password`, values);
             if (response.status !== 200) throw new Error(response.statusText);
-            navigate('/');
+            toast.success("تم تغيير كلمة المرور بنجاح", { autoClose: 3000, rtl: true });
+            setTimeout(() => {
+                navigate('/');
+            }, 3000)
         } catch (error) {
             setApiError(error.response.data.errors[1]);
-        }finally {
+        } finally {
             setIsLoading(false);
         }
     }
 
     function validateForm(values) {
         let errors = {};
-        if (!values.nationalId) {
-            errors.nationalId = 'الرقم القومي مطلوب'
+        if (!values.email) {
+            errors.email = 'الرقم القومي مطلوب'
         }
-        else if (!/^\d{14}$/.test(values.nationalId)) {
-            errors.nationalId = 'الرقم القومي غير صحيح'
+        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+            errors.email = 'البريد الالكتروني غير صحيح'
         }
 
         if (!values.newPassword) {
@@ -48,8 +55,9 @@ export default function ResetPassword() {
 
     let formik = useFormik({
         initialValues: {
-            nationalId: '',
-            newPassword: ''
+            email: '',
+            newPassword: '',
+            code: code
         }, validate: validateForm
         , onSubmit: resetPassword
     })
@@ -66,17 +74,17 @@ export default function ResetPassword() {
 
                 <form onSubmit={formik.handleSubmit} className={`flex-1 py-20 px-8 flex flex-col justify-center w-[50%] text-center transition-all duration-1000 ease-in-out`}>
                     <input
-                        value={formik.values.nationalId}
+                        value={formik.values.email}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         type="text"
-                        id='الرقم القومي'
-                        name='nationalId'
-                        placeholder="الرقم القومي"
+                        id='البريد الالكتروني'
+                        name='email'
+                        placeholder='البريد الالكتروني'
                         className="mb-4 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none"
                     />
-                    {formik.errors.nationalId && formik.touched.nationalId && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
-                        {formik.errors.nationalId}
+                    {formik.errors.email && formik.touched.email && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
+                        {formik.errors.email}
                     </div>}
 
                     <input
@@ -92,6 +100,7 @@ export default function ResetPassword() {
                     {formik.errors.newPassword && formik.touched.newPassword && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.newPassword}
                     </div>}
+                    <input type="hidden" name="code" value={code} />
 
                     {isLoading ? <button type='button' className=" text-center cursor-pointer bg-[#377DAC] text-white py-2 rounded mb-4 mt-2 ">
                         <i className='fas fa-spinner fa-spin'></i></button>

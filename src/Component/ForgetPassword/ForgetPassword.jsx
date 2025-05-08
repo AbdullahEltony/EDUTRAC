@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { baseURL } from '../../constants';
+import { toast } from 'react-toastify';
 
 export default function ForgetPassword() {
 
@@ -19,7 +20,8 @@ export default function ForgetPassword() {
             setIsLoading(true);
             const response = await axios.post(`${baseURL}/api/Auth/forget-password`, values);
             if (response.status !== 200) throw new Error(response.statusText);
-            navigate('/resetPassword');
+            toast.success("تم ارسال رابط اعادة تعيين كلمة المرور", { autoClose: 3000, rtl: true });
+            
         } catch (error) {
             setApiError(error.response.data.errors[1]);
         } finally {
@@ -29,10 +31,10 @@ export default function ForgetPassword() {
 
     function validateForm(values) {
         let errors = {};
-        if (!values.nationalId) {
-            errors.nationalId = 'الرقم القومي مطلوب'
+        if (!values.email) {
+            errors.email = 'البريد الالكتروني مطلوب'
         }
-        else if (!/^\d{14}$/.test(values.nationalId)) {
+        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
             errors.nationalId = 'الرقم القومي غير صحيح'
         }
 
@@ -41,7 +43,7 @@ export default function ForgetPassword() {
 
     let formik = useFormik({
         initialValues: {
-            nationalId: '',
+            email: '',
         }, validate: validateForm
         , onSubmit: forgetPassword
     })
@@ -59,17 +61,17 @@ export default function ForgetPassword() {
 
                 <form onSubmit={formik.handleSubmit} className={`flex-1 py-20 px-8 flex flex-col justify-center w-[50%] text-center transition-all duration-1000 ease-in-out`}>
                     <input
-                        value={formik.values.nationalId}
+                        value={formik.values.email}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         type="text"
-                        id='الرقم القومي'
-                        name='nationalId'
-                        placeholder="الرقم القومي"
+                        id='البريد الالكتروني'
+                        name='email'
+                        placeholder=" البريد الالكتروني"
                         className="mb-4 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none"
                     />
-                    {formik.errors.nationalId && formik.touched.nationalId && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
-                        {formik.errors.nationalId}
+                    {formik.errors.email && formik.touched.email && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
+                        {formik.errors.email}
                     </div>}
 
                     {isLoading ? <button type='button' className=" text-center cursor-pointer bg-[#377DAC] text-white py-2 rounded mb-4 mt-2 ">

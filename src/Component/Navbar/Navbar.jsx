@@ -10,7 +10,7 @@ function Navbar() {
     const [gpa, setGpa] = useState(null)
     const [gpaYear, setGpaYear] = useState(null)
     const { isCollapsed } = useContext(SidebarContext);
-    const {upadteProgress} = useContext(updateProgressContext);
+    const { upadteProgress } = useContext(updateProgressContext);
 
 
     useEffect(() => {
@@ -53,13 +53,13 @@ function Navbar() {
                             الGPA التراكمي
                         </p>
                         <p className="text-2xl font-[600] font-[Inter] text-black text-left">
-                            {gpa}
+                            {Number(gpaYear - 4).toFixed(2)}
                         </p>
                         <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
                             الGPA السنوي
                         </p>
                         <p className="text-2xl font-[600] font-[Inter] text-black text-left">
-                            {Number(gpaYear - 4).toFixed(2)}
+                            {Number(gpa - 4).toFixed(2)}
                         </p>
                     </div>
                     <div className="bg-[#fcdfb9] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">

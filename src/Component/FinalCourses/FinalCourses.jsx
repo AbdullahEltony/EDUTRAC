@@ -135,7 +135,9 @@ export default function FinalCourses() {
             setDeletedCourses([]);
             setEditMode({});
             setUpadteProgress(!upadteProgress);
+            setSelectedCourses([]);
             toast.success("تم حفظ التغييرات بنجاح", { autoClose: 2000, rtl: true });
+            window.scrollTo({ top: 0, behavior: "smooth" });
 
         } catch (err) {
             console.error("Error saving changes:", err);
@@ -143,6 +145,7 @@ export default function FinalCourses() {
         } finally {
             setLoading(false);
             await fetchUserCourses();
+
         }
     };
 
