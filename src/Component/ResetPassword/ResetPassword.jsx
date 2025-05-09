@@ -14,6 +14,8 @@ export default function ResetPassword() {
 
     const [isLoading, setIsLoading] = useState(false)
     const [apiError, setApiError] = useState(null)
+    const [isShowPassword, setIsShowPassword] = useState(false)
+
 
     const navigate = useNavigate();
 
@@ -86,17 +88,22 @@ export default function ResetPassword() {
                     {formik.errors.email && formik.touched.email && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.email}
                     </div>}
+                    <div className='relative'>
+                        <input
+                            value={formik.values.newPassword}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            type={isShowPassword ? 'text' : 'password'}
+                            id='كلمة المرور'
+                            name='newPassword'
+                            placeholder="كلمة المرور"
+                            className="mb-4 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none w-full"
+                        />
+                        <span className="absolute left-5 top-1/2 transform -translate-y-1/2 cursor-pointer" onClick={() => setIsShowPassword(!isShowPassword)}><i className={`fa-solid text-gray-500 ${isShowPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></span>
 
-                    <input
-                        value={formik.values.newPassword}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        type="password"
-                        id='كلمة المرور'
-                        name='newPassword'
-                        placeholder="كلمة المرور"
-                        className="mb-4 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none"
-                    />
+                    </div>
+                    <div className="text-right p-2 mb-2 text-sm text-[#377DAC] rounded-lg pt-0" role="alert"> يجب أن تحتوي كلمة المرور على 8-15 حرفًا تشمل حرفًا كبيرًا وصغيرًا ورقمًا ورمزًا خاصًا</div>
+
                     {formik.errors.newPassword && formik.touched.newPassword && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.newPassword}
                     </div>}
