@@ -23,11 +23,6 @@ export const NavLinks = [
         icon: 'fa-solid fa-users'
     },
     {
-        name: 'الملف الشخصي',
-        link: '/profile',
-        icon: 'fa-solid fa-user'
-    },
-    {
         name: 'ChatBot للتواصل',
         link: '/chatBot',
         icon: 'fa-solid fa-robot'

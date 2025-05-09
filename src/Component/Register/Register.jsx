@@ -7,11 +7,15 @@ import axios from 'axios'
 import { ActiveContext } from '../../Context/ActiveContext'
 import { useContext, useState } from 'react'
 import { baseURL } from "../../constants";
+import { IoEyeOffOutline } from "react-icons/io5";
+import { IoEyeOutline } from "react-icons/io5";
+
 
 export default function Register() {
 
     const [apiError, setApiError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
+    const [isShowPassword, setIsShowPassword] = useState(false)
 
     const navigate = useNavigate();
 
@@ -38,10 +42,10 @@ export default function Register() {
         else if (!/^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF ]{10,50}$/.test(values.fullName)) {
             errors.fullName = '  الإسم غير صحيح أدخل الإسم باللغة العربية لا يقل عن 10 حروف ولا يتجاوز 50 حرفا'
         }
-        if(!values.email){
+        if (!values.email) {
             errors.email = 'البريد الألكتروني مطلوب'
         }
-        else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)){
+        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
             errors.email = 'البريد الألكتروني غير صحيح'
         }
 
@@ -127,7 +131,7 @@ export default function Register() {
                         placeholder=" البريد الإلكتروني"
                         className="mb-2 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none"
                     />
-                     {formik.errors.email && formik.touched.email && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
+                    {formik.errors.email && formik.touched.email && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.email}
                     </div>}
                     <input
@@ -143,16 +147,20 @@ export default function Register() {
                     {formik.errors.level && formik.touched.level && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.level}
                     </div>}
-                    <input
-                        value={formik.values.password}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        type="password"
-                        id='كلمة المرور'
-                        name='password'
-                        placeholder="كلمة المرور"
-                        className="mb-2 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none"
-                    />
+                    <div className="relative">
+                        <input
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            type={isShowPassword ? "text" : "password"}
+                            id='كلمة المرور'
+                            name='password'
+                            placeholder="كلمة المرور"
+                            className="w-full mb-2 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none"
+                        />
+                        <span className="absolute left-5 top-1/2 transform -translate-y-1/2 cursor-pointer" onClick={() => setIsShowPassword(!isShowPassword)}><i className={`fa-solid text-gray-500 ${isShowPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></span>
+                    </div>
+                     <div className="text-right p-2 mb-4 text-sm text-[#377DAC] rounded-lg pt-0" role="alert"> يجب أن تحتوي كلمة المرور على 8-15 حرفًا تشمل حرفًا كبيرًا وصغيرًا ورقمًا ورمزًا خاصًا</div>
                     {formik.errors.password && formik.touched.password && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.password}
                     </div>}
