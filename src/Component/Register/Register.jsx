@@ -98,7 +98,7 @@ export default function Register() {
                         type="text"
                         id='fullName'
                         name='fullName'
-                        placeholder="الإسم"
+                        placeholder="الإسم باللغة العربية"
                         className="mb-2 p-4 rounded-[12px] placeholder-[#000] bg-[#eff4f8] outline-none"
                     />
                     {formik.errors.fullName && formik.touched.fullName && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
