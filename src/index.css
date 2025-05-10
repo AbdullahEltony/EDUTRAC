@@ -29,8 +29,8 @@ body {
   ::-webkit-scrollbar-thumb:hover {
     background: #888;
   }
-  .progress-bar {
-    
-  }
+  
 
-
+.list {
+  list-style: disc;
+}

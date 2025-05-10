@@ -48,6 +48,45 @@ function Navbar() {
                 <div
                     className={`grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5  gap-4 bg-white shadow-sm p-5 rounded-[20px] mx-auto w-[98%] mt-3 transition-all duration-300 `}
                 >
+                    {/* عدد المواد المجتازة*/}
+                    <div className="bg-[#d4c8f0] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">
+                        <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
+                            عدد المواد المجتازة
+                        </p>
+                        <p className="text-2xl font-[600] font-[Inter] text-black text-left">
+                            {64 - totalCourses}
+                        </p>
+                    </div>
+                    {/* عدد الساعات المجتازة */}
+                    <div className="bg-[#bde2f2] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">
+                        <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
+                            عدد الساعات المجتازة
+                        </p>
+                        <p className="text-2xl font-[600] font-[Inter] text-black text-left">
+                            {totalHours}
+                        </p>
+                    </div>
+
+                    {/* عدد الساعات المتبقية  */}
+                    <div className="bg-[#fcdfb9] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">
+                        <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
+                            عدد الساعات المتبقية
+                        </p>
+                        <p className="text-2xl font-[600] font-[Inter] text-black text-left">
+                            {148 - totalHours}
+                        </p>
+                    </div>
+
+                    {/* عدد المواد المتبقية */}
+                    <div className="bg-[#fccbbe] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">
+                        <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
+                            عدد المواد المتبقية
+                        </p>
+                        <p className="text-2xl font-[600] font-[Inter] text-black text-left">
+                            {totalCourses}
+                        </p>
+                    </div>
+                    {/*  gpa */}
                     <div className="bg-[#c9ebe6] px-2 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col justify-start gap-1 sm:justify-center max-h-36 items-center">
                         <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
                             الGPA التراكمي
@@ -60,38 +99,6 @@ function Navbar() {
                         </p>
                         <p className="text-2xl font-[600] font-[Inter] text-black text-left">
                             {Number(gpa - 4).toFixed(2)}
-                        </p>
-                    </div>
-                    <div className="bg-[#fcdfb9] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">
-                        <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
-                            عدد الساعات المتبقية
-                        </p>
-                        <p className="text-2xl font-[600] font-[Inter] text-black text-left">
-                            {148 - totalHours}
-                        </p>
-                    </div>
-                    <div className="bg-[#bde2f2] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">
-                        <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
-                            عدد الساعات المجتازة
-                        </p>
-                        <p className="text-2xl font-[600] font-[Inter] text-black text-left">
-                            {totalHours}
-                        </p>
-                    </div>
-                    <div className="bg-[#fccbbe] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">
-                        <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
-                            عدد المواد المتبقية
-                        </p>
-                        <p className="text-2xl font-[600] font-[Inter] text-black text-left">
-                            {totalCourses}
-                        </p>
-                    </div>
-                    <div className="bg-[#d4c8f0] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">
-                        <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
-                            عدد المواد المجتازة
-                        </p>
-                        <p className="text-2xl font-[600] font-[Inter] text-black text-left">
-                            {64 - totalCourses}
                         </p>
                     </div>
                 </div>

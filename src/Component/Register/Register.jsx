@@ -86,15 +86,15 @@ export default function Register() {
 
     return <>
         <motion.div
-            className="min-h-screen bg-[#EFF4F8] flex items-center justify-center"
+            className="min-h-screen overflow-auto fixed w-full bg-[#EFF4F8] flex items-center justify-center"
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}>
             {apiError && <div className="absolute top-0 z-10 text-center p-3 mt-2 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                 {apiError}
             </div>}
-            <div className={`absolute flex flex-row-reverse bg-white rounded-tr-[0px] sm:rounded-tr-[2.5rem] rounded-bl-[2.5rem] sm:rounded-bl-[0px] rounded-br-[2.5rem] overflow-hidden shadow-lg w-[93%] max-w-4xl `}>
-                <form onSubmit={formik.handleSubmit} className={`mr-auto mt-44 sm:mt-0 flex-1 py-10 px-8 flex flex-col justify-center w-full sm:max-w-2/3 md:max-w-3/4 lg:max-w-3/4 text-center transition-all duration-1000 ease-in-out ${isActive ? "opacity-0 translate-x-100" : "opacity-100 translate-x-0"}`}>
+            <div className={`absolute flex flex-row-reverse bg-white rounded-tr-[0px] sm:rounded-tr-[2.5rem] rounded-bl-[2.5rem] sm:rounded-bl-[0px] rounded-br-[2.5rem] overflow-hidden shadow-lg w-[93%] max-w-6xl `}>
+                <form onSubmit={formik.handleSubmit} className={`mr-auto mt-58 sm:mt-0 flex-1 py-10 px-4 md:px-8 flex flex-col justify-center w-full sm:max-w-2/3 md:max-w-[65%] lg:max-w-3/4 text-center transition-all duration-1000 ease-in-out ${isActive ? "opacity-0 translate-x-100" : "opacity-100 translate-x-0"}`}>
                     <input
                         value={formik.values.fullName}
                         onChange={formik.handleChange}
@@ -169,11 +169,12 @@ export default function Register() {
                         : <button type='submit' className=" text-center cursor-pointer bg-[#377DAC] text-white py-2 rounded mt-2">تسجيل</button>}
                 </form>
 
-                <div className={`w-full h-46 sm:h-full sm:w-1/3 md:w-1/4 absolute top-0 right-[0%] bottom-0 rounded-b-[2.5rem] sm:rounded-b-[0px] rounded-r-[0px] sm:!rounded-r-[2.5rem] bg-[#6CA6CD] z-0 transition-all duration-[2000ms] ease-in-out ${isActive ? "right-[100%] w-[400%]" : ""}`}></div>
+                <div className={`w-full h-64 sm:h-full sm:w-1/3 md:w-[35%] lg:max-w-1/4 absolute top-0 right-[0%] bottom-0 rounded-b-[2.5rem] sm:rounded-b-[0px] rounded-r-[0px] sm:!rounded-r-[2.5rem] bg-[#6CA6CD] z-0 transition-all duration-[2000ms] ease-in-out ${isActive ? "right-[100%] w-[400%]" : ""}`}></div>
 
-                <div className={`w-full h-46 sm:h-full sm:w-1/3 md:w-1/4 text-white p-6 lg:p-8 flex flex-col justify-center text-center absolute top-0 bottom-0 transition-all duration-2000 ease-in-out ${isActive ? "right-[-100%]" : "right-0"}`}>
+                <div className={`w-full h-64 sm:h-full sm:w-1/3 md:w-[35%] lg:max-w-1/4 text-white p-6 lg:p-8 flex flex-col justify-center text-center absolute top-0 bottom-0 transition-all duration-2000 ease-in-out ${isActive ? "right-[-100%]" : "right-0"}`}>
                     <h2 className="text-xl font-bold mb-2">أهلاً ومرحبًا بك</h2>
-                    <p className="text-sm mb-4">هل لديك حساب معنا من قبل؟</p>
+                    <h2 className="text-xl font-bold mb-2">Edutrack دليليك للتتبع مسارك التعليمي</h2>
+                    <p className="text-sm mb-4 mt-4">هل لديك حساب معنا من قبل؟</p>
                     <button
                         onClick={() => {
                             setIsActive(true);

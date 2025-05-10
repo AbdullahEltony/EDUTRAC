@@ -146,7 +146,7 @@ export default function UpdateCourses() {
           <select
             id="levels"
             name="level"
-            className="bg-[#EFF4F8] border border-[#6CA6CD] text-black text-2xl rounded-lg block w-full p-5 font-normal focus-visible:outline-none"
+            className="bg-[#EFF4F8] border border-[#6CA6CD] text-black text-2xl rounded-lg block w-full max-w-6xl p-5 font-normal focus-visible:outline-none"
             onChange={formik.handleChange}
             value={formik.values.level ?? ""}
           >
@@ -159,7 +159,7 @@ export default function UpdateCourses() {
 
           <div className="flex gap-8 mt-8">
             <div className="flex items-center">
-              <label htmlFor="semester-1" className="ms-2 text-lg sm:text-[24px] font-normal text-black">الترم الأول</label>
+              <label htmlFor="semester-1" className="ms-2 text-lg me-2 sm:text-[24px] font-normal text-black"> الفصل الدراسي الاول (الخريفي)</label>
               <div className="w-7 h-7 rounded-full flex items-center justify-center bg-[#D9D9D9]">
                 <input
                   id="semester-1"
@@ -174,7 +174,7 @@ export default function UpdateCourses() {
             </div>
 
             <div className="flex items-center">
-              <label htmlFor="semester-2" className="ms-2 text-lg sm:text-[24px] font-normal text-black">الترم الثاني</label>
+              <label htmlFor="semester-2" className="ms-2 text-lg sm:text-[24px] font-normal me-2 text-black">الفصل الدراسي الثاني (الربيعي)</label>
               <div className="w-7 h-7 rounded-full flex items-center justify-center bg-[#D9D9D9]">
                 <input
                   id="semester-2"

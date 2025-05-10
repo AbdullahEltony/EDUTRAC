@@ -29,7 +29,6 @@ function App() {
       { path: 'forgetPassword', element: <ForgetPassword /> },
       { path: 'resetPassword', element: <ResetPassword /> },
       { path: 'home', element: <ProtectedRoute> <Home /> </ProtectedRoute> },
-      // { path: 'courses', element: <ProtectedRoute> <Courses /> </ProtectedRoute>},
       { path: 'profile', element: <ProtectedRoute> <Profile /> </ProtectedRoute> },
       { path: 'aboutus', element: <ProtectedRoute> <AboutUs /> </ProtectedRoute> },
       { path: 'chatBot', element: <ProtectedRoute> <ChatBot /> </ProtectedRoute> },
