@@ -178,7 +178,7 @@ export default function AboutUs() {
                                 آراء طلابنا
                                 </motion.h2>
                                 <p className="text-lg text-[#262338] text-center mb-16 max-w-[46rem] mx-auto">
-                                    في أكاديمية EDU TRACK، نُركّز على يد خبراء محترفين مشاركين...
+                                    في أكاديمية EDU TRACK، نُركّز على يد خبراء محترفين مشاركين
                                 </p>
                             </div>
 
