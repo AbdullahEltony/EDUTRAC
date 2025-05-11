@@ -93,7 +93,7 @@ export default function Register() {
             {apiError && <div className="absolute top-0 z-10 text-center p-3 mt-2 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                 {apiError}
             </div>}
-            <div className={`absolute flex flex-row-reverse bg-white rounded-tr-[0px] sm:rounded-tr-[2.5rem] rounded-bl-[2.5rem] sm:rounded-bl-[0px] rounded-br-[2.5rem] overflow-hidden shadow-lg w-[93%] max-w-6xl `}>
+            <div className={`absolute mt-[76px] sm:mt-0 flex flex-row-reverse bg-white rounded-tr-[0px] sm:rounded-tr-[2.5rem] rounded-bl-[2.5rem] sm:rounded-bl-[0px] rounded-br-[2.5rem] overflow-hidden shadow-lg w-[93%] max-w-6xl `}>
                 <form onSubmit={formik.handleSubmit} className={`mr-auto mt-58 sm:mt-0 flex-1 py-10 px-4 md:px-8 flex flex-col justify-center w-full sm:max-w-2/3 md:max-w-[65%] lg:max-w-3/4 text-center transition-all duration-1000 ease-in-out ${isActive ? "opacity-0 translate-x-100" : "opacity-100 translate-x-0"}`}>
                     <input
                         value={formik.values.fullName}

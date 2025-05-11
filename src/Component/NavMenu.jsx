@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { UserToken } from '../Context/TokenContext';
 import { NavLinks } from '../constants';
 import { SidebarContext } from './Layout/Layout';
@@ -31,14 +31,14 @@ export const NavMenu = () => {
             </button>
 
             {/* الشعار واسم التطبيق */}
-            <div className="flex items-center justify-center md:justify-start mb-6 overflow-hidden">
+            <Link to="/home" className="flex items-center justify-center md:justify-start mb-6 overflow-hidden">
                 <img src="logo.png" alt="Logo" className={`${isCollapsed ? '!h-9':''} h-9 md:h-12 object-cover`} />
                 {!isCollapsed && (
                     <h2 className="text-xl font-bold text-[#6CA6CD] text-center  md:w-full w-0 overflow-hidden transition-[width]">
                         EDU TRACK
                     </h2>
                 )}
-            </div>
+            </Link>
 
             {/* روابط التنقل */}
             <div className="flex flex-col gap-4 w-full items-center md:items-start justify-center overflow-visible">

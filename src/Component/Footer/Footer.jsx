@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Footer.css'
 import { SidebarContext } from '../Layout/Layout';
 export default function Footer() {
@@ -43,7 +43,7 @@ export default function Footer() {
 
           {/* EDU TRACK Section */}
           <div className="about">
-            <h2 className="text-lg font-bold text-blue-400">EDU TRACK</h2>
+            <Link to="/home" className="text-lg font-bold text-blue-400">EDU TRACK</Link>
             <p className="text-sm mt-2 text-gray-400">
               Welcome to Edu Track, a dynamic technology solutions provider with a mission to empower businesses and individuals with cutting-edge technology solutions.
             </p>
