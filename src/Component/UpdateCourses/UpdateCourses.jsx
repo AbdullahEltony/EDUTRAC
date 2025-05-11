@@ -378,11 +378,16 @@ export default function UpdateCourses() {
           <label className="block text-black text-[18px] sm:text-[28px] font-normal mb-2.5">ملاحظات الطالب، اكتب ما تريد أن تضعه في كل من المستويات الأربعة</label>
           <textarea placeholder="ضع ملاحظتك هنا..." className="w-full h-60 bg-[#EFF4F8] p-4 text-[16px] sm:text-[22px] placeholder:text-black rounded-xl focus-visible:outline-none resize-none" />
           <button onClick={() => { handleSubmit(); formik2.handleSubmit; }} className="w-full mt-2.5 py-3 bg-[#EFF4F8] text-black text-2xl cursor-pointer duration-200">حفظ </button>
-          <div className="mt-6 py-6 px-4 rounded-xl text-black bg-[#EFF4F8] text-right leading-loose text-[28px]">
-            <p className='text-[16px] sm:text-[18px]'>يرجى العلم</p>
-            <p className='text-[16px] sm:text-[18px]'>أنه إذا كان المعدل التراكمي للطالب (GPA) أقل من 0.7 فلا يمكن تسجيل أكثر من 12 ساعة.</p>
-            <p className='text-[16px] sm:text-[18px]'>لا يمكن اختيار أكثر من 20 ساعة في الترم الواحد</p>
+          <div className='bg-[#EFF4F8] mt-6 p-6 rounded'>
+            <p className='text-[16px] sm:text-[18px] '>يرجى العلم أنه : </p>
+            <ul className="list ps-4 sm:ps-8 mt-4 rounded-xl text-black text-right leading-loose text-[28px]">
+              <li className='text-[16px] sm:text-[18px]'> إذا كان المعدل التراكمي للطالب (GPA) أقل من 0.7 فلا يمكن تسجيل أكثر من 12 ساعة.</li>
+              <li className='text-[16px] sm:text-[18px]'>لا يمكن اختيار أكثر من 20 ساعة في الفصل الواحد</li>
+              <li className='text-[16px] sm:text-[18px]'>عدد الساعات التي يجب اجتيازها     148 ساعة </li>
+
+            </ul>
           </div>
+
         </div>}
 
       </div>

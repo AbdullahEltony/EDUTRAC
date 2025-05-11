@@ -60,8 +60,8 @@ export async function makeRequest(method, url, data = null, retry = false) {
   } catch (error) {
     if (error.response?.status === 401 && !retry) {
       if (!isRefreshing) {
-        isRefreshing = true; // Set flag to true to indicate refresh in progress
-        await refreshToken(); // Refresh token once
+        isRefreshing = true; 
+        await refreshToken(); 
       }
 
       return new Promise((resolve, reject) => {
