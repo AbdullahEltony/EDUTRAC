@@ -31,7 +31,7 @@ export const NavMenu = () => {
             </button>
 
             {/* الشعار واسم التطبيق */}
-            <Link to="/home" className="flex items-center justify-center md:justify-start mb-6 overflow-hidden">
+            <Link onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} to="/home" className="flex items-center justify-center md:justify-start mb-6 overflow-hidden">
                 <img src="logo.png" alt="Logo" className={`${isCollapsed ? '!h-9':''} h-9 md:h-12 object-cover`} />
                 {!isCollapsed && (
                     <h2 className="text-xl font-bold text-[#6CA6CD] text-center  md:w-full w-0 overflow-hidden transition-[width]">

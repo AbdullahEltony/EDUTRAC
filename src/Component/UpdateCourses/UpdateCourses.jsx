@@ -58,18 +58,23 @@ export default function UpdateCourses() {
     }
   };
   const handleSubmit = async () => {
+    if (!formik2.isValid) {
+      toast.warning("يجب اختيار الكورسات وإدخال الحالة والدرجة بشكل صحيح", { autoClose: 2000 })
+      return;
+    }
     const cleanedCourses = formik2.values.courses
       .filter(course =>
         course &&
         course.code &&
         (course.status === true || course.status === false) &&
-        (course.status === false || (course.degree !== null && course.degree !== "" && course.degree >= 60))
+        (course.status === false || (course.degree !== null && course.degree !== ""))
       )
       .map(course => ({
         code: course.code,
         status: course.status,
-        degree: course.status ? Number(course.degree) : null
+        degree: course.status !== 'لم يجتاز' ? Number(course.degree) : null
       }));
+
 
     if (cleanedCourses.length === 0) {
       toast.warning("يجب اختيار الكورسات وإدخال الحالة والدرجة بشكل صحيح", { autoClose: 2000 })
@@ -101,7 +106,7 @@ export default function UpdateCourses() {
     initialValues: {
       courses: course?.courses?.map(c => ({
         code: c.code,
-        status: c.status ?? false,
+        status: c.status ?? null,
         degree: c.degree ?? null,
       })) || [],
     },
@@ -157,8 +162,8 @@ export default function UpdateCourses() {
             <option value="4">المستوى الرابع</option>
           </select>
 
-          <div className="flex gap-8 mt-8">
-            <div className="flex items-center">
+          <div className="flex gap-8 mt-8 flex-wrap">
+            <div className="flex items-center ">
               <label htmlFor="semester-1" className="ms-2 text-lg me-2 sm:text-[24px] font-normal text-black"> الفصل الدراسي الاول (الخريفي)</label>
               <div className="w-7 h-7 rounded-full flex items-center justify-center bg-[#D9D9D9]">
                 <input
@@ -283,12 +288,13 @@ export default function UpdateCourses() {
                             if (e.target.checked) {
                               // ✅ اجتاز: لازم كود + حالة true + يدخل درجة
                               newCourses[index].code = course.code;
-                              newCourses[index].status = true;
+                              newCourses[index].status = 'لم يجتاز';
+                              newCourses[index].degree = '';
                             } else {
                               // ❌ متعثر: يشيل كل القيم
                               newCourses[index] = {
                                 code: "",
-                                status: false,
+                                status: 'لم يجتاز',
                                 degree: null,
                               };
                             }
@@ -315,14 +321,20 @@ export default function UpdateCourses() {
                       <select
                         className="w-full pl-2 text-black text-center focus-visible:outline-none"
                         disabled={!formik2.values.courses[index]?.code} // ❌ لا يمكن اختيار الحالة إلا بعد اختيار الكورس
-                        onChange={(e) =>
+                        onChange={(e) => {
                           formik2.setFieldValue(
                             `courses[${index}].status`,
-                            e.target.value === "true"
-                          )
+                            e.target.value
+                          );
+                          formik2.values.courses[index].degree = '';
                         }
-                        value={formik2.values.courses?.[index]?.status ? "true" : "false"}
+
+
+                        }
+                        value={formik2.values.courses?.[index]?.status === null ? "لم يجتاز" : formik2.values.courses?.[index]?.status}
+                        defaultValue={'لم يجتاز'}
                       >
+                        <option value="لم يجتاز">لم يجتاز</option>
                         <option value="true">إجتاز</option>
                         <option value="false">متعثر</option>
                       </select>
@@ -331,12 +343,11 @@ export default function UpdateCourses() {
                     <td className="text-[16px] sm-2xl w-1/12">
                       <input
                         type="number"
-                        className={`w-full text-black border text-center focus-visible:outline-none ${!formik2.values.courses?.[index]?.status ? "bg-gray-100 cursor-not-allowed" : ""
-                          }`}
+                        className={`w-full text-black border text-center focus-visible:outline-none
+                          `}
                         value={formik2.values.courses?.[index]?.degree || ""}
                         disabled={
-                          !formik2.values.courses?.[index]?.code ||
-                          !formik2.values.courses?.[index]?.status
+                          !formik2.values.courses?.[index]?.code
                         }
                         min={0}   // يمنع إدخال أقل من 0
                         max={100} // يمنع إدخال أكثر من 100
@@ -345,17 +356,25 @@ export default function UpdateCourses() {
                           if (value === "" || (!isNaN(value) && value <= 100)) {
                             formik2.setFieldValue(
                               `courses[${index}].degree`,
-                              value === "" ? "" : Number(value)
+                              value === "" ? null : Number(value)
                             );
                           }
                         }}
                         onBlur={() => {
                           const value = formik2.values.courses?.[index]?.degree;
-                          const status = formik2.values.courses?.[index]?.status;
+                          const statusField = `courses[${index}].status`;
+                          const isValid = /^\d+$/.test(value)
+                          if (!isValid) {
+                            toast.warning("يجب اختيار الكورسات وإدخال الحالة والدرجة بشكل صحيح", { autoClose: 2000 })
+                          } 
 
-                          if (status && value < 60) {
-                            toast.warning("الدرجة يجب أن تكون 60 أو أكثر عند الإجتياز", { autoClose: 2000 });
-                            formik2.setFieldValue(`courses[${index}].degree`, "");
+
+                          if (value === "" || value === 0) {
+                            formik2.setFieldValue(statusField, "لم يجتاز");
+                          } else if (value < 60) {
+                            formik2.setFieldValue(statusField, false);
+                          } else {
+                            formik2.setFieldValue(statusField, true);
                           }
                         }}
                       />
@@ -378,16 +397,11 @@ export default function UpdateCourses() {
           <label className="block text-black text-[18px] sm:text-[28px] font-normal mb-2.5">ملاحظات الطالب، اكتب ما تريد أن تضعه في كل من المستويات الأربعة</label>
           <textarea placeholder="ضع ملاحظتك هنا..." className="w-full h-60 bg-[#EFF4F8] p-4 text-[16px] sm:text-[22px] placeholder:text-black rounded-xl focus-visible:outline-none resize-none" />
           <button onClick={() => { handleSubmit(); formik2.handleSubmit; }} className="w-full mt-2.5 py-3 bg-[#EFF4F8] text-black text-2xl cursor-pointer duration-200">حفظ </button>
-          <div className='bg-[#EFF4F8] mt-6 p-6 rounded'>
-            <p className='text-[16px] sm:text-[18px] '>يرجى العلم أنه : </p>
-            <ul className="list ps-4 sm:ps-8 mt-4 rounded-xl text-black text-right leading-loose text-[28px]">
-              <li className='text-[16px] sm:text-[18px]'> إذا كان المعدل التراكمي للطالب (GPA) أقل من 0.7 فلا يمكن تسجيل أكثر من 12 ساعة.</li>
-              <li className='text-[16px] sm:text-[18px]'>لا يمكن اختيار أكثر من 20 ساعة في الفصل الواحد</li>
-              <li className='text-[16px] sm:text-[18px]'>عدد الساعات التي يجب اجتيازها     148 ساعة </li>
-
-            </ul>
+          <div className="mt-6 py-6 px-4 rounded-xl text-black bg-[#EFF4F8] text-right leading-loose text-[28px]">
+            <p className='text-[16px] sm:text-[18px]'>يرجى العلم</p>
+            <p className='text-[16px] sm:text-[18px]'>أنه إذا كان المعدل التراكمي للطالب (GPA) أقل من 0.7 فلا يمكن تسجيل أكثر من 12 ساعة.</p>
+            <p className='text-[16px] sm:text-[18px]'>لا يمكن اختيار أكثر من 20 ساعة في الترم الواحد</p>
           </div>
-
         </div>}
 
       </div>

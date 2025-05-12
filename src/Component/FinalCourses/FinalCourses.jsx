@@ -17,8 +17,8 @@ export default function FinalCourses() {
     const [deletedCourses, setDeletedCourses] = useState([]);
     const [selectedCourses, setSelectedCourses] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [isSelectedAll, setIsSelectedAll] = useState(false);
     const { setUpadteProgress, upadteProgress } = useContext(updateProgressContext);
-    console.log(upadteProgress)
 
     useEffect(() => {
         fetchUserCourses();
@@ -62,19 +62,22 @@ export default function FinalCourses() {
     };
 
     const handleDegreeChange = (code, value) => {
-        if(isNaN(value) || value > 100) {
+        console.log(value)
+        if (isNaN(value) || value > 100) {
             return;
         }
         setUserCourses(prev => ({
             ...prev,
             updateUserCourse: prev.updateUserCourse.map(course =>
-                course.code === code ? { ...course, degree: Number(value) } : course
+                course.code === code ? {
+                    ...course, degree: Number(value), status: value >= 60 ? true : false
+                } : course
             )
         }));
-        
+
 
         const course = userCourses.updateUserCourse.find(c => c.code === code);
-        const updated = { code: course.code, status: course.status, degree: Number(value) };
+        const updated = { code: course.code, status: value >= 60 ? true : false, degree: Number(value) };
 
         setEditedCourses(prev => {
             const exists = prev.find(c => c.code === code);
@@ -88,21 +91,20 @@ export default function FinalCourses() {
 
     const handleBlur = (e, code) => {
         const value = parseInt(e.target.value);
-        
         if (isNaN(value) || value < 60) {
-            toast.warning("الدرجة يجب أن تكون على الأقل 60", { autoClose: 2000 });
-    
             setUserCourses(prev => ({
                 ...prev,
                 updateUserCourse: prev.updateUserCourse.map(course =>
-                    course.code === code ? { ...course, degree: '' } : course
+                    course.code === code ? { ...course, degree: value, status: false } : course
                 )
             }));
-    
-            // إعادة التركيز بعد التأكد من أن event انتهى
-            setTimeout(() => {
-                e.target.focus();
-            }, 0);
+        } else {
+            setUserCourses(prev => ({
+                ...prev,
+                updateUserCourse: prev.updateUserCourse.map(course =>
+                    course.code === code ? { ...course, degree: value, status: true } : course
+                )
+            }));
         }
     };
 
@@ -113,29 +115,26 @@ export default function FinalCourses() {
     };
 
     const handleSave = async () => {
-
         try {
             setLoading(true);
             if (editedCourses.length > 0) {
-                await makeRequest('PUT',`/api/Profile/update-course`, {
+                await makeRequest('PUT', `/api/Profile/update-course`, {
                     updateCourse: [...editedCourses]
                 });
             }
 
             if (deletedCourses.length > 0) {
-                await makeRequest('DELETE',`/api/Profile/remove-course`,
-                    {
-                        courses: [...deletedCourses]
-                    }
-                );
+                await makeRequest('DELETE', `/api/Profile/remove-course`, {
+                    courses: [...deletedCourses]
+                });
             }
 
-            
             setEditedCourses([]);
             setDeletedCourses([]);
             setEditMode({});
             setUpadteProgress(!upadteProgress);
             setSelectedCourses([]);
+            setIsSelectedAll(false);
             toast.success("تم حفظ التغييرات بنجاح", { autoClose: 2000, rtl: true });
             window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -145,7 +144,6 @@ export default function FinalCourses() {
         } finally {
             setLoading(false);
             await fetchUserCourses();
-
         }
     };
 
@@ -159,6 +157,15 @@ export default function FinalCourses() {
         });
     };
 
+    const handleSelectAll = () => {
+        setIsSelectedAll(prev => !prev);
+        if (selectedCourses.length === userCourses?.updateUserCourse?.length) {
+            setSelectedCourses([]);
+        } else {
+            setSelectedCourses(userCourses?.updateUserCourse?.map(course => course.code));
+        }
+    };
+
     const isSelected = (code) => selectedCourses.includes(code);
 
     return (
@@ -170,7 +177,13 @@ export default function FinalCourses() {
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead className="text-white uppercase bg-gray-600">
                             <tr>
-                                <th className="py-6 px-4 text-center text-xs sm:text-sm md:text-lg w-2/12"> كود المقرر </th>
+                                <th className="py-6 px-4 text-center text-xs sm:text-sm md:text-lg w-2/12 "><div className='flex items-center justify-center'>
+                                    <input
+                                        type="checkbox"
+                                        className="w-5 h-5 me-3"
+                                        checked={selectedCourses.length === userCourses?.updateUserCourse?.length && isSelectedAll}
+                                        onChange={handleSelectAll}
+                                    /> كود المقرر </div></th>
                                 <th className="py-6 px-4 text-center text-xs sm:text-sm md:text-lg w-6/12 lg:w-4/12">وصف المقرر</th>
                                 <th className="py-6 px-4 text-center text-xs sm:text-sm md:text-lg w-2/12">الساعات العتمدة</th>
                                 <th className="py-6 px-4 text-center text-xs sm:text-sm md:text-lg w-2/12">حالة المقرر</th>
@@ -183,20 +196,17 @@ export default function FinalCourses() {
                             {userCourses?.updateUserCourse?.length > 0 &&
                                 userCourses.updateUserCourse.map((course, index) => (
                                     <tr key={index}
-                                        className={`${
-                                            // course.name.includes("جامعة اختياري")
-                                            getCourseTypeLabel(course.courseType) == "جامعة" && course.isOptional == true
-                                                ? "bg-[#e5b7b7]"
-                                                // : course.name.includes("تخصص اختياري")
-                                                : getCourseTypeLabel(course.courseType) == "تخصص" && course.isOptional == true
-                                                    ? "bg-[#f1dcdb]"
-                                                    : getCourseTypeLabel(course.courseType) == "تخصص"
-                                                        ? "bg-[#dbe5f1]"
-                                                        : getCourseTypeLabel(course.courseType) == "جامعة"
-                                                            ? "bg-[#b8cce4]"
-                                                            : getCourseTypeLabel(course.courseType) == "كلية"
-                                                                ? "bg-[#95b3d7]"
-                                                                : ""
+                                        className={`${getCourseTypeLabel(course.courseType) === "جامعة" && course.isOptional
+                                            ? "bg-[#e5b7b7]"
+                                            : getCourseTypeLabel(course.courseType) === "تخصص" && course.isOptional
+                                                ? "bg-[#f1dcdb]"
+                                                : getCourseTypeLabel(course.courseType) === "تخصص"
+                                                    ? "bg-[#dbe5f1]"
+                                                    : getCourseTypeLabel(course.courseType) === "جامعة"
+                                                        ? "bg-[#b8cce4]"
+                                                        : getCourseTypeLabel(course.courseType) === "كلية"
+                                                            ? "bg-[#95b3d7]"
+                                                            : ""
                                             }`}
                                     >
                                         <td className="p-12 font-normal text-[16px] sm:text-2xl text-black whitespace-nowrap">
@@ -209,23 +219,22 @@ export default function FinalCourses() {
                                                     onChange={() => handleSelect(course.code)}
                                                 />
                                                 <label htmlFor={course.code}> {course.code}</label>
-
                                             </div>
                                         </td>
                                         <td className="text-[16px] sm:text-2xl text-center text-black">{course.name}</td>
                                         <td className="text-[16px] sm:text-2xl text-center text-black">{course.hours}</td>
-                                        <td className={`font-normal text-[16px] sm:text-2xl text-black text-center ${course.status ?'bg-green-300' : 'bg-red-300'}`}>{getStatus(course.status)}</td>
+                                        <td className={`font-normal text-[16px] sm:text-2xl text-black text-center ${course.status ? 'bg-green-300' : 'bg-red-300'}`}>{getStatus(course.status)}</td>
                                         <td className="font-normal text-[16px] sm:text-2xl text-black w-1/12 text-center">
                                             {editMode[course.code] ? (
                                                 <input
                                                     type="number"
-                                                    min="60"
+                                                    min="0"
                                                     max="100"
                                                     value={course.degree}
                                                     onChange={(e) => handleDegreeChange(course.code, e.target.value)}
                                                     onKeyDown={(e) => handleKeyPress(e, course.code)}
                                                     className="w-[60px] text-center border rounded"
-                                                    onBlur={(e) => handleBlur(e,course.code)}
+                                                    onBlur={(e) => handleBlur(e, course.code)}
                                                 />
                                             ) : (
                                                 course.degree

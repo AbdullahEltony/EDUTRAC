@@ -43,7 +43,7 @@ export default function Footer() {
 
           {/* EDU TRACK Section */}
           <div className="about">
-            <Link to="/home" className="text-lg font-bold text-blue-400">EDU TRACK</Link>
+            <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })} to="/home" className="text-lg font-bold text-blue-400">EDU TRACK</Link>
             <p className="text-sm mt-2 text-gray-400">
               Welcome to Edu Track, a dynamic technology solutions provider with a mission to empower businesses and individuals with cutting-edge technology solutions.
             </p>
