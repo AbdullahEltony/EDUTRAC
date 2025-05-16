@@ -92,3 +92,11 @@ export const  Team  = [
     },
     
 ]
+
+export const courseTypes = [
+  { name: "إجباري متطلب كلية", color: "#497fc1" },
+  { name: "إجباري متطلب جامعة", color: "#83a8d5" },
+  { name: "إجباري تخصص", color: "#cddcee" },
+  { name: "اختياري متطلب جامعة", color: "#e69595" },
+  { name: "اختياري تخصص", color: "#edd5d5" }
+];

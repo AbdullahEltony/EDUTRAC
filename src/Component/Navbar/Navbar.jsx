@@ -11,6 +11,7 @@ function Navbar() {
     const [gpaYear, setGpaYear] = useState(null)
     const { isCollapsed } = useContext(SidebarContext);
     const { upadteProgress } = useContext(updateProgressContext);
+    
 
 
     useEffect(() => {
@@ -57,6 +58,15 @@ function Navbar() {
                             {64 - totalCourses}
                         </p>
                     </div>
+                    {/* عدد المواد المتبقية */}
+                    <div className="bg-[#fccbbe] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">
+                        <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
+                            عدد المواد المتبقية
+                        </p>
+                        <p className="text-2xl font-[600] font-[Inter] text-black text-left">
+                            {totalCourses}
+                        </p>
+                    </div>
                     {/* عدد الساعات المجتازة */}
                     <div className="bg-[#bde2f2] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">
                         <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
@@ -77,28 +87,19 @@ function Navbar() {
                         </p>
                     </div>
 
-                    {/* عدد المواد المتبقية */}
-                    <div className="bg-[#fccbbe] px-3 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col gap-3 justify-center h-36 items-center">
-                        <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
-                            عدد المواد المتبقية
-                        </p>
-                        <p className="text-2xl font-[600] font-[Inter] text-black text-left">
-                            {totalCourses}
-                        </p>
-                    </div>
                     {/*  gpa */}
                     <div className="bg-[#c9ebe6] px-2 py-4 md:p-5 rounded-[20px] shadow-sm flex flex-col justify-start gap-1 sm:justify-center max-h-36 items-center">
                         <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
                             الGPA التراكمي
                         </p>
                         <p className="text-2xl font-[600] font-[Inter] text-black text-left">
-                            {Number(gpaYear - 4).toFixed(2)}
+                            {Number(gpaYear).toFixed(2)}
                         </p>
                         <p className="font-[700] text-sm md:text-[16px] text-black leading-5">
                             الGPA السنوي
                         </p>
                         <p className="text-2xl font-[600] font-[Inter] text-black text-left">
-                            {Number(gpa - 4).toFixed(2)}
+                            {Number(gpa).toFixed(2)}
                         </p>
                     </div>
                 </div>

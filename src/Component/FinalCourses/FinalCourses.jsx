@@ -9,6 +9,7 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { updateProgressContext } from '../Layout/Layout';
 import { makeRequest } from '../../api/axiosInstance';
+import { getCourseColor, getCourseTypeLabel } from '../../utils';
 
 export default function FinalCourses() {
     const [userCourses, setUserCourses] = useState(null);
@@ -31,14 +32,7 @@ export default function FinalCourses() {
         setUserCourses(response.data);
     };
 
-    const getCourseTypeLabel = (type) => {
-        switch (type) {
-            case 0: return "تخصص";
-            case 1: return "كلية";
-            case 2: return "جامعة";
-            default: return "غير معروف";
-        }
-    };
+
 
     const getStatus = (status) => {
         return status === true ? "إجتاز" : "متعثر";
@@ -168,6 +162,8 @@ export default function FinalCourses() {
 
     const isSelected = (code) => selectedCourses.includes(code);
 
+
+
     return (
         <div className='w-full flex flex-row'>
             <NavMenu />
@@ -196,18 +192,7 @@ export default function FinalCourses() {
                             {userCourses?.updateUserCourse?.length > 0 &&
                                 userCourses.updateUserCourse.map((course, index) => (
                                     <tr key={index}
-                                        className={`${getCourseTypeLabel(course.courseType) === "جامعة" && course.isOptional
-                                            ? "bg-[#e5b7b7]"
-                                            : getCourseTypeLabel(course.courseType) === "تخصص" && course.isOptional
-                                                ? "bg-[#f1dcdb]"
-                                                : getCourseTypeLabel(course.courseType) === "تخصص"
-                                                    ? "bg-[#dbe5f1]"
-                                                    : getCourseTypeLabel(course.courseType) === "جامعة"
-                                                        ? "bg-[#b8cce4]"
-                                                        : getCourseTypeLabel(course.courseType) === "كلية"
-                                                            ? "bg-[#95b3d7]"
-                                                            : ""
-                                            }`}
+                                        className={getCourseColor(course.courseType, course.isOptional)}
                                     >
                                         <td className="p-12 font-normal text-[16px] sm:text-2xl text-black whitespace-nowrap">
                                             <div className='flex items-center'>

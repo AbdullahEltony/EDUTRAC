@@ -7,8 +7,6 @@ import axios from 'axios'
 import { ActiveContext } from '../../Context/ActiveContext'
 import { useContext, useState } from 'react'
 import { baseURL } from "../../constants";
-import { IoEyeOffOutline } from "react-icons/io5";
-import { IoEyeOutline } from "react-icons/io5";
 
 
 export default function Register() {
@@ -94,7 +92,7 @@ export default function Register() {
                 {apiError}
             </div>}
             <div className={`absolute mt-[76px] sm:mt-0 flex flex-row-reverse bg-white rounded-tr-[0px] sm:rounded-tr-[2.5rem] rounded-bl-[2.5rem] sm:rounded-bl-[0px] rounded-br-[2.5rem] overflow-hidden shadow-lg w-[93%] max-w-6xl `}>
-                <form onSubmit={formik.handleSubmit} className={`mr-auto mt-58 sm:mt-0 flex-1 py-10 px-4 md:px-8 flex flex-col justify-center w-full sm:max-w-2/3 md:max-w-[65%] lg:max-w-3/4 text-center transition-all duration-1000 ease-in-out ${isActive ? "opacity-0 translate-x-100" : "opacity-100 translate-x-0"}`}>
+                <form onSubmit={formik.handleSubmit} className={`mr-auto mt-58 sm:mt-0 flex-1 py-10 px-4 md:px-8 flex flex-col justify-center w-full sm:max-w-[60%] md:max-w-[65%] lg:max-w-[70%] text-center transition-all duration-1000 ease-in-out ${isActive ? "opacity-0 translate-x-100" : "opacity-100 translate-x-0"}`}>
                     <input
                         value={formik.values.fullName}
                         onChange={formik.handleChange}
@@ -147,7 +145,7 @@ export default function Register() {
                     {formik.errors.level && formik.touched.level && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.level}
                     </div>}
-                    <div className="relative">
+                    <div className="relative z-0">
                         <input
                             value={formik.values.password}
                             onChange={formik.handleChange}
@@ -160,7 +158,7 @@ export default function Register() {
                         />
                         <span className="absolute left-5 top-1/2 transform -translate-y-1/2 cursor-pointer" onClick={() => setIsShowPassword(!isShowPassword)}><i className={`fa-solid text-gray-500 ${isShowPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></span>
                     </div>
-                     <div className="text-right p-2 mb-4 text-sm text-[#377DAC] rounded-lg pt-0" role="alert"> يجب أن تحتوي كلمة المرور على 8-15 حرفًا تشمل حرفًا كبيرًا وصغيرًا ورقمًا ورمزًا خاصًا</div>
+                    <div className="text-right p-2 mb-4 text-sm text-[#377DAC] rounded-lg pt-0" role="alert"> يجب أن تحتوي كلمة المرور على 8-15 حرفًا تشمل حرفًا كبيرًا وصغيرًا ورقمًا ورمزًا خاصًا</div>
                     {formik.errors.password && formik.touched.password && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.password}
                     </div>}
@@ -169,11 +167,11 @@ export default function Register() {
                         : <button type='submit' className=" text-center cursor-pointer bg-[#377DAC] text-white py-2 rounded mt-2">تسجيل</button>}
                 </form>
 
-                <div className={`w-full h-64 sm:h-full sm:w-1/3 md:w-[35%] lg:max-w-1/4 absolute top-0 right-[0%] bottom-0 rounded-b-[2.5rem] sm:rounded-b-[0px] rounded-r-[0px] sm:!rounded-r-[2.5rem] bg-[#6CA6CD] z-0 transition-all duration-[2000ms] ease-in-out ${isActive ? "right-[100%] w-[400%]" : ""}`}></div>
+                <div className={`w-full h-64 sm:h-full sm:w-[40%] md:w-[35%] lg:max-w-[30%] absolute top-0 right-[0%] bottom-0 rounded-b-[2.5rem] sm:rounded-b-[0px] rounded-r-[0px] sm:!rounded-r-[2.5rem] bg-[#6CA6CD] z-0 transition-all duration-[2000ms] ease-in-out ${isActive ? "right-[100%] w-[400%]" : ""}`}></div>
 
-                <div className={`w-full h-64 sm:h-full sm:w-1/3 md:w-[35%] lg:max-w-1/4 text-white p-6 lg:p-8 flex flex-col justify-center text-center absolute top-0 bottom-0 transition-all duration-2000 ease-in-out ${isActive ? "right-[-100%]" : "right-0"}`}>
-                    <h2 className="text-xl font-bold mb-2">أهلاً ومرحبًا بك</h2>
-                    <h2 className="text-xl font-bold mb-2">Edutrack دليليك للتتبع مسارك التعليمي</h2>
+                <div className={`w-full h-64 sm:h-full sm:w-[40%] md:w-[35%] lg:max-w-[30%] text-white p-6 lg:p-8 flex flex-col justify-center text-center absolute top-0 bottom-0 transition-all duration-2000 ease-in-out ${isActive ? "right-[-100%]" : "right-0"}`}>
+                    <h2 className="text-xl font-bold mb-2"> أهلًا بك في Edu Track 👋</h2>
+                    <h2 className="text-xl font-bold mb-2"> منصتك لمتابعة أدائك وتقدمك الأكاديمي بسهولة ويُسر.</h2>
                     <p className="text-sm mb-4 mt-4">هل لديك حساب معنا من قبل؟</p>
                     <button
                         onClick={() => {

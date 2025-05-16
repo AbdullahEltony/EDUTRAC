@@ -72,12 +72,14 @@ export default function Login() {
             {apiError && <div class="absolute top-0 z-10 text-center p-3 mt-2 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                 {apiError}
             </div>}
-            <div className={`absolute flex flex-row-reverse bg-white overflow-hidden shadow-lg w-[93%] max-w-4xl rounded-tr-[0px] sm:rounded-tr-[2.5rem] rounded-bl-[2.5rem] sm:rounded-bl-[0px] rounded-br-[2.5rem]`}>
-                <div className={`w-full h-46 sm:h-full sm:w-1/3 md:w-1/4 absolute top-0 left-[0%] bg-[#6CA6CD] z-0 rounded-b-[2.5rem] sm:rounded-b-[0px] rounded-r-[0px] sm:!rounded-r-[2.5rem] transition-all duration-[2000ms] ease-in-out ${isActive ? "left-[100%] w-[400%]" : ""}`}></div>
+            <div className={`absolute flex flex-row-reverse bg-white overflow-hidden shadow-lg w-[93%] max-w-6xl rounded-tr-[0px] sm:rounded-tr-[2.5rem] rounded-bl-[2.5rem] sm:rounded-bl-[0px] rounded-br-[2.5rem]`}>
+                <div className={`w-full h-64  sm:h-full sm:w-[40%] md:w-[30%] absolute top-0 left-[0%] bg-[#6CA6CD] z-0 rounded-b-[2.5rem] sm:rounded-b-[0px] rounded-r-[0px] sm:!rounded-r-[2.5rem] transition-all duration-[2000ms] ease-in-out ${isActive ? "left-[100%] w-[400%]" : ""}`}></div>
 
-                <div className={`text-white h-46 sm:h-full w-full sm:w-1/3 md:w-1/4 p-8 flex flex-col justify-center text-center absolute top-0 left-0 bottom-0 transition-all duration-2000 ease-in-out ${isActive ? "left-[-100%]" : "left-0"}`}>
-                    <h2 className="text-xl font-bold mb-2">أهلاً ومرحبًا بك</h2>
-                    <p className="text-sm mb-4"> ليس لديك حساب؟</p>
+                <div className={`text-white h-64 sm:h-full w-full sm:w-[40%] md:w-[30%] p-8 flex flex-col justify-center text-center absolute top-0 left-0 bottom-0 transition-all duration-2000 ease-in-out ${isActive ? "left-[-100%]" : "left-0"}`}>
+                    <h2 className="text-xl font-bold mb-2"> أهلًا بك في Edu Track 👋</h2>
+                    <h2 className="text-xl font-bold mb-2"> منصتك لمتابعة أدائك وتقدمك الأكاديمي بسهولة ويُسر.</h2>
+
+                         <p className="text-sm mb-4"> ليس لديك حساب؟</p>
                     <button
                         onClick={() => {
                             setIsActive(true);
@@ -92,7 +94,7 @@ export default function Login() {
                     </button>
                 </div>
 
-                <form onSubmit={formik.handleSubmit} className={`flex-1 mt-32 sm:mt-0 py-20 px-8 flex flex-col justify-center w-full sm:max-w-2/3 md:max-w-3/4 lg:max-w-3/4 ml-auto text-center transition-all duration-1000 ease-in-out ${isActive ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}`}>
+                <form onSubmit={formik.handleSubmit} className={`flex-1 mt-50 sm:mt-0 py-20 px-8 flex flex-col justify-center w-full sm:max-w-[60%] md:max-w-[70%] ml-auto text-center transition-all duration-1000 ease-in-out ${isActive ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}`}>
                     <input
                         value={formik.values.nationalId}
                         onChange={formik.handleChange}
@@ -106,7 +108,7 @@ export default function Login() {
                     {formik.errors.nationalId && formik.touched.nationalId && <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.nationalId}
                     </div>}
-                    <div className="relative">
+                    <div className="relative z-0">
                         <input
                             value={formik.values.password}
                             onChange={formik.handleChange}
@@ -119,7 +121,7 @@ export default function Login() {
                         />
                         <span className="absolute left-5 top-1/2 transform -translate-y-1/2 cursor-pointer" onClick={() => setIsShowPassword(!isShowPassword)}><i className={`fa-solid text-gray-500 ${isShowPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i></span>
                     </div>
-                        <div className="text-right p-2 mb-2 text-sm text-[#377DAC] rounded-lg pt-0" role="alert"> يجب أن تحتوي كلمة المرور على 8-15 حرفًا تشمل حرفًا كبيرًا وصغيرًا ورقمًا ورمزًا خاصًا</div>
+                    <div className="text-right p-2 mb-2 text-sm text-[#377DAC] rounded-lg pt-0" role="alert"> يجب أن تحتوي كلمة المرور على 8-15 حرفًا تشمل حرفًا كبيرًا وصغيرًا ورقمًا ورمزًا خاصًا</div>
                     {formik.errors.password && formik.touched.password && <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
                         {formik.errors.password}
                     </div>}
