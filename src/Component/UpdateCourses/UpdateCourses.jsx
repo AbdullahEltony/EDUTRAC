@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import { makeRequest } from '../../api/axiosInstance';
 import { updateProgressContext } from '../Layout/Layout';
 import { CourseLegend } from './CourseLegned';
+import { useCallback } from 'react';
 import LevelNote from './LevelNote';
 import CourseTable from './CourseTable';
 import Video from '../shared/Video';
@@ -24,7 +25,8 @@ export default function UpdateCourses() {
   const { setUpadteProgress, upadteProgress } = useContext(updateProgressContext);
   const [note, setNote] = useState('')
 
-  const fetchCourses = async (level, semester) => {
+  const fetchCourses = useCallback(async () => {
+    console.log(level, semester)
     const token = localStorage.getItem('token');
     if (!token) {
       console.warn('Token not found');
@@ -44,9 +46,9 @@ export default function UpdateCourses() {
     } catch (err) {
       console.error('Error:', err.response?.status, err.response?.data);
     }
-  };
-  const fetchNote = async () => {
-    console.log('fetch notes')
+  }, [level, semester]);
+
+  const fetchNote = useCallback(async () => {
     try {
       const { data } = await makeRequest('GET', `/api/UserNote?level=${level}&semester=${semester}`);
       if (data.length > 0) {
@@ -55,20 +57,21 @@ export default function UpdateCourses() {
     } catch (error) {
       console.log(error)
     }
-  }
+  }, [level, semester]);
+
+
 
   useEffect(() => {
     if (level && semester) {
       fetchCourses();
       fetchNote();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [level, semester]);
+  }, [level, semester, fetchNote, fetchCourses]);
 
   const handleSubmit = async () => {
     {/* ارسال الملاحظة */ }
     await makeRequest('POST', '/api/UserNote', { level: level, semester: semester, note: note })
-    
+
     if (!formik2.isValid) {
       toast.warning("يجب اختيار الكورسات وإدخال الحالة والدرجة بشكل صحيح", { autoClose: 2000 })
       return;
@@ -132,7 +135,7 @@ export default function UpdateCourses() {
       fetchCourses(formik.values.level, formik.values.semester);
 
     }
-  }, [formik.values.level, formik.values.semester]);
+  }, [formik.values.level, formik.values.semester, fetchCourses]);
 
 
 
@@ -145,7 +148,6 @@ export default function UpdateCourses() {
       <div className='w-full'>
         <ProgressBar />
         <Video />
-
 
         <form className=" mx-auto mb-12" dir="rtl">
           <LevelSelector value={level} onChange={setLevel} />
