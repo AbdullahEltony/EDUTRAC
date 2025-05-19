@@ -33,8 +33,10 @@ export default function Login() {
             setUserToken(response.data.token);
             setWelcomeLoader(true);
             setTimeout(() => {
-                setWelcomeLoader(false);
                 navigate('/home');
+                setTimeout(() => {
+                    setWelcomeLoader(false);
+                }, 1000)
             }, 5000)
 
         } catch (error) {
