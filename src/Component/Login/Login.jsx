@@ -7,12 +7,14 @@ import { useFormik } from 'formik';
 import axios from 'axios';
 import { UserToken } from '../../Context/TokenContext';
 import { baseURL } from '../../constants';
+import WelcomeLoader from '../Welcom';
 
 export default function Login() {
 
     const [isLoading, setIsLoading] = useState(false)
     const [apiError, setApiError] = useState(null)
     const [isShowPassword, setIsShowPassword] = useState(false)
+    const [welcomLoader, setWelcomeLoader] = useState(false)
 
     const navigate = useNavigate();
 
@@ -23,13 +25,18 @@ export default function Login() {
         try {
             setIsLoading(true);
             const response = await axios.post(`${baseURL}/api/Auth/login`, values);
-            console.log(response);
             if (response.status !== 200) throw new Error(response.statusText);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('refreshToken', response.data.refreshToken);
+            localStorage.setItem('name', JSON.stringify(response.data.fullName));
 
             setUserToken(response.data.token);
-            navigate('/home');
+            setWelcomeLoader(true);
+            setTimeout(() => {
+                setWelcomeLoader(false);
+                navigate('/home');
+            }, 5000)
+
         } catch (error) {
             setApiError(error.response.data.errors[1]);
         } finally {
@@ -73,13 +80,12 @@ export default function Login() {
                 {apiError}
             </div>}
             <div className={`absolute flex flex-row-reverse bg-white overflow-hidden shadow-lg w-[93%] max-w-6xl rounded-tr-[0px] sm:rounded-tr-[2.5rem] rounded-bl-[2.5rem] sm:rounded-bl-[0px] rounded-br-[2.5rem]`}>
-                <div className={`w-full h-64  sm:h-full sm:w-[40%] md:w-[30%] absolute top-0 left-[0%] bg-[#6CA6CD] z-0 rounded-b-[2.5rem] sm:rounded-b-[0px] rounded-r-[0px] sm:!rounded-r-[2.5rem] transition-all duration-[2000ms] ease-in-out ${isActive ? "left-[100%] w-[400%]" : ""}`}></div>
+                <div className={`w-full h-64  sm:h-full sm:w-[40%] md:w-[30%] absolute top-0 left-[0%] bg-[#6CA6CD] z-1 rounded-b-[2.5rem] sm:rounded-b-[0px] rounded-r-[0px] sm:!rounded-r-[2.5rem] transition-all duration-[2000ms] ease-in-out ${isActive ? "left-[100%] w-[400%]" : ""}`}></div>
 
-                <div className={`text-white h-64 sm:h-full w-full sm:w-[40%] md:w-[30%] p-8 flex flex-col justify-center text-center absolute top-0 left-0 bottom-0 transition-all duration-2000 ease-in-out ${isActive ? "left-[-100%]" : "left-0"}`}>
+                <div className={`text-white h-64 sm:h-full w-full sm:w-[40%] md:w-[30%] p-8 flex flex-col justify-center text-center absolute z-2 top-0 left-0 bottom-0 transition-all duration-2000 ease-in-out ${isActive ? "left-[-100%]" : "left-0"}`}>
                     <h2 className="text-xl font-bold mb-2"> أهلًا بك في Edu Track 👋</h2>
-                    <h2 className="text-xl font-bold mb-2"> منصتك لمتابعة أدائك وتقدمك الأكاديمي بسهولة ويُسر.</h2>
 
-                         <p className="text-sm mb-4"> ليس لديك حساب؟</p>
+                    <p className="text-sm mb-4"> ليس لديك حساب؟</p>
                     <button
                         onClick={() => {
                             setIsActive(true);
@@ -137,5 +143,6 @@ export default function Login() {
                 </form>
             </div>
         </motion.div>
+        {welcomLoader && <WelcomeLoader />}
     </>
 }

@@ -23,6 +23,7 @@ export default function Layout() {
     const collapsed = useMemo(() => ({ isCollapsed, setIsCollapsed }), [isCollapsed]);
     const updateProgress = useMemo(() => ({ upadteProgress, setUpadteProgress }), [upadteProgress]);
 
+
     return (
         <SidebarContext.Provider value={collapsed}>
             {hideLayout ? (

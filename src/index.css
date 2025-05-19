@@ -1,36 +1,75 @@
 @import "tailwindcss";
 
+:root {
+  --primary-color: #529ed0;
+  --bg-color: #eff4f8;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
 body {
   font-family: "Almarai", sans-serif;
   overflow-x: hidden;
 }
+.welcome {
+  background-color: var(--bg-color);
+}
 .active {
-  background-color: #eff4f8; 
+  background-color: var(--bg-color);
 }
 /* Scrollbar container */
 ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-  }
-  
-  /* Thumb */
-  ::-webkit-scrollbar-thumb {
-    background: #6CA6CD;
-    border-radius: 10px;
-  }
-  
-  /* Hover effect on thumb */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #888;
-  }
-  
+  width: 4px;
+  height: 4px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Thumb */
+::-webkit-scrollbar-thumb {
+  background: #6ca6cd;
+  border-radius: 10px;
+}
+
+/* Hover effect on thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+.table-title {
+  font-weight:bold;
+  font-size:16px;
+  margin-bottom:12px;
+  text-align:center;
+}
+
+@media (min-width: 640px) {
+  .table-title {
+    font-size:20px;
+  }
+  
+}
 .list {
   list-style: disc;
+}
+
+@keyframes leftArrow {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-left-arrow {
+  animation: leftArrow 1s infinite ease-in-out;
 }

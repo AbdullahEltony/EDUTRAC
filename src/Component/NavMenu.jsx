@@ -12,6 +12,7 @@ export const NavMenu = () => {
     function logOut() {
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
+        localStorage.removeItem('name');
         setUserToken(null);
         navigate('/');
     }

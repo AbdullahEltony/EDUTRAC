@@ -20,6 +20,7 @@ export default function FinalCourses() {
     const [loading, setLoading] = useState(false);
     const [isSelectedAll, setIsSelectedAll] = useState(false);
     const { setUpadteProgress, upadteProgress } = useContext(updateProgressContext);
+    const [filterStatus, setFilterStatus] = useState("0");
 
     useEffect(() => {
         fetchUserCourses();
@@ -160,6 +161,8 @@ export default function FinalCourses() {
         }
     };
 
+
+
     const isSelected = (code) => selectedCourses.includes(code);
 
 
@@ -169,7 +172,13 @@ export default function FinalCourses() {
             <NavMenu />
             <div className='w-full'>
                 <ProgressBar />
-                <div className="relative overflow-x-auto ltr shadow-md rounded-lg mb-10 mx-auto mt-20">
+                <div className="relative overflow-x-auto ltr shadow-md rounded-lg mb-10 mx-auto">
+                    <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="bg-[#EFF4F8] border border-[#6CA6CD] text-black text-2xl rounded-lg block w-full max-w-sm p-5 font-normal focus-visible:outline-none mb-5"
+                    >
+                        <option value="0">الكل</option>
+                        <option value="1">متعثر</option>
+                        <option value="2">اجتاز</option>
+                    </select>
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead className="text-white uppercase bg-gray-600">
                             <tr>
@@ -189,64 +198,84 @@ export default function FinalCourses() {
                             </tr>
                         </thead>
                         <tbody>
-                            {userCourses?.updateUserCourse?.length > 0 &&
-                                userCourses.updateUserCourse.map((course, index) => (
-                                    <tr key={index}
-                                        className={getCourseColor(course.courseType, course.isOptional)}
-                                    >
-                                        <td className="p-12 font-normal text-[16px] sm:text-2xl text-black whitespace-nowrap">
-                                            <div className='flex items-center'>
-                                                <input
-                                                    id={course.code}
-                                                    className="w-5 h-5 me-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-                                                    type="checkbox"
-                                                    checked={isSelected(course.code)}
-                                                    onChange={() => handleSelect(course.code)}
-                                                />
-                                                <label htmlFor={course.code}> {course.code}</label>
-                                            </div>
-                                        </td>
-                                        <td className="text-[16px] sm:text-2xl text-center text-black">{course.name}</td>
-                                        <td className="text-[16px] sm:text-2xl text-center text-black">{course.hours}</td>
-                                        <td className={`font-normal text-[16px] sm:text-2xl text-black text-center ${course.status ? 'bg-green-300' : 'bg-red-300'}`}>{getStatus(course.status)}</td>
-                                        <td className="font-normal text-[16px] sm:text-2xl text-black w-1/12 text-center">
-                                            {editMode[course.code] ? (
-                                                <input
-                                                    type="number"
-                                                    min="0"
-                                                    max="100"
-                                                    value={course.degree}
-                                                    onChange={(e) => handleDegreeChange(course.code, e.target.value)}
-                                                    onKeyDown={(e) => handleKeyPress(e, course.code)}
-                                                    className="w-[60px] text-center border rounded"
-                                                    onBlur={(e) => handleBlur(e, course.code)}
-                                                />
-                                            ) : (
-                                                course.degree
-                                            )}
-                                        </td>
-                                        <td className="text-[16px] sm:text-2xl text-center text-black">{getCourseTypeLabel(course.courseType)}</td>
-                                        <td className="text-[16px] sm:text-2xl text-center text-black">
-                                            <div className='flex justify-center items-center gap-4'>
-                                                <button
-                                                    onClick={() => handleEdit(course.code)}
-                                                    className="cursor-pointer text-gray-600 hover:text-gray-800 p-1 rounded transition duration-150"
-                                                    title="تعديل"
-                                                >
-                                                    <HiOutlinePencilSquare size={20} />
-                                                </button>
-                                                <button
-                                                    onClick={() => handleDelete(course.code)}
-                                                    className="cursor-pointer text-gray-600 hover:text-gray-800 p-1 rounded transition duration-150"
-                                                    title="حذف"
-                                                >
-                                                    <FaRegTrashCan size={18} />
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
+                            {userCourses?.updateUserCourse?.filter(course => {
+                                if (filterStatus === "1") return !course.status; // متعثر
+                                if (filterStatus === "2") return course.status;  // اجتاز
+                                return true; // الكل
+                            }).length === 0 ? (
+                                <tr>
+                                    <td colSpan="7" className="text-center py-10 text-lg text-gray-600">
+                                        لا يوجد مقررات
+                                    </td>
+                                </tr>
+                            ) : (
+                                userCourses?.updateUserCourse
+                                    .filter(course => {
+                                        if (filterStatus === "1") return !course.status;
+                                        if (filterStatus === "2") return course.status;
+                                        return true;
+                                    })
+                                    .map((course, index) => (
+                                        <tr key={index}
+                                            className={getCourseColor(course.courseType, course.isOptional)}
+                                        >
+                                            <td className="p-12 font-normal text-[16px] sm:text-2xl text-black whitespace-nowrap">
+                                                <div className='flex items-center'>
+                                                    <input
+                                                        id={course.code}
+                                                        className="w-5 h-5 me-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                                                        type="checkbox"
+                                                        checked={isSelected(course.code)}
+                                                        onChange={() => handleSelect(course.code)}
+                                                    />
+                                                    <label htmlFor={course.code}> {course.code}</label>
+                                                </div>
+                                            </td>
+                                            <td className="text-[16px] sm:text-2xl text-center text-black">{course.name}</td>
+                                            <td className="text-[16px] sm:text-2xl text-center text-black">{course.hours}</td>
+                                            <td className={`font-normal text-[16px] sm:text-2xl text-black text-center ${course.status ? 'bg-green-300' : 'bg-red-300'}`}>
+                                                {getStatus(course.status)}
+                                            </td>
+                                            <td className="font-normal text-[16px] sm:text-2xl text-black w-1/12 text-center">
+                                                {editMode[course.code] ? (
+                                                    <input
+                                                        type="number"
+                                                        min="0"
+                                                        max="100"
+                                                        value={course.degree}
+                                                        onChange={(e) => handleDegreeChange(course.code, e.target.value)}
+                                                        onKeyDown={(e) => handleKeyPress(e, course.code)}
+                                                        className="w-[60px] text-center border rounded"
+                                                        onBlur={(e) => handleBlur(e, course.code)}
+                                                    />
+                                                ) : (
+                                                    course.degree
+                                                )}
+                                            </td>
+                                            <td className="text-[16px] sm:text-2xl text-center text-black">{getCourseTypeLabel(course.courseType)}</td>
+                                            <td className="text-[16px] sm:text-2xl text-center text-black">
+                                                <div className='flex justify-center items-center gap-4'>
+                                                    <button
+                                                        onClick={() => handleEdit(course.code)}
+                                                        className="cursor-pointer text-gray-600 hover:text-gray-800 p-1 rounded transition duration-150"
+                                                        title="تعديل"
+                                                    >
+                                                        <HiOutlinePencilSquare size={20} />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleDelete(course.code)}
+                                                        className="cursor-pointer text-gray-600 hover:text-gray-800 p-1 rounded transition duration-150"
+                                                        title="حذف"
+                                                    >
+                                                        <FaRegTrashCan size={18} />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))
+                            )}
                         </tbody>
+
                     </table>
                 </div>
 

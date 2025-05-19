@@ -40,7 +40,7 @@ export default React.memo(function ProgressBar() {
             initial={{ width: 0 }}
             animate={{ width: '100%' }}
             transition={{ duration: 1 }}
-            className={`sticky top-0 xl:top-[13.7rem] z-30 xl:z-10 w-full h-8 bg-gray-300 rounded-full overflow-hidden mx-auto mb-12`}
+            className={`sticky top-0 xl:top-[8.5rem] z-30 xl:z-10 w-full h-8 bg-gray-300 rounded-full overflow-hidden mx-auto mb-12`}
         >
             <motion.div
                 className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#3383cc] to-[#5fc5f3] rounded-full"

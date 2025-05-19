@@ -47,7 +47,7 @@ export default function AboutUs() {
                                 </motion.h2>
                                 <p className="text-[14px] sm:text-[16px] font-[Almarai] font-bold text-[#262338] leading-[36px]">
 
-                                   <span className='font-bold'> EDU TRACK</span>  هو موقع ذكي صُمم خصيصاً لمساعدة طلاب قسم تكنولوجيا التعليم بكلية التربية النوعية في تنظيم حياتهم الدراسية بشكل أسهل وأكثر ترتيبًا
+                                    <span className='font-bold text-primary'> EDU TRACK</span>  هو موقع ذكي صُمم خصيصاً لمساعدة طلاب قسم تكنولوجيا التعليم بكلية التربية النوعية في تنظيم حياتهم الدراسية بشكل أسهل وأكثر ترتيبًا
                                     الهدف الرئيسي من الموقع تسهيل التخطيط الأكاديمي والوصول للتخرج في الوقت المناسب.
                                 </p>
                                 <p>من خلال <span>أنه</span> يمكن للطالب ان :
@@ -130,6 +130,7 @@ export default function AboutUs() {
                             <p className='font-[Raleway] text-[16px] sm:text-[17px]'>
                                 في أكاديمية EDU TRACK، نُدرِّبك على يد مبرمجين محترفين...
                             </p>
+                            <p className=''>تحت اشراف  <span className='font-bold text-[#5393be]'>د.عبير كمال</span></p>
                         </motion.div>
 
                         {/* صور الفريق */}
@@ -175,7 +176,7 @@ export default function AboutUs() {
                                     className="text-3xl md:text-5xl font-bold text-center text-[#262338] mb-6"
                                     variants={titleVariants}
                                 >
-                                آراء طلابنا
+                                    آراء طلابنا
                                 </motion.h2>
                                 <p className="text-lg text-[#262338] text-center mb-16 max-w-[46rem] mx-auto">
                                     في أكاديمية EDU TRACK، نُركّز على يد خبراء محترفين مشاركين

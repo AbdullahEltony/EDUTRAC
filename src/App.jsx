@@ -17,6 +17,7 @@ import ChatBot from './Component/ChatBot/ChatBot.jsx'
 import FinalCourses from './Component/FinalCourses/FinalCourses.jsx'
 import UpdateCourses from './Component/UpdateCourses/UpdateCourses.jsx'
 import { ToastContainer } from 'react-toastify'
+import RulesPage from './Component/Rules/RulesPage.jsx'
 
 function App() {
   useEffect(() => {
@@ -29,6 +30,7 @@ function App() {
       { path: 'forgetPassword', element: <ForgetPassword /> },
       { path: 'resetPassword', element: <ResetPassword /> },
       { path: 'home', element: <ProtectedRoute> <Home /> </ProtectedRoute> },
+      { path: 'rules', element: <ProtectedRoute> <RulesPage /> </ProtectedRoute> },
       { path: 'profile', element: <ProtectedRoute> <Profile /> </ProtectedRoute> },
       { path: 'aboutus', element: <ProtectedRoute> <AboutUs /> </ProtectedRoute> },
       { path: 'chatBot', element: <ProtectedRoute> <ChatBot /> </ProtectedRoute> },

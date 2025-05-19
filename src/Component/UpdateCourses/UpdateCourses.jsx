@@ -49,7 +49,6 @@ export default function UpdateCourses() {
     console.log('fetch notes')
     try {
       const { data } = await makeRequest('GET', `/api/UserNote?level=${level}&semester=${semester}`);
-      console.log(data)
       if (data.length > 0) {
         setNote(data[0].notes);
       }
@@ -59,7 +58,6 @@ export default function UpdateCourses() {
   }
 
   useEffect(() => {
-    console.log(level, semester);
     if (level && semester) {
       fetchCourses();
       fetchNote();
@@ -68,6 +66,9 @@ export default function UpdateCourses() {
   }, [level, semester]);
 
   const handleSubmit = async () => {
+    {/* ارسال الملاحظة */ }
+    await makeRequest('POST', '/api/UserNote', { level: level, semester: semester, note: note })
+    
     if (!formik2.isValid) {
       toast.warning("يجب اختيار الكورسات وإدخال الحالة والدرجة بشكل صحيح", { autoClose: 2000 })
       return;
@@ -91,9 +92,8 @@ export default function UpdateCourses() {
       return;
     }
 
-    if (note.length > 0) {
-      await makeRequest('POST', '/api/UserNote', { level: level, semester: semester, note: note })
-    }
+    {/* ارسال الملاحظة */ }
+    await makeRequest('POST', '/api/UserNote', { level: level, semester: semester, note: note })
 
     await makeRequest(
       'PUT', `/api/Profile/update-course`,
@@ -144,11 +144,11 @@ export default function UpdateCourses() {
       <NavMenu />
       <div className='w-full'>
         <ProgressBar />
-        <Video/>
+        <Video />
 
 
         <form className=" mx-auto mb-12" dir="rtl">
-          <LevelSelector value={level} onChange={setLevel}/>
+          <LevelSelector value={level} onChange={setLevel} />
           <SemesterSelector value={semester} onChange={setSemester} />
 
         </form>
