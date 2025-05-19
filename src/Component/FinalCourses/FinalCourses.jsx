@@ -233,7 +233,7 @@ export default function FinalCourses() {
                                             </td>
                                             <td className="text-[16px] sm:text-2xl text-center text-black">{course.name}</td>
                                             <td className="text-[16px] sm:text-2xl text-center text-black">{course.hours}</td>
-                                            <td className={`font-normal text-[16px] sm:text-2xl text-black text-center ${course.status ? 'bg-green-300' : 'bg-red-300'}`}>
+                                            <td className={`font-normal text-[16px] sm:text-2xl text-black text-center ${course.status ? 'bg-[#7fdfb1]' : 'bg-[#ef9d9d]'}`}>
                                                 {getStatus(course.status)}
                                             </td>
                                             <td className="font-normal text-[16px] sm:text-2xl text-black w-1/12 text-center">
