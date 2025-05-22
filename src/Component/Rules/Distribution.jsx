@@ -20,22 +20,6 @@ const ProgramCreditDistribution = () => {
         },
         {
             id: 3,
-            category: 'مقررات تخصص\nإعداد معلم الإقتصاد المنزلي التربوي',
-            mandatory: 42,
-            optional: 5,
-            totalCourses: 47,
-            totalHours: 104,
-        },
-        {
-            id: 4,
-            category: "مقررات تخصص\nإعداد معلم التربية الفنية",
-            mandatory: 41,
-            optional: 6,
-            totalCourses: 48,
-            totalHours: 104,
-        },
-        {
-            id: 5,
             category: 'مقررات تخصص\nإعداد أخصائي تكنولوجيا التعليم',
             mandatory: 33,
             optional: 6,
@@ -75,7 +59,7 @@ const ProgramCreditDistribution = () => {
                     ))}
                     <tr>
                         <td colSpan="2" className="border p-2">إجمالي عدد المقررات الدراسية</td>
-                        <td className="border p-2">{137}</td>
+                        <td className="border p-2">{54}</td>
                         <td className="border p-2">{21}</td>
                         <td className="border p-2">{159}</td>
                         <td className="border p-2">{148}</td>
