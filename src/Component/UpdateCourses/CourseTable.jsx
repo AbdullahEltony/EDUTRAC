@@ -109,7 +109,7 @@ export default function CourseTable({ courseList, formik2 }) {
 
 
                                             if (value === "" || value === 0) {
-                                                formik2.setFieldValue(statusField, "لم يجتاز");
+                                                formik2.setFieldValue(statusField, " --");
                                             } else if (value < 60) {
                                                 formik2.setFieldValue(statusField, false);
                                             } else {
@@ -118,8 +118,8 @@ export default function CourseTable({ courseList, formik2 }) {
                                         }}
                                     />
                                 </td>
-                                <td className="text-[16px] sm:text-2xl">
-                                    <select
+                                <td className="text-[16px] sm:text-2xl text-center text-black">
+                                    {/* <select
                                         className="w-full pl-2 text-black text-center focus-visible:outline-none"
                                         disabled={!formik2.values.courses[index]?.code} // ❌ لا يمكن اختيار الحالة إلا بعد اختيار الكورس
                                         onChange={(e) => {
@@ -133,12 +133,19 @@ export default function CourseTable({ courseList, formik2 }) {
 
                                         }
                                         value={formik2.values.courses?.[index]?.status === null ? "لم يجتاز" : formik2.values.courses?.[index]?.status}
-                                        defaultValue={'لم يجتاز'}
+                                        defaultValue={'--'}
                                     >
                                         <option value="لم يجتاز"> --</option>
                                         <option value="true">إجتاز</option>
                                         <option value="false">متعثر</option>
-                                    </select>
+                                    </select> */}
+                                    {!formik2.values.courses[index]?.code
+                                        ? '--' // No course selected yet
+                                        : formik2.values.courses[index]?.degree === ''
+                                            ? '--' // Degree not entered
+                                            : Number(formik2.values.courses[index]?.degree) >= 60
+                                                ? 'إجتاز'
+                                                : 'متعثر'}
                                 </td>
 
 

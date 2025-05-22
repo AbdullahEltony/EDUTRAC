@@ -1,39 +1,11 @@
 import React from 'react';
-
+import { programCreditsData as data } from '../../constants';
 const ProgramCreditDistribution = () => {
-    const data = [
-        {
-            id: 1,
-            category: 'متطلبات جامعة',
-            mandatory: 3,
-            optional: 4,
-            totalCourses: 7,
-            totalHours: 8,
-        },
-        {
-            id: 2,
-            category: 'متطلبات كلية',
-            mandatory: 18,
-            optional: '--',
-            totalCourses: 18,
-            totalHours: 36,
-        },
-        {
-            id: 3,
-            category: 'مقررات تخصص\nإعداد أخصائي تكنولوجيا التعليم',
-            mandatory: 33,
-            optional: 6,
-            totalCourses: 39,
-            totalHours: 104,
-        },
-
-    ];
-
     return (
         <div className="overflow-x-auto mt-8">
             <h3 className='table-title '>المقررات الدراسيةالإجبارية والأختيارية للبرامج الدراسية  </h3>
             <table className="w-full text-center border border-gray-400">
-                <thead className="bg-orange-200">
+                <thead className="bg-[#fccbbe]">
                     <tr>
                         <th rowSpan="2" className="border p-2">م</th>
                         <th rowSpan="2" className="border p-2">المقررات</th>

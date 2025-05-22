@@ -6,14 +6,14 @@ const HoursTable = () => {
         <div className="overflow-x-auto w-full mt-5">
             <h3 className='table-title '>عدد الساعات المعتمدة المطلوبة للتخرج</h3>
             <table className="table-auto w-full border-collapse border  bg-white text-center">
-                <thead>
-                    <tr className="bg-orange-200">
+                <thead className='bg-[#fccbbe]'>
+                    <tr className="">
                         <th colSpan="2" className="border px-4 py-2">متطلبات الجامعة</th>
                         <th rowSpan="2" className="border px-4 py-2">متطلبات الكلية</th>
                         <th colSpan="2" className="border px-4 py-2">متطلبات البرنامج العام</th>
                         <th rowSpan="2" className="border px-4 py-2">عدد الساعات المعتمدة</th>
                     </tr>
-                    <tr className="bg-orange-200">
+                    <tr className="">
                         <th className="border px-4 py-2">إجبارية</th>
                         <th className="border px-4 py-2">اختيارية</th>
                         <th className="border px-4 py-2">إجبارية</th>

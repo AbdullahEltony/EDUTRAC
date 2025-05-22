@@ -14,11 +14,11 @@ const RulesPage = () => {
       <div className='w-full'>
         <ProgressBar />
         <div className='flex flex-col gap-12'>
-          <LevelProgressionTable />
           <HoursTable />
           <ProgramCreditDistribution />
           <Table10 />
           <GradeTable />
+          <LevelProgressionTable />
         </div>
       </div>
     </div>

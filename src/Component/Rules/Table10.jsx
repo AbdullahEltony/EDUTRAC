@@ -5,8 +5,8 @@ const Table10 = () => {
         <div className="overflow-x-auto w-full mt-5">
             <h3 className="table-title">توزيع الساعات المعتمدة علي الفصول الدراسية للبرنامج (أخصائي تكنولجيا التعليم)</h3>
             <table className="table-auto w-full border-collapse border  bg-white text-center">
-                <thead>
-                    <tr className="bg-orange-200">
+                <thead className="bg-[#fccbbe]">
+                    <tr className="">
                         <th rowSpan="2" className="border px-4 py-2">م</th>
                         <th rowSpan="2" className="border px-4 py-2"> المستوي</th>
                         <th rowSpan="2" className="border px-4 py-2"> الفصول الدراسية</th>
@@ -15,7 +15,7 @@ const Table10 = () => {
                         <th colSpan="2" className="border px-4 py-2">متطلبات البرنامج</th>
                         <th rowSpan="2" className="border px-4 py-2"> الحد الأقصي لكل فصل دراسي</th>
                     </tr>
-                    <tr className="bg-orange-200">
+                    <tr className="">
                         <th className="border px-4 py-2"> إجباري</th>
                         <th className="border px-4 py-2"> إختياري</th>
                         <th className="border px-4 py-2"> إجباري</th>

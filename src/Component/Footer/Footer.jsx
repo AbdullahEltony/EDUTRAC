@@ -47,8 +47,7 @@ export default function Footer() {
             <div className="about">
               <Link onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })} to="/home" className="text-lg font-bold text-blue-400">EDU TRACK</Link>
               <p className="text-sm mt-2 text-gray-400">
-                مرحبًا بك في Edu Track، مزود حلول التكنولوجيا الديناميكية الذي يسعى لتمكين الأفراد والمؤسسات من خلال حلول تقنية حديثة ومتقدمة.
-              </p>
+                شريكك في رحلتك نحو التميز الأكاديمي والتعليمي      </p>
             </div>
           </div>
 
