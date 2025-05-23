@@ -22,11 +22,13 @@ export default function UpdateCourses() {
   const [level, setLevel] = useState('');
   const [semester, setSemester] = useState('');
   const [course, setCourses] = useState(null);
+  const [loading, setLoading] = useState(false)
+  const [noteLoading, setNoteLoading] = useState(false)
   const { setUpadteProgress, upadteProgress } = useContext(updateProgressContext);
   const [note, setNote] = useState('')
 
+
   const fetchCourses = useCallback(async () => {
-    console.log(level, semester)
     const token = localStorage.getItem('token');
     if (!token) {
       console.warn('Token not found');
@@ -69,9 +71,6 @@ export default function UpdateCourses() {
   }, [level, semester, fetchNote, fetchCourses]);
 
   const handleSubmit = async () => {
-    {/* ارسال الملاحظة */ }
-    await makeRequest('POST', '/api/UserNote', { level: level, semester: semester, note: note })
-
     if (!formik2.isValid) {
       toast.warning("يجب اختيار الكورسات وإدخال الحالة والدرجة بشكل صحيح", { autoClose: 2000 })
       return;
@@ -94,21 +93,26 @@ export default function UpdateCourses() {
       toast.warning("يجب اختيار الكورسات وإدخال الحالة والدرجة بشكل صحيح", { autoClose: 2000 })
       return;
     }
-
-    {/* ارسال الملاحظة */ }
-    await makeRequest('POST', '/api/UserNote', { level: level, semester: semester, note: note })
-
+    setLoading(true)
     await makeRequest(
       'PUT', `/api/Profile/update-course`,
       { updateCourse: cleanedCourses },
     );
     toast.success("  تم تحديث الكورسات بنجاج", { autoClose: 2000 })
+    setLoading(false)
     setUpadteProgress(!upadteProgress);
-
 
     navigate("/finalCourses")
     window.scrollTo({ top: 0, behavior: "smooth" })
   };
+  const handleSaveNote = async () => {
+
+    {/* ارسال الملاحظة */ }
+    setNoteLoading(true)
+    await makeRequest('POST', '/api/UserNote', { level: level, semester: semester, note: note })
+    setNoteLoading(false)
+    toast.success('تم ارسال الملاحظة بنجاح',{autoClose:2000})
+  }
 
 
   const formik = useFormik({
@@ -157,8 +161,8 @@ export default function UpdateCourses() {
 
         <CourseLegend />
 
-        {course?.courses?.length > 0 && <CourseTable courseList={course?.courses} formik2={formik2} />}
-        {course?.courses?.length > 0 && <LevelNote note={note} handleSubmit={handleSubmit} formik2={formik2} setNote={setNote} />}
+        {course?.courses?.length > 0 && <CourseTable courseList={course?.courses} formik2={formik2} handleSubmit={handleSubmit} loading={loading} />}
+        {course?.courses?.length > 0 && <LevelNote note={note} handleSubmit={handleSaveNote} loading={noteLoading} formik2={formik2} setNote={setNote} />}
 
       </div>
     </div>

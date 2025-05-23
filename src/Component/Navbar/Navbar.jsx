@@ -126,5 +126,5 @@ export default React.memo(Navbar);
 
 
 const Loader = () => (
-    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent" />
+    <div className="animate-spin rounded-full h-4 w-4 border-2 border-[#529ed0] border-t-transparent" />
 );

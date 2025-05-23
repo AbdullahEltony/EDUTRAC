@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function LevelSelector({ value, onChange }) {
-    console.log(value)
     return (
         <select
             id="levels"

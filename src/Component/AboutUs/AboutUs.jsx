@@ -4,6 +4,7 @@ import './AboutUs.css';
 import ProgressBar from '../shared/ProgressBar';
 import { Team } from '../../constants';
 import { motion } from 'framer-motion';
+import ClientSlider from './Testimonials';
 
 const titleVariants = {
     hidden: { opacity: 0, y: 30, letterSpacing: "0em" },
@@ -184,29 +185,7 @@ export default function AboutUs() {
                             </div>
 
                             {/* بطاقات العملاء */}
-                            <div className="grid grid-cols-3 justify-start gap-4">
-                                {[...Array(3)].map((_, index) => (
-                                    <motion.div
-                                        key={index}
-                                        className={`p-6 pb-2 col-span-3 md:col-span-1 ${index === 1 ? "bg-[#88b2d5]" : "bg-[#EFF4F8] "} shadow-lg border-[3px] border-[#6CA6CD] rounded-lg`}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.6, delay: index * 0.3 }}
-                                    >
-                                        <p className="text-black text-right mb-8 font-normal font-[Almarai]">
-                                            منصة Edu track ليست مجرد منصة للإرشاد التعليمي، بل هي صرح للإبداع والتميز.
-                                        </p>
-                                        <div className="flex items-center gap-4">
-                                            <img src="./client.png" alt="محمد عمران" className="w-12 h-12 rounded-full object-cover" />
-                                            <div className="text-right">
-                                                <h4 className="font-semibold text-black mb-2">محمد عمران</h4>
-                                                <p className="text-sm text-[#00000094]">خبير إرشاد تعليمي</p>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </div>
+                            <ClientSlider/>
                         </motion.div>
                     </div>
                 </div>

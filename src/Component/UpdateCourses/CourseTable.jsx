@@ -2,7 +2,7 @@ import React from 'react';
 import { getCourseColor, getCourseTypeLabel } from '../../utils';
 import { toast } from 'react-toastify';
 
-export default function CourseTable({ courseList, formik2 }) {
+export default function CourseTable({ courseList, formik2 , handleSubmit , loading }) {
     return (
         <div className='relative ltr  overflow-x-auto shadow-md sm:rounded-lg  mx-auto mb-6'>
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -119,26 +119,6 @@ export default function CourseTable({ courseList, formik2 }) {
                                     />
                                 </td>
                                 <td className="text-[16px] sm:text-2xl text-center text-black">
-                                    {/* <select
-                                        className="w-full pl-2 text-black text-center focus-visible:outline-none"
-                                        disabled={!formik2.values.courses[index]?.code} // ❌ لا يمكن اختيار الحالة إلا بعد اختيار الكورس
-                                        onChange={(e) => {
-                                            formik2.setFieldValue(
-                                                `courses[${index}].status`,
-                                                e.target.value
-                                            );
-                                            formik2.values.courses[index].degree = '';
-                                        }
-
-
-                                        }
-                                        value={formik2.values.courses?.[index]?.status === null ? "لم يجتاز" : formik2.values.courses?.[index]?.status}
-                                        defaultValue={'--'}
-                                    >
-                                        <option value="لم يجتاز"> --</option>
-                                        <option value="true">إجتاز</option>
-                                        <option value="false">متعثر</option>
-                                    </select> */}
                                     {!formik2.values.courses[index]?.code
                                         ? '--' // No course selected yet
                                         : formik2.values.courses[index]?.degree === ''
@@ -161,6 +141,8 @@ export default function CourseTable({ courseList, formik2 }) {
                 </tbody>
 
             </table>
+            <button disabled={loading} onClick={() => { handleSubmit(); formik2.handleSubmit; }} className="w-full mt-2.5 py-3 bg-[#EFF4F8] text-black text-2xl cursor-pointer duration-200">{loading ? 'جاري الحفظ':'حفظ'} </button>
+
         </div>
     )
 
