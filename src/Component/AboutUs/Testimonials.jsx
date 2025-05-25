@@ -41,7 +41,7 @@ const clients = [
 
 export default function ClientSlider() {
     return (
-        <div className=" md:px-0">
+        <div className="md:px-0 max-w-full">
             {/* بطاقات العملاء */}
             <Swiper
                 modules={[Navigation, Pagination]}

@@ -111,7 +111,7 @@ export default function UpdateCourses() {
     setNoteLoading(true)
     await makeRequest('POST', '/api/UserNote', { level: level, semester: semester, note: note })
     setNoteLoading(false)
-    toast.success('تم ارسال الملاحظة بنجاح',{autoClose:2000})
+    toast.success('تم ارسال الملاحظة بنجاح', { autoClose: 2000 })
   }
 
 
@@ -150,7 +150,6 @@ export default function UpdateCourses() {
     <div className='w-full flex flex-row'>
       <NavMenu />
       <div className='w-full'>
-        <ProgressBar />
         <Video />
 
         <form className=" mx-auto mb-12" dir="rtl">

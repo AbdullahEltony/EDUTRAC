@@ -22,7 +22,6 @@ export default function AboutUs() {
             <div className='w-full flex flex-row'>
                 <NavMenu />
                 <div className='w-full'>
-                    <ProgressBar />
                     <div className="mx-auto">
 
                         {/* عن EDU TRACK */}
@@ -185,7 +184,7 @@ export default function AboutUs() {
                             </div>
 
                             {/* بطاقات العملاء */}
-                            <ClientSlider/>
+                            <ClientSlider />
                         </motion.div>
                     </div>
                 </div>

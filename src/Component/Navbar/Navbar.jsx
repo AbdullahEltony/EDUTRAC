@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserToken } from '../../Context/TokenContext';
 import { SidebarContext, updateProgressContext } from '../Layout/Layout';
 import { makeRequest } from '../../api/axiosInstance';
+import ProgressBar from '../shared/ProgressBar';
 
 function Navbar() {
     const [totalCourses, setTotalCourses] = useState(null);
@@ -66,7 +67,7 @@ function Navbar() {
                     className={`absolute xl:fixed pb-3 z-20 left-0 top-0 bg-white transition-all duration-300 mx-auto 
             ${isCollapsed ? 'w-[calc(100%-60px)]' : 'w-[calc(100%-60px)] md:w-[calc(100%-230px)]'}`}
                 >
-                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-2 bg-white shadow-sm p-2 sm:p-4 rounded-[20px] mx-auto w-[98%] mt-3">
+                    <div className="grid grid-cols-2 mb-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-2 bg-white shadow-sm p-2 sm:p-4 rounded-[20px] mx-auto w-[98%] mt-3">
                         <Card title="عدد المواد المجتازة" bgColor="#d4c8f0" isLoading={loadingCourses}>
                             {64 - totalCourses}
                         </Card>
@@ -103,7 +104,7 @@ function Navbar() {
                         </div>
                     </div>
 
-
+                                <ProgressBar/>
 
                 </div>
             )}

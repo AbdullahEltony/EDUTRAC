@@ -54,7 +54,6 @@ export default function ChatBot() {
         <div className='w-full flex flex-row'>
             <NavMenu />
             <div className='w-full'>
-                <ProgressBar />
                 <div className="flex flex-col min-h-64 justify-center bg-gray-100 mx-auto pt-16 py-8 px-4" dir="rtl">
                     <div className="w-full bg-white rounded-2xl shadow-lg flex flex-col">
                         <div className="p-4 bg-blue-500 text-white font-bold text-lg flex items-center justify-center gap-2 shadow-md">

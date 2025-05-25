@@ -171,7 +171,6 @@ export default function FinalCourses() {
         <div className='w-full flex flex-row'>
             <NavMenu />
             <div className='w-full'>
-                <ProgressBar />
                 <div className="relative overflow-x-auto ltr shadow-md rounded-lg mb-10 mx-auto">
                     <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="bg-[#EFF4F8] border border-[#6CA6CD] text-black text-2xl rounded-lg block w-full max-w-sm p-5 font-normal focus-visible:outline-none mb-5"
                     >

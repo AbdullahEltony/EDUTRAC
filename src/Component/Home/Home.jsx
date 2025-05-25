@@ -14,9 +14,6 @@ const navigate = useNavigate()
             <NavMenu />
 
             <div className={`bg-[#fdfdfd]`}>
-                {/*  شريط التقدم  */}
-                <ProgressBar />
-
                 <div className='p-5' >
                     <div className='text-center mb-6'>
                         <h1 className='text-2xl md:text-5xl font-[Raleway] font-bold'>

@@ -12,7 +12,6 @@ const RulesPage = () => {
     <div className='w-full flex'>
       <NavMenu />
       <div className='w-full'>
-        <ProgressBar />
         <div className='flex flex-col gap-12'>
           <HoursTable />
           <ProgramCreditDistribution />
