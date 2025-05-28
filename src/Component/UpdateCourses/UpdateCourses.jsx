@@ -98,7 +98,7 @@ export default function UpdateCourses() {
       'PUT', `/api/Profile/update-course`,
       { updateCourse: cleanedCourses },
     );
-    toast.success("  تم تحديث الكورسات بنجاج", { autoClose: 2000 })
+    toast.success("  تم تحديث الكورسات بنجاج", { autoClose: 2000 , rtl:true })
     setLoading(false)
     setUpadteProgress(!upadteProgress);
 
@@ -111,7 +111,7 @@ export default function UpdateCourses() {
     setNoteLoading(true)
     await makeRequest('POST', '/api/UserNote', { level: level, semester: semester, note: note })
     setNoteLoading(false)
-    toast.success('تم ارسال الملاحظة بنجاح', { autoClose: 2000 })
+    toast.success('تم ارسال الملاحظة بنجاح', { autoClose: 2000 , rtl:true })
   }
 
 

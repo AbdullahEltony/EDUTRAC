@@ -178,7 +178,7 @@ export default function FinalCourses() {
                         <option value="1">متعثر</option>
                         <option value="2">اجتاز</option>
                     </select>
-                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border border-black border-collapse">
                         <thead className="text-white uppercase bg-gray-600">
                             <tr>
                                 <th className="py-6 px-4 text-center text-xs sm:text-sm md:text-lg w-2/12 "><div className='flex items-center justify-center'>
@@ -218,7 +218,7 @@ export default function FinalCourses() {
                                         <tr key={index}
                                             className={getCourseColor(course.courseType, course.isOptional)}
                                         >
-                                            <td className="p-12 font-normal text-[16px] sm:text-2xl text-black whitespace-nowrap">
+                                            <td className="border border-gray-400 p-12 font-normal text-[16px] sm:text-2xl text-black whitespace-nowrap">
                                                 <div className='flex items-center'>
                                                     <input
                                                         id={course.code}
@@ -230,12 +230,12 @@ export default function FinalCourses() {
                                                     <label htmlFor={course.code}> {course.code}</label>
                                                 </div>
                                             </td>
-                                            <td className="text-[16px] sm:text-2xl text-center text-black">{course.name}</td>
-                                            <td className="text-[16px] sm:text-2xl text-center text-black">{course.hours}</td>
-                                            <td className={`font-normal text-[16px] sm:text-2xl text-black text-center ${course.status ? 'bg-[#7fdfb1]' : 'bg-[#ef9d9d]'}`}>
+                                            <td className="border border-gray-400 text-[16px] sm:text-2xl text-center text-black">{course.name}</td>
+                                            <td className="border border-gray-400 text-[16px] sm:text-2xl text-center text-black">{course.hours}</td>
+                                            <td className={`border border-gray-400 font-normal text-[16px] sm:text-2xl text-black text-center ${course.status ? 'bg-[#7fdfb1]' : 'bg-[#ef9d9d]'}`}>
                                                 {getStatus(course.status)}
                                             </td>
-                                            <td className="font-normal text-[16px] sm:text-2xl text-black w-1/12 text-center">
+                                            <td className="border border-gray-400 font-normal text-[16px] sm:text-2xl text-black w-1/12 text-center">
                                                 {editMode[course.code] ? (
                                                     <input
                                                         type="number"
@@ -251,8 +251,8 @@ export default function FinalCourses() {
                                                     course.degree
                                                 )}
                                             </td>
-                                            <td className="text-[16px] sm:text-2xl text-center text-black">{getCourseTypeLabel(course.courseType)}</td>
-                                            <td className="text-[16px] sm:text-2xl text-center text-black">
+                                            <td className="border border-gray-400 text-[16px] sm:text-2xl text-center text-black">{getCourseTypeLabel(course.courseType)}</td>
+                                            <td className="border border-gray-400 text-[16px] sm:text-2xl text-center text-black">
                                                 <div className='flex justify-center items-center gap-4'>
                                                     <button
                                                         onClick={() => handleEdit(course.code)}
