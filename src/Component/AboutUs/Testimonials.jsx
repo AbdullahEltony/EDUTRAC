@@ -29,6 +29,7 @@ export default function ClientSlider() {
             slidesPerView: 3,
           },
         }}
+         initialSlide={6}
         className="!pb-10"
       >
         {testimonials.map((client, index) => {
