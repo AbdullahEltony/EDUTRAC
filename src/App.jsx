@@ -18,6 +18,7 @@ import FinalCourses from './Component/FinalCourses/FinalCourses.jsx'
 import UpdateCourses from './Component/UpdateCourses/UpdateCourses.jsx'
 import { ToastContainer } from 'react-toastify'
 import RulesPage from './Component/Rules/RulesPage.jsx'
+import RelatedCourses from './Component/RelatedCourses/RelatedCourses.jsx'
 
 function App() {
   useEffect(() => {
@@ -36,6 +37,7 @@ function App() {
       { path: 'chatBot', element: <ProtectedRoute> <ChatBot /> </ProtectedRoute> },
       { path: 'updateCourses', element: <ProtectedRoute> <UpdateCourses /> </ProtectedRoute> },
       { path: 'FinalCourses', element: <ProtectedRoute> <FinalCourses /> </ProtectedRoute> },
+      { path: 'RealtedCourses', element: <ProtectedRoute> <RelatedCourses /> </ProtectedRoute> },
       { path: '*', element: <NotFound /> },
     ]
   }])

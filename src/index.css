@@ -116,3 +116,6 @@ background-color: #3a84b5;
     overflow: hidden !important;
   }
 }
+table td {
+  padding:0 5px 0 5px
+}

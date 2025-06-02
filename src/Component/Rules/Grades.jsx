@@ -19,7 +19,7 @@ const GradeTable = () => {
 
     return (
         <div className="overflow-x-auto w-full mt-5">
-            <h3 className="table-title">التقيرات والدرجات</h3>
+            <h3 className="table-title">التقديرات والدرجات</h3>
             <table className="able-auto w-full border-collapse border  bg-white text-center">
                 <thead className="bg-orange-200">
                     <tr>

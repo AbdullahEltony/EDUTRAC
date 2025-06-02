@@ -22,3 +22,18 @@ export const getCourseTypeLabel = (type) => {
       return "غير معروف";
   }
 };
+
+export const getCourseType = (courseType, isOptional) => {
+  const type = getCourseTypeLabel(courseType);
+
+  if (type === "جامعة" && isOptional) return "إختياري متطلب جامعة";
+  if (type === "تخصص" && isOptional) return "إختياري تخصص";
+  if (type === "تخصص") return "إجباري تخصص";
+  if (type === "جامعة") return "إجباري متطلب جامعة";
+  if (type === "كلية") return "إجباري متطلب";
+
+  return "";
+};
+
+
+

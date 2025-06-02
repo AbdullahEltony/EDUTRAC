@@ -15,7 +15,7 @@ const LevelProgressionTable = () => {
                     <tr>
                         <th className="border px-4 py-2">من المستوى</th>
                         <th className="border px-4 py-2">إلى المستوى</th>
-                        <th className="border px-4 py-2">الحد الأدنى من الساعات المعتمدة</th>
+                        <th className="border px-4 py-2">الحد الأدنى من الساعات المعتمدة للأنتقال للمستوي الأعلي</th>
                     </tr>
                 </thead>
                 <tbody>

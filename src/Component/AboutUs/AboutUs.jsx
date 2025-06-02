@@ -54,7 +54,7 @@ export default function AboutUs() {
                                 </p>
                                 <ul className="list-disc pr-6 text-[14px] sm:text-[16px] font-[Almarai] font-bold text-[#262338] leading-[36px]">
                                     <li>يتابع عدد الساعات التي اجتازها والساعات المتبقيه للتخرج.</li>
-                                    <li>ينظم المقررات بناء علي الجدول في كل فصل دراسي.</li>
+                                    <li>يختار المقررات بناء علي الجدول في كل فصل دراسي.</li>
                                     <li>يتابع معدله التراكمي (GPA) أول بأول، يدرك صله المقررات ببعضها .</li>
                                 </ul>
                             </motion.div>

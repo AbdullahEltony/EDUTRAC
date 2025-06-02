@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCourseColor, getCourseTypeLabel } from '../../utils';
+import { getCourseColor, getCourseType } from '../../utils';
 import { toast } from 'react-toastify';
 
 export default function CourseTable({ courseList, formik2, handleSubmit, loading }) {
@@ -7,14 +7,14 @@ export default function CourseTable({ courseList, formik2, handleSubmit, loading
         <>
             <div className='relative ltr  overflow-x-auto shadow-md sm:rounded-lg  mx-auto mb-6'>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-white uppercase  bg-gray-600">
+                    <thead className="text-white uppercase bg-gray-600">
                         <tr>
                             {['كود المقرر', 'وصف المقرر', 'الساعات العتمدة', 'الدرجة', 'حال المقرر', 'نوع المقرر'].map(
                                 (header, index) => (
                                     <th
                                         key={index}
                                         scope="col"
-                                        className="py-6 px-4 text-center text-xs sm:text-sm md:text-lg w-2/12"
+                                        className="py-6 px-4 text-center border border-gray-400 text-xs sm:text-sm md:text-lg w-2/12"
                                     >
                                         {header}
                                     </th>
@@ -31,7 +31,7 @@ export default function CourseTable({ courseList, formik2, handleSubmit, loading
                                     className={getCourseColor(course.courseType, course.isOptional)}
                                 >
                                     {/* ✅ الكود */}
-                                    <th scope="row" className="p-12 font-normal text-black whitespace-nowrap">
+                                    <th scope="row" className="p-12 font-normal border border-gray-400 text-black whitespace-nowrap">
                                         <div className="flex items-center">
                                             <input
                                                 id={`checkbox-${index}`}
@@ -75,15 +75,15 @@ export default function CourseTable({ courseList, formik2, handleSubmit, loading
 
 
                                     {/* ✅ اسم المادة */}
-                                    <td className="text-[16px] sm:text-2xl text-center text-black">{course.name}</td>
+                                    <td className="text-[16px]  border border-gray-400 sm:text-2xl text-center text-black">{course.name}</td>
 
                                     {/* ✅ عدد الساعات */}
-                                    <td className="text-[16px] sm:text-2xl text-center text-black">{course.hours}</td>
+                                    <td className="text-[16px] border border-gray-400 sm:text-2xl text-center text-black">{course.hours}</td>
 
-                                    <td className="text-[16px] sm-2xl w-1/12">
+                                    <td className="text-[16px] border border-gray-400 sm-2xl !px-1 xl:!px-8">
                                         <input
                                             type="number"
-                                            className={`w-full text-black border text-center focus-visible:outline-none
+                                            className={`text-black border border-gray-700 w-full min-h-[30px] rounded-md text-center focus-visible:outline-none
                                       `}
                                             value={formik2.values.courses?.[index]?.degree || ""}
                                             disabled={
@@ -119,7 +119,7 @@ export default function CourseTable({ courseList, formik2, handleSubmit, loading
                                             }}
                                         />
                                     </td>
-                                    <td className="text-[16px] sm:text-2xl text-center text-black">
+                                    <td className="text-[16px] border border-gray-400 sm:text-2xl text-center text-black">
                                         {!formik2.values.courses[index]?.code
                                             ? '--' // No course selected yet
                                             : formik2.values.courses[index]?.degree === ''
@@ -134,8 +134,8 @@ export default function CourseTable({ courseList, formik2, handleSubmit, loading
 
 
                                     {/* ✅ نوع المادة */}
-                                    <td className="text-[16px] sm:text-2xl text-center text-black">
-                                        {getCourseTypeLabel(course.courseType)}
+                                    <td className="text-[16px] border border-gray-400 sm:text-2xl text-center text-black">
+                                        {getCourseType(course.courseType, course.isOptional)}
                                     </td>
                                 </tr>
                             ))}

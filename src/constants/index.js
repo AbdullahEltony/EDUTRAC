@@ -17,6 +17,11 @@ export const NavLinks = [
     icon: "fas fa-file-signature",
   },
   {
+    name: "المقررات المرتبطة",
+    link: "/RealtedCourses",
+    icon: "fas fa-file-signature",
+  },
+  {
     name: " لوائح وقوانين",
     link: "/rules",
     icon: "fa-solid fa-list-check",

@@ -152,6 +152,7 @@ export default function UpdateCourses() {
       <div className='w-full'>
         <Video />
 
+        <h3 className='text-2xl md:text-3xl mb-6 text-center text-bold'>المقررات المتبقية</h3>
         <form className=" mx-auto mb-12" dir="rtl">
           <LevelSelector value={level} onChange={setLevel} />
           <SemesterSelector value={semester} onChange={setSemester} />

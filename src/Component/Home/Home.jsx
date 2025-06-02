@@ -14,6 +14,8 @@ const navigate = useNavigate()
             <NavMenu />
 
             <div className={`bg-[#fdfdfd]`}>
+
+                {/* لماذا edutrack */}
                 <div className='p-5' >
                     <div className='text-center mb-6'>
                         <h1 className='text-2xl md:text-5xl font-[Raleway] font-bold'>
@@ -27,6 +29,7 @@ const navigate = useNavigate()
                     {/* video */}
                     <Video />
 
+                    {/* متطلبات التخرج */}
                     <div className='bg-[#EFF4F8] py-12 mx-auto mt-6'>
                         <div className='flex flex-col  md:flex-row justify-end  gap-5 p-3 sm:p-5'>
                             <div className='min-w-1/2'>
@@ -36,7 +39,7 @@ const navigate = useNavigate()
                                     <li className='text-[#4E4B66] font-bold font-[Almarai] text-[14px] md:text-[18px]'>استكمال جميع متطلبات الساعات المعتمدة المطلوبة في البرنامج الدراسي سواء الاجبارية او الاختيارية طبقا للخطة الدراسية للكلية</li>
                                     <li className='text-[#4E4B66] font-bold font-[Almarai] text-[14px] md:text-[18px]'>الحصول علي معدل تراكمي لا يقل عن ( 1.00 )</li>
                                     <li className='text-[#4E4B66] font-bold font-[Almarai] text-[14px] md:text-[18px]'>ضرورة اجتياز برنامج التربية العسكرية للطلاب الذكور المصريين فقط علي ان يكون تقديره مرضي ( S).</li>
-                                    <li className='text-[#4E4B66] font-bold font-[Almarai] text-[14px] md:text-[18px]'>في حالة تعثر 3 فصول دراسية متتالية سيتم فصلك من الكلية </li>
+                                    <li className='text-[#4E4B66] font-bold font-[Almarai] text-[14px] md:text-[18px]'>في حالة تعثر ثلاث فصول دراسية متتالية سيتم اتخاذ اجراء رسمي من قبل الكلية </li>
                                     <button
                                         onClick={() => { navigate('/rules'); window.scrollTo(0, 0); }}
                                         className="text-[#6CA6CD] cursor-pointer font-bold font-[Almarai] text-[14px] md:text-[18px] flex items-center gap-1 group"

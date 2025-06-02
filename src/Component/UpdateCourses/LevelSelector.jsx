@@ -5,7 +5,7 @@ export default function LevelSelector({ value, onChange }) {
         <select
             id="levels"
             name="level"
-            className="bg-[#EFF4F8] border border-[#6CA6CD] text-black text-2xl rounded-lg block w-full max-w-6xl p-5 font-normal focus-visible:outline-none"
+            className="bg-[#EFF4F8] border border-[#6CA6CD] text-black text-lg md:text-2xl rounded-lg block w-full max-w-6xl p-5 font-normal focus-visible:outline-none"
             onChange={(e) => onChange(e.target.value)}
             value={value}
         >

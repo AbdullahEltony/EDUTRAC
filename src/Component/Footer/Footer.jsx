@@ -15,9 +15,9 @@ export default function Footer() {
             <div className="social">
               <h3 className="font-semibold mb-2">انضم إلينا على</h3>
               <div className="flex space-x-4 text-xl justify-start">
-                <NavLink to={"#"} className='!bg-transparent'><i className="fab fa-linkedin-in"></i></NavLink>
-                <NavLink to={"#"} className='!bg-transparent'><i className="fab fa-instagram"></i></NavLink>
-                <NavLink to={"#"} className='!bg-transparent'><i className="fab fa-facebook-f"></i></NavLink>
+                <NavLink to={"#"} className='!bg-transparent hover:text-[#529ed0] transition-all duration-200'><i className="fab fa-linkedin-in"></i></NavLink>
+                <NavLink to={"#"} className='!bg-transparent hover:text-[#529ed0] transition-all duration-200'><i className="fab fa-instagram"></i></NavLink>
+                <NavLink to={"#"} className='!bg-transparent hover:text-[#529ed0] transition-all duration-200'><i className="fab fa-facebook-f"></i></NavLink>
               </div>
             </div>
 
@@ -35,11 +35,12 @@ export default function Footer() {
             <div className="links">
               <h3 className="font-semibold mb-2">روابط سريعة</h3>
               <ul className="space-y-1 text-sm text-gray-300">
-                <li><NavLink className='!bg-transparent' to={"/home"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })}>الرئيسية</NavLink></li>
-                <li><NavLink className='!bg-transparent' to={"/updateCourses"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })}>المقررات</NavLink></li>
-                <li><NavLink className='!bg-transparent' to={"/finalCourses"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })}>المقررات النهائية</NavLink></li>
-                <li><NavLink className='!bg-transparent' to={"/aboutus"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })}>معلومات عنا</NavLink></li>
-                <li><NavLink className='!bg-transparent' to={"/chatBot"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })}>المساعد الذكي</NavLink></li>
+                <li><NavLink className='!bg-transparent hover:text-[#529ed0] transition-all duration-200' to={"/home"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })}>الرئيسية</NavLink></li>
+                <li><NavLink className='!bg-transparent hover:text-[#529ed0] transition-all duration-200' to={"/updateCourses"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })}>المقررات</NavLink></li>
+                <li><NavLink className='!bg-transparent hover:text-[#529ed0] transition-all duration-200' to={"/finalCourses"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })}>المقررات النهائية</NavLink></li>
+                <li><NavLink className='!bg-transparent hover:text-[#529ed0] transition-all duration-200' to={"/aboutus"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })}>معلومات عنا</NavLink></li>
+                <li><NavLink className='!bg-transparent hover:text-[#529ed0] transition-all duration-200' to={"/chatBot"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })}>المساعد الذكي</NavLink></li>
+                <li><NavLink className='!bg-transparent hover:text-[#529ed0] transition-all duration-200' to={"https://online-services.fayoum.edu.eg/FuRegSubjets/"} onClick={() => window.scrollTo({ top: 0, behavior: "smooth", block: 'center' })}> التسجيل الجامعي</NavLink></li>
               </ul>
             </div>
 
@@ -53,7 +54,7 @@ export default function Footer() {
 
           {/* أسفل الفوتر */}
           <hr className="my-6 border-gray-700" />
-          <p dir="rtl" className="font-[Inter] font-normal text-[#FCFCFC] mt-4">© 2077    . جميع الحقوق محفوظة edutrack.</p>
+          <p dir="rtl" className="font-[Inter] font-normal text-[#FCFCFC] mt-4">© 2025    . جميع الحقوق محفوظة edutrack.</p>
         </div>
       </div>
     </>
