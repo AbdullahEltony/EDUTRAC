@@ -30,7 +30,7 @@ export const getCourseType = (courseType, isOptional) => {
   if (type === "تخصص" && isOptional) return "إختياري تخصص";
   if (type === "تخصص") return "إجباري تخصص";
   if (type === "جامعة") return "إجباري متطلب جامعة";
-  if (type === "كلية") return "إجباري متطلب";
+  if (type === "كلية") return "إجباري متطلب كلية";
 
   return "";
 };

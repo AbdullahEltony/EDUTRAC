@@ -120,8 +120,9 @@ export default function CourseTable({ courseList, formik2, handleSubmit, loading
                                         />
                                     </td>
                                     <td className="text-[16px] border border-gray-400 sm:text-2xl text-center text-black">
+
                                         {!formik2.values.courses[index]?.code
-                                            ? '--' // No course selected yet
+                                            ? course.status ? '--' : <i class="fas fa-times text-red-700"></i> // No course selected yet
                                             : formik2.values.courses[index]?.degree === ''
                                                 ? '--' // Degree not entered
                                                 : Number(formik2.values.courses[index]?.degree) >= 60

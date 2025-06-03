@@ -7,5 +7,9 @@ export const CourseLegend = () => (
         <span className="text-black text-lg sm:text-2xl font-normal">{type.name}</span>
       </div>
     ))}
+    <div className="flex gap-4 items-center">
+      <span><i class="fas fa-times text-2xl text-red-500 "></i></span>
+      <span className="text-black text-lg sm:text-2xl font-normal" >متعثر</span>
+    </div>
   </div>
 );
