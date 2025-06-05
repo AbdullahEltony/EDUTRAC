@@ -130,7 +130,7 @@ export default function AboutUs() {
                             <p className='font-[Raleway] text-[16px] sm:text-[17px]'>
                                 في أكاديمية EDU TRACK، نُدرِّبك على يد مبرمجين محترفين...
                             </p>
-                            <p className=''>تحت اشراف  <span className='font-bold text-[#5393be]'>د.عبير كمال</span></p>
+                            <p className=''>تحت اشراف  <span className='font-bold text-[#5393be] text-lg sm:text-2xl'>د.عبير كمال</span></p>
                         </motion.div>
 
                         {/* صور الفريق */}
