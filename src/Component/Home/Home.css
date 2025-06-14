@@ -1,0 +1,21 @@
+.m-t {
+    margin-top: 18.5rem;
+}
+
+@media (min-width: 640px) {
+    .m-t {
+        margin-top: 18.75rem;
+    }
+}
+@media (min-width: 768px) {
+    .m-t {
+        margin-top: 15rem;
+    }
+    
+}
+@media (min-width: 1280px) {
+    .m-t {
+        margin-top: 9.25rem;
+    }
+    
+}

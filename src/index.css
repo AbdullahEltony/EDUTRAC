@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+:root {
+  --primary-color: #529ed0;
+  --bg-color: #eff4f8;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+body {
+  font-family: "Almarai", sans-serif;
+  overflow-x: hidden;
+}
+.welcome {
+  background-color: var(--bg-color);
+}
+.active {
+  background-color: var(--bg-color);
+}
+/* Scrollbar container */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Thumb */
+::-webkit-scrollbar-thumb {
+  background: #6ca6cd;
+  border-radius: 10px;
+}
+
+/* Hover effect on thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+.table-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .table-title {
+    font-size: 20px;
+  }
+}
+.list {
+  list-style: disc;
+}
+
+@keyframes leftArrow {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-left-arrow {
+  animation: leftArrow 1s infinite ease-in-out;
+}
+.swiper {
+  overflow: visible !important;
+}
+.swiper-slide {
+  margin-right: 0 !important;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  border-radius: 50%;
+  width:35px !important;
+  height:35px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  transition: all 0.3s;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+background-color: #3a84b5;
+}
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+  font-size: 20px !important;
+  color: #fff;
+}
+
+.swiper-button-next {
+  left: -15px !important;
+}
+.swiper-button-prev {
+  right: -15px !important;
+}
+
+
+@media (max-width:640px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display:none !important;
+  }
+  .swiper {
+    overflow: hidden !important;
+  }
+}
+table td {
+  padding:0 5px 0 5px
+}

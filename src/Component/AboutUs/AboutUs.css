@@ -1,0 +1,10 @@
+
+.AboutUsImage {
+    background-image: url(../about.png);
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+.AboutBackGround {
+    background-color: rgba(0, 0, 0,.4);
+}
