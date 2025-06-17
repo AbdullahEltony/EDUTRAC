@@ -10,7 +10,7 @@ const Video = ({ video, caption }) => {
                     <video
                         className="w-full h-full rounded-lg shadow-lg"
                         controls
-                        poster={`./${caption}`}
+                        ponster={`./${caption}`}
                         src={
                             video === 'introduction' ? 'https://res.cloudinary.com/dlkw3tyvv/video/upload/v1749942283/Introduction-Video_nu7a1r.mp4'
                             :

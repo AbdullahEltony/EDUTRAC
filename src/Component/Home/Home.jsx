@@ -50,7 +50,7 @@ const navigate = useNavigate()
                                 </ul>
                             </div>
                             <div className='-order-1 md:order-1'>
-                                <img src="./graduation.jpeg" alt="" className='w-full ' />
+                                <img src="./graduation.jpg" alt="" className='w-full ' />
                             </div>
                         </div>
                     </div>

@@ -145,7 +145,7 @@ export default function CourseTable({ courseList, formik2, handleSubmit, loading
                 </table>
 
             </div>
-            <button disabled={loading} onClick={() => { handleSubmit(); formik2.handleSubmit; }} className="w-full mt-2.5 py-3 bg-[#EFF4F8] text-black text-2xl cursor-pointer duration-200">{loading ? 'جاري الحفظ' : 'حفظ'} </button>
+            <button disabled={loading} onClick={() => { handleSubmit(); formik2.handleSubmit; }} className="w-[98%] block md:w-full mx-auto mt-2.5 py-3 bg-[#EFF4F8] text-black text-[18px] md:text-2xl cursor-pointer duration-200 rounded-xl">{loading ? 'جاري الحفظ' : 'حفظ'} </button>
 
         </>
 

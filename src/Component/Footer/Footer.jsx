@@ -8,7 +8,7 @@ export default function Footer() {
 
   return (
     <>
-      <div className={`mr-auto transition-[width] duration-300 ease-in-out ${isCollapsed ? 'w-[calc(100%-60px)]' : 'w-[calc(100%-60px)] md:w-[calc(100%-230px)]'}`}>
+      <div className={`mr-auto mb-[90px] md:mb-0 transition-[width] duration-300 ease-in-out ${isCollapsed ? 'w-[calc(100%)] md:[calc(100%-60px)]' : 'w-[calc(100%)] md:w-[calc(100%-230px)]'}`}>
         <div className="bg-[#191A1B] text-white py-10 px-6 md:px-20 w-[100%]">
           <div className="footer">
             {/* وسائل التواصل الاجتماعي */}

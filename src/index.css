@@ -16,9 +16,7 @@ body {
 .welcome {
   background-color: var(--bg-color);
 }
-.active {
-  background-color: var(--bg-color);
-}
+
 /* Scrollbar container */
 ::-webkit-scrollbar {
   width: 8px;
