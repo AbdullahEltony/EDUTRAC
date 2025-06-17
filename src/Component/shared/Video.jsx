@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Video = ({ video, caption }) => {
+    console.log(caption)
 
     return (
         <div className='bg-[#EFF4F8] pb-10 pt-6 mb-8  mx-auto'>
@@ -10,7 +11,7 @@ const Video = ({ video, caption }) => {
                     <video
                         className="w-full h-full rounded-lg shadow-lg"
                         controls
-                        ponster={`./${caption}`}
+                        poster={`./${caption}`}
                         src={
                             video === 'introduction' ? 'https://res.cloudinary.com/dlkw3tyvv/video/upload/v1749942283/Introduction-Video_nu7a1r.mp4'
                             :
