@@ -17,7 +17,7 @@ export default function Footer() {
               <div className="flex space-x-4 text-xl justify-start">
                 <NavLink to={"#"} className='!bg-transparent hover:text-[#529ed0] transition-all duration-200'><i className="fab fa-linkedin-in"></i></NavLink>
                 <NavLink to={"#"} className='!bg-transparent hover:text-[#529ed0] transition-all duration-200'><i className="fab fa-instagram"></i></NavLink>
-                <NavLink to={"#"} className='!bg-transparent hover:text-[#529ed0] transition-all duration-200'><i className="fab fa-facebook-f"></i></NavLink>
+                <NavLink to={"https://www.facebook.com/share/16eMEVN4vT/"} className='!bg-transparent hover:text-[#529ed0] transition-all duration-200'><i className="fab fa-facebook-f"></i></NavLink>
               </div>
             </div>
 
