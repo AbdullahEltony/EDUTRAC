@@ -31,7 +31,7 @@ const RelatedCourses = () => {
                                     <th className="p-4 text-[16px] ms:text-lg !font-bold border">اسم المقرر</th>
                                     <th className="p-4 text-[16px] ms:text-lg !font-bold border">الكود</th>
                                     <th className="p-4 text-[16px] ms:text-lg !font-bold border">المستوى</th>
-                                    <th className="p-4 text-[16px] ms:text-lg !font-bold border bg-gray-200">المقرر المطلوب</th>
+                                    <th className="p-4 text-[16px] ms:text-lg !font-bold border bg-gray-200"> المقرر المطلوب دراسته سابقا</th>
                                     <th className="p-4 text-[16px] ms:text-lg !font-bold border bg-gray-200">الكود</th>
                                     <th className="p-4 text-[16px] ms:text-lg !font-bold border bg-gray-200">المستوى</th>
                                 </tr>
